@@ -87,6 +87,24 @@ return require("packer").startup(function()
 		end,
 	})
 
+	-- lualine status line
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		config = function()
+			require("user.lualine").config()
+		end,
+	})
+
+	-- gitsigns
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+		event = "BufRead",
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
