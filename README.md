@@ -10,3 +10,11 @@
 - gitsigns - git integration
 - nvim-lspconfig - LSP
 - nvim-lsp-installer - easy to use LSP installer
+- null-ls - for formatters and linters (requires plenary.nvim)
+- nvim-cmp - completion engine
+- cmp-nvim-lsp - completion plugin for LSP
+- cmp-path - completion plugin for path
+- cmp-buffer - completion plugin for current buffer
+- cmp_luasnip - completion plugin for luasnip code snippets
+- LuaSnip - snippet engine
+- friendly-snippets - set of preconfigured snippets
