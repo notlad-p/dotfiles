@@ -38,7 +38,7 @@ packer.init({
 	},
 })
 
-return require("packer").startup(function()
+return require("packer").startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 
@@ -110,6 +110,36 @@ return require("packer").startup(function()
 	use("williamboman/nvim-lsp-installer")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("nvim-lua/plenary.nvim")
+
+	-- completions
+	use({
+		"hrsh7th/nvim-cmp",
+		config = function()
+			require("user.cmp").setup()
+		end,
+		requires = {
+			"L3MON4D3/LuaSnip",
+		},
+	})
+	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-path")
+	use("hrsh7th/cmp-buffer")
+	use("saadparwaiz1/cmp_luasnip")
+
+	-- snippets
+	use("rafamadriz/friendly-snippets")
+	use({
+		"L3MON4D3/LuaSnip",
+		config = function()
+			require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_vscode").lazy_load({
+				paths = {
+					"~/.config/nvim/snippets",
+					"~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+				},
+			})
+		end,
+	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

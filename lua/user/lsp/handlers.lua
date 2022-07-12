@@ -94,9 +94,20 @@ local function add_lsp_buffer_keybindings(bufnr)
 	end
 end
 
--- ADD on_attach HERE
+-- Funciton run on lsp attach
 M.on_attach = function(client, bufnr)
 	add_lsp_buffer_keybindings(bufnr)
 end
+
+-- Add capabilities for cmp-lsp
+-- https://github.com/hrsh7th/cmp-nvim-lsp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not status_ok then
+	return
+end
+
+M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 return M

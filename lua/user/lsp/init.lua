@@ -35,6 +35,7 @@ M.setup = function()
 		-- Add common on_attach and capabilities variable here
 		local opts = {
 			on_attach = require("user.lsp.handlers").on_attach,
+			capabilities = require("user.lsp.handlers").capabilities,
 		}
 
 		-- Add options for specific servers here
