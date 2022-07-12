@@ -1,0 +1,28 @@
+{
+  "jsx function component export (not default)": {
+    "prefix": "rafce",
+    "body": [
+      "export const ${1:functionname} = ({ ${2:props} }) => {",
+      "\treturn (",
+      "\t\t<div>",
+      "\t\t\t$0",
+      "\t\t</div>",
+      "\t)",
+      "}"
+    ]
+  },
+  "jsx funciton component export default": {
+    "prefix": "rafced",
+    "body": [
+      "const ${1:functionname} = ({ ${2:props} }) => {",
+      "\treturn (",
+      "\t\t<div>",
+      "\t\t\t$0",
+      "\t\t</div>",
+      "\t)",
+      "}",
+      "",
+      "export default ${1}"
+    ]
+  }
+}
