@@ -141,10 +141,21 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- autopairs / tags
 	use({
 		"windwp/nvim-autopairs",
 		config = function()
 			require("user.autopairs").setup()
+		end,
+	})
+	use({
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup({
+				autotag = {
+					enable = true,
+				},
+			})
 		end,
 	})
 
