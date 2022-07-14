@@ -159,6 +159,19 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- telescope
+	use({
+		"nvim-telescope/telescope.nvim",
+		config = function()
+			require("user.telescope").setup()
+		end,
+	})
+	use({
+		"nvim-telescope/telescope-fzf-native.nvim",
+		requires = { "nvim-telescope/telescope.nvim" },
+		run = "make",
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
