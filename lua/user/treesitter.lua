@@ -24,6 +24,10 @@ M.config = function()
 			additional_vim_regex_highlighting = true,
 		},
 		indent = { enable = true },
+		context_commentstring = {
+			enable = true,
+			enable_autocmd = false,
+		},
 	})
 end
 
