@@ -172,6 +172,14 @@ return require("packer").startup(function(use)
 		run = "make",
 	})
 
+	-- project
+	use({
+		"ahmedkhalf/project.nvim",
+		config = function()
+			require("project_nvim").setup()
+		end,
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then

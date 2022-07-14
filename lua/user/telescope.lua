@@ -17,6 +17,9 @@ M.setup = function()
 		},
 	})
 
+	-- projects.nvim for project search
+	require("telescope").load_extension("projects")
+
 	require("telescope").load_extension("fzf")
 end
 
