@@ -192,6 +192,15 @@ return require("packer").startup(function(use)
 		event = "BufReadPost",
 	})
 
+	-- whichkey
+	use({
+		"max397574/which-key.nvim",
+		config = function()
+			require("user.whichkey").setup()
+		end,
+		event = "BufWinEnter",
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
