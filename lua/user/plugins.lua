@@ -201,6 +201,14 @@ return require("packer").startup(function(use)
 		event = "BufWinEnter",
 	})
 
+	-- alpha dashboard
+	use({
+		"goolord/alpha-nvim",
+		config = function()
+			require("user.alpha").setup()
+		end,
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
