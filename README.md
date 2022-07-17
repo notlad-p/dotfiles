@@ -18,3 +18,9 @@
 - cmp_luasnip - completion plugin for luasnip code snippets
 - LuaSnip - snippet engine
 - friendly-snippets - set of preconfigured snippets
+- nvim-autopairs
+- nvim-ts-autotag
+- telescope.nvim - requires plenary.nvim
+- telescope-fzf-native.nvim
+- which-key.nvim
+- alpha-nvim - start up dashboard
