@@ -202,6 +202,10 @@ M.setup = function()
 			name = "Treesitter",
 			i = { ":TSConfigInfo<cr>", "Info" },
 		},
+		t = {
+			name = "Terminal",
+			l = { "5:TermExec cmd='lazygit'<CR>", "LazyGit" },
+		},
 	}
 
 	-- register normal mode mappings
