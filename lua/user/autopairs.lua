@@ -14,10 +14,8 @@ M.setup = function()
 		disable_in_macro = false,
 	})
 
-	-- Enable treesitter
 	require("nvim-treesitter.configs").setup({ autopairs = { enable = true } })
 
-	-- For cmp autopairs after confirm
 	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 	local cmp_status_ok, cmp = pcall(require, "cmp")
 	if not cmp_status_ok then

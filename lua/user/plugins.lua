@@ -219,6 +219,9 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- better buffer delete
+	use("famiu/bufdelete.nvim")
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
