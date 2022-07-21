@@ -222,6 +222,39 @@ return require("packer").startup(function(use)
 	-- better buffer delete
 	use("famiu/bufdelete.nvim")
 
+	-- adds indent text object
+	use("michaeljsmith/vim-indent-object")
+
+	-- adds surroundings text object
+	use("tpope/vim-surround")
+
+	-- shows indent lines & current indent
+	use({
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("indent_blankline").setup({
+				show_current_context = true,
+				show_current_context_start = true,
+			})
+		end,
+	})
+
+	-- highlight color codes in editor
+	use({
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup({ "*" }, {
+				RGB = true, -- #RGB hex codes
+				RRGGBB = true, -- #RRGGBB hex codes
+				RRGGBBAA = true, -- #RRGGBBAA hex codes
+				rgb_fn = true, -- CSS rgb() and rgba() functions
+				hsl_fn = true, -- CSS hsl() and hsla() functions
+				css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+				css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+			})
+		end,
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
