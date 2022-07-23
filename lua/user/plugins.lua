@@ -255,6 +255,26 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- quick motions with 's' key
+	use("ggandor/lightspeed.nvim")
+
+	-- smooth scrolling & other scrolling behaviors
+	use({
+		"karb94/neoscroll.nvim",
+		config = function()
+			require("neoscroll").setup()
+		end,
+	})
+
+	-- create searchable to do comments
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup()
+		end,
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then

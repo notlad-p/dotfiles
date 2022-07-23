@@ -30,6 +30,9 @@
 - vim-surround - adds surroundings text object
 - indent-blankline.nvim - shows indent lines & current indent
 - nvim-colorizer.lua - highlights color codes in editor
+- lightspeed.nvim - better find motion
+- neoscroll.nvim - smooth scrolling motions
+- todo-comments.nvim - highlight, list, and search todo comments
 
 ### Useful links
 
