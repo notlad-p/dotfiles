@@ -31,9 +31,9 @@ function M.setup()
 	}
 
 	-- loop signs and asign them in vim
-	-- for _, sign in pairs(config.signs) do
-	-- 	vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-	-- end
+	for _, sign in pairs(config.signs.active) do
+		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+	end
 
 	vim.diagnostic.config(config)
 
