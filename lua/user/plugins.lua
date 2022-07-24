@@ -275,6 +275,18 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- enable repeating with supported plugins
+	use("tpope/vim-repeat")
+
+	-- List of diagnostics
+	use({
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+		config = function()
+			require("trouble").setup()
+		end,
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
