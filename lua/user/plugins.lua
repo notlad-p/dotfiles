@@ -62,6 +62,7 @@ return require("packer").startup(function(use)
 
 			onedark.setup({
 				style = "deep",
+				transparent = true,
 			})
 
 			onedark.load()
