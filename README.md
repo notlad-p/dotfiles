@@ -11,6 +11,8 @@
 - nvim-lspconfig - LSP
 - nvim-lsp-installer - easy to use LSP installer
 - null-ls - for formatters and linter's (requires plenary.nvim)
+  - You will need to install linters and formatters separately on your machine
+    - For example [luacheck](https://github.com/mpeterv/luacheck#installation) and [stylua](https://github.com/JohnnyMorganz/StyLua#installation)
 - nvim-cmp - completion engine
 - cmp-nvim-lsp - completion plugin for LSP
 - cmp-path - completion plugin for path
@@ -33,6 +35,7 @@
 - lightspeed.nvim - better find motion
 - neoscroll.nvim - smooth scrolling motions
 - todo-comments.nvim - highlight, list, and search todo comments
+- markdown-preview.nvim - preview markdown files
 
 ### Useful links
 
