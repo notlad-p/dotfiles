@@ -85,7 +85,7 @@ M.setup = function()
 		-- [";"] = { "<cmd>Alpha<CR>", "Dashboard" },
 		["w"] = { "<cmd>w!<CR>", "Save" },
 		["q"] = { "<cmd>lua require('user.utils.functions').smart_quit()<CR>", "Quit" },
-		["/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment" },
+		["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment" },
 		["c"] = { "<cmd>Bdelete<CR>", "Close Buffer" },
 		["f"] = { require("user.telescope").find_project_files, "Find File" },
 		["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
@@ -223,7 +223,7 @@ M.setup = function()
 
 	-- visual mode mappings
 	local vmappings = {
-		["/"] = { "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment" },
+		["/"] = { "<Plug>(comment_toggle_linewise_visual)", "Comment" },
 	}
 
 	-- register visual mode mappings
