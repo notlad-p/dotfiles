@@ -22,6 +22,21 @@ M.setup = function()
 				command = "setlocal  spell",
 			},
 		},
+		{
+			"ColorScheme",
+			{
+				group = "_illuminate_settings",
+				pattern = "*",
+				desc = "Highlighting for vim-illuminate",
+				callback = function()
+					vim.api.nvim_set_hl(0, "IlluminatedWordText", { bold = true, underline = false })
+
+					vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
+
+					vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
+				end,
+			},
+		},
 	}
 
 	M.define_autocmds(autocmds)

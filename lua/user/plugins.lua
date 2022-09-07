@@ -62,7 +62,7 @@ return require("packer").startup(function(use)
 
 			onedark.setup({
 				style = "deep",
-				transparent = true,
+				-- transparent = true,
 			})
 
 			onedark.load()
@@ -288,6 +288,7 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- preview markdown in browser with command
 	use({
 		"iamcco/markdown-preview.nvim",
 		run = "cd app && npm install",
@@ -295,6 +296,20 @@ return require("packer").startup(function(use)
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
 		ft = { "markdown" },
+	})
+
+	-- illuminate other uses of a word under cursor
+	use({
+		"RRethy/vim-illuminate",
+		config = function()
+			require("illuminate").configure({
+				delay = 150,
+				filetypes_denylist = {
+					"NvimTree",
+					"alpha",
+				},
+			})
+		end,
 	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
