@@ -161,6 +161,7 @@ local config = {
 	},
 	source_names = {
 		nvim_lsp = "(LSP)",
+		nvim_lua = "(NVIM)",
 		-- emoji = "(Emoji)",
 		path = "(Path)",
 		-- calc = "(Calc)",
@@ -203,7 +204,7 @@ M.setup = function()
 			{ name = "path" },
 			{ name = "luasnip" },
 			-- { name = "cmp_tabnine" },
-			-- { name = "nvim_lua" },
+			{ name = "nvim_lua" },
 			{ name = "buffer" },
 			-- { name = "calc" },
 			-- { name = "emoji" },
