@@ -313,9 +313,21 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- run snippets of code in editor
 	use({ "michaelb/sniprun", run = "bash ./install.sh" })
 
+	-- speed up neovim startup time
 	use("lewis6991/impatient.nvim")
+
+	-- zen mode
+	-- TODO: add keybinds in which key
+	use({
+		"Pocco81/true-zen.nvim",
+		config = function()
+			require("true-zen").setup()
+		end,
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
