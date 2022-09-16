@@ -186,7 +186,7 @@ return require("packer").startup(function(use)
 	use({
 		"numToStr/Comment.nvim",
 		config = function()
-			require("user.comment").setup()
+			require("Comment").setup()
 		end,
 	})
 	use({
@@ -325,6 +325,20 @@ return require("packer").startup(function(use)
 		"Pocco81/true-zen.nvim",
 		config = function()
 			require("true-zen").setup()
+		end,
+	})
+
+	-- typescript helper functions
+	use({
+		"jose-elias-alvarez/typescript.nvim",
+		config = function()
+			require("typescript").setup({
+				disable_commands = false, -- prevent the plugin from creating Vim commands
+				debug = false, -- enable debug logging for commands
+				go_to_source_definition = {
+					fallback = true, -- fall back to standard LSP definition on failure
+				},
+			})
 		end,
 	})
 
