@@ -40,10 +40,15 @@ M.setup = function()
 				})
 			end
 		end,
+
 		-- list of current formmaters & linters
 		sources = {
 			-- formatters
-			formatting.prettierd,
+			formatting.prettierd.with({
+				-- to use with svelte install plugin globaly
+				-- https://github.com/sveltejs/prettier-plugin-svelte
+				extra_filetypes = { "svelte" },
+			}),
 			formatting.stylua,
 			-- linters
 			diagnostics.eslint_d,
