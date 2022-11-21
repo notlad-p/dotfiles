@@ -195,6 +195,7 @@ M.setup = function()
 			r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
 			R = { "<cmd>Telescope registers<cr>", "Registers" },
 			t = { "<cmd>Telescope live_grep<cr>", "Text" },
+			T = { "<cmd>TodoTelescope<cr>", "Todos" },
 			k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 			C = { "<cmd>Telescope commands<cr>", "Commands" },
 		},

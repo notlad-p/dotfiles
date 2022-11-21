@@ -1,12 +1,13 @@
 local M = {}
 
 M.config = function()
-	local status_ok, treesitter_configs = pcall(require, "nvim-treesitter.configs")
+	-- local status_ok, treesitter_configs = pcall(require, "nvim-treesitter.configs")
 
-	if not status_ok then
-		print("Treesitter not ready")
-		return
-	end
+	-- if not status_ok then
+	-- 	print("Treesitter not ready")
+	-- 	return
+	-- end
+	local treesitter_configs = require("nvim-treesitter.configs")
 
 	treesitter_configs.setup({
 		ensure_installed = {
