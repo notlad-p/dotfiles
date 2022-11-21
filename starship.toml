@@ -1,0 +1,88 @@
+[directory]
+format = " [$path]($style)[$read_only]($read_only_style) "
+style = "bold #41a7fc"
+read_only = " "
+read_only_style = "bold #f65866"
+# home_symbol = " ~"
+
+[character]
+format = " $symbol "
+success_symbol = "[](bold #efbd5d)"
+error_symbol = "[](bold #f65866)"
+vicmd_symbol = "[](bold #8bcd5b)"
+
+[cmd_duration]
+style = "bold #efbd5d"
+
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[git_branch]
+symbol = " "
+style = "bold #c75ae8"
+
+[git_status]
+style = "bold #34bfd0"
+
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+
+[python]
+symbol = " "
+
+[spack]
+symbol = "🅢 "
+
+[rust]
+symbol = " "
