@@ -25,4 +25,5 @@ WORK_DIR=`pwd`
 # # NEEDS STARSHIP.RS
 # ln -sf $WORK_DIR"/config.fish" ~/.config/fish/config.fish
 
-
+# symlink wezterm config
+ln -s $WORK_DIR"/wezterm" ~/.config/wezterm
