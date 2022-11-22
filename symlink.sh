@@ -16,6 +16,8 @@
 # fi
 
 # -----------------------------------
+# TODO: check if symlinks exist
+# TODO: create loop to symlink all
 WORK_DIR=`pwd`
 
 # # symlink starship.toml
@@ -25,5 +27,16 @@ WORK_DIR=`pwd`
 # # NEEDS STARSHIP.RS
 # ln -sf $WORK_DIR"/config.fish" ~/.config/fish/config.fish
 
-# symlink wezterm config
-ln -s $WORK_DIR"/wezterm" ~/.config/wezterm
+# # symlink wezterm config
+# ln -s $WORK_DIR"/wezterm" ~/.config/wezterm
+
+# # symlink tmux
+# ln -s $WORK_DIR"/tmux" ~/.config/tmux
+
+# # symlink ranger
+# ln -s $WORK_DIR"/ranger" ~/.config/ranger
+
+# # picom
+# ln -s $WORK_DIR"/picom" ~/.config/picom
+
+
