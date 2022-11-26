@@ -1,7 +1,14 @@
 # Dotfiles
 
-### APT packages:
+## To do:
+- Create install script to install all required tools
+- Create install script to install personal tools like Obsidian
 
-### Homebrew packages:
+## Install script:
 
-### Other packages:
+APT packages:
+- 
+
+Homebrew packages:
+
+Other packages:
