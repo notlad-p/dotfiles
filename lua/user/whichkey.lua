@@ -89,6 +89,7 @@ M.setup = function()
 		["c"] = { "<cmd>Bdelete<CR>", "Close Buffer" },
 		["f"] = { require("user.telescope").find_project_files, "Find File" },
 		["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+		["o"] = { "<cmd>SymbolsOutline<CR>", "Outline" },
 		b = {
 			name = "Buffers",
 			j = { "<cmd>BufferLinePick<cr>", "Jump" },
