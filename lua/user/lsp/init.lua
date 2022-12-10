@@ -7,6 +7,7 @@ M.setup = function()
 		return
 	end
 
+	-- TODO: move to mason.nvim, nvim-lsp-installer is depricated
 	local lsp_installer_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
 
 	if not lsp_installer_ok then
@@ -43,6 +44,18 @@ M.setup = function()
 		--   local sumneko_opts = require("user.lsp.settings.sumneko_lua")
 		--   opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
 		-- end
+		if server.name == "jsonls" then
+			local jsonls_opts = {
+				settings = {
+					json = {
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
+				},
+			}
+
+			opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+		end
 
 		lspconfig[server.name].setup(opts)
 	end
