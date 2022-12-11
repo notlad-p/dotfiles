@@ -33,6 +33,7 @@ local options = {
 	scrolloff = 12, -- lines to keep on screen when scrolling
 	sidescrolloff = 12,
 	guifont = "monospace:h17", -- the font used in graphical neovim applications
+	shell = "/bin/bash",
 }
 
 vim.opt.shortmess:append("c")
