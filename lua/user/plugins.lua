@@ -54,20 +54,22 @@ return require("packer").startup(function(use)
 	})
 
 	-- onedark theme
-	use({
-		"navarasu/onedark.nvim",
-		as = "onedark",
-		config = function()
-			local onedark = require("onedark")
+	-- use({
+	-- 	"navarasu/onedark.nvim",
+	-- 	as = "onedark",
+	-- 	config = function()
+	-- 		local onedark = require("onedark")
+	--
+	-- 		onedark.setup({
+	-- 			style = "deep",
+	-- 			-- transparent = true,
+	-- 		})
+	--
+	-- 		onedark.load()
+	-- 	end,
+	-- })
 
-			onedark.setup({
-				style = "deep",
-				-- transparent = true,
-			})
-
-			onedark.load()
-		end,
-	})
+	use({ "Everblush/everblush.nvim", as = "everblush" })
 
 	-- treesitter styntax highlighting
 	use({
