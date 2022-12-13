@@ -7,11 +7,12 @@ M.setup = function()
 	dashboard.section.header.val = require("user.alpha.header")
 
 	dashboard.section.buttons.val = {
-		dashboard.button("SPC f", "  Find File", "<CMD>Telescope find_files<CR>"),
-		dashboard.button("SPC n", "  New File", "<CMD>ene!<CR>"),
-		dashboard.button("SPC P", "  Recent Projects", "<CMD>Telescope projects<CR>"),
-		dashboard.button("SPC s r", "  Recently Used Files", "<CMD>Telescope oldfiles<CR>"),
-		dashboard.button("SPC s t", "  Find Word", "<CMD>Telescope live_grep<CR>"),
+		dashboard.button("f", "  Find File", "<CMD>Telescope find_files<CR>"),
+		dashboard.button("n", "  New File", "<CMD>ene!<CR>"),
+		dashboard.button("P", "  Projects", "<CMD>Telescope projects<CR>"),
+		dashboard.button("r", "  Recently Files", "<CMD>Telescope oldfiles<CR>"),
+		dashboard.button("t", "  Find Text", "<CMD>Telescope live_grep<CR>"),
+		dashboard.button("c", "  Configuration", "<CMD>edit ~/.config/nvim/init.lua<CR>"),
 	}
 
 	local function footer()
