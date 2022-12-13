@@ -46,6 +46,19 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 -- Toggle nvim-tree
 keymap("n", "<leader>e", "<cmd>:NvimTreeToggle<CR>", opts)
 
+-- Clipboard --
+-- yank to clipboard
+keymap("n", "<leader>y", '"+y', opts)
+keymap("n", "<leader>Y", '"+Y', opts)
+keymap("v", "<leader>y", '"+y', opts)
+-- Delete to clipboard
+keymap("n", "<leader>d", '"+d', opts)
+keymap("n", "<leader>D", '"+D', opts)
+keymap("v", "<leader>d", '"+d', opts)
+-- Paste from clipboard
+keymap("n", "<leader>p", '"+p', opts)
+keymap("v", "<leader>p", '"+p', opts)
+
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
