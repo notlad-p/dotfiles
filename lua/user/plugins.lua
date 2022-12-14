@@ -83,11 +83,11 @@ return require("packer").startup(function(use)
   -- bufferline
   use {
     "akinsho/bufferline.nvim",
-    tag = "v2.*",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
       require("user.bufferline").config()
     end,
+    event = "BufWinEnter",
   }
 
   -- lualine status line
@@ -97,6 +97,7 @@ return require("packer").startup(function(use)
     config = function()
       require("user.lualine").config()
     end,
+    event = "BufWinEnter",
   }
 
   -- gitsigns
@@ -151,6 +152,7 @@ return require("packer").startup(function(use)
     config = function()
       require("user.autopairs").setup()
     end,
+    event = "InsertEnter",
   }
   use {
     "windwp/nvim-ts-autotag",
@@ -187,6 +189,7 @@ return require("packer").startup(function(use)
   -- comments
   use {
     "numToStr/Comment.nvim",
+    event = "BufRead",
     config = function()
       require("user.comment").config()
     end,
