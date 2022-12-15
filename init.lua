@@ -1,13 +1,13 @@
-require("user.options")
-require("user.keymaps")
-require("user.plugins")
+require "user.options"
+require "user.keymaps"
+require "user.plugins"
 require("user.lsp").setup()
 require("user.autocmds").setup()
 -- require("user.cmp").setup()
 
 -- treat mdx files as markdown files
-vim.filetype.add({
-	extension = {
-		mdx = "markdown",
-	},
-})
+vim.filetype.add {
+  extension = {
+    mdx = "markdown",
+  },
+}
