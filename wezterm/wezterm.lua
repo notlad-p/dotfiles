@@ -13,8 +13,9 @@ local colors = {
 
 return {
 	color_scheme = "Batman",
-	font = wezterm.font("FiraCode NF"),
+	font = wezterm.font("Liga SFMono Nerd Font"),
 	font_size = 13.5,
+	line_height = 1.1,
 	window_padding = {
 		left = 0,
 		right = 0,

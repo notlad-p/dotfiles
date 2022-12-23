@@ -115,3 +115,6 @@ alias yarn=narn
 
 # Ctrl + n - Open neovim
 bind \cn 'nvim'
+
+# Ctrl + t - Start tmux session
+bind \ct 'tmux'
