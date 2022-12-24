@@ -13,11 +13,48 @@ function M.find_project_files()
 end
 
 M.setup = function()
+	local theme = "dropdown"
 	require("telescope").setup({
 		defaults = {
 			prompt_prefix = " ",
 			selection_caret = " ",
 			entry_prefix = "  ",
+		},
+		pickers = {
+			find_files = {
+				theme = theme,
+			},
+			oldfiles = {
+				theme = theme,
+			},
+			git_branches = {
+				theme = theme,
+			},
+			help_tags = {
+				theme = theme,
+			},
+			highlights = {
+				theme = theme,
+			},
+			man_pages = {
+				theme = theme,
+			},
+			registers = {
+				theme = theme,
+			},
+			live_grep = {
+				theme = theme,
+				only_sort_text = true,
+			},
+			keymaps = {
+				theme = theme,
+			},
+			commands = {
+				theme = theme,
+			},
+			lsp_document_symbols = {
+				theme = theme,
+			},
 		},
 		extensions = {
 			fzf = {
