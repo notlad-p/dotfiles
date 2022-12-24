@@ -69,7 +69,16 @@ return require("packer").startup(function(use)
   -- 	end,
   -- })
 
-  use { "Everblush/everblush.nvim", as = "everblush" }
+  -- use { "Everblush/everblush.nvim", as = "everblush" }
+  -- use { "~/projects/yoru", as = "yoru" }
+  use {
+    "~/projects/lad-schemes.nvim",
+    config = function()
+      require("lad-schemes").setup {
+        scheme = "gruvbox",
+      }
+    end,
+  }
 
   -- treesitter styntax highlighting
   use {
@@ -373,6 +382,26 @@ return require("packer").startup(function(use)
       require("session-lens").setup()
     end,
   }
+
+  use "rktjmp/lush.nvim"
+  use "rktjmp/shipwright.nvim"
+
+  -- code generation using OpenAI - for generating code directly in editor
+  use { "aduros/ai.vim" }
+
+  -- OpenAI chat interface - for asking questions and messing around mainly
+  use {
+    "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+    },
+  }
+
+  use { "nvim-treesitter/playground" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
