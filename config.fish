@@ -118,3 +118,6 @@ bind \cn 'nvim'
 
 # Ctrl + t - Start tmux session
 bind \ct 'tmux'
+
+# initialize zoxide
+zoxide init fish | source
