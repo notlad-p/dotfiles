@@ -2,7 +2,7 @@
 # install all with 'brew bundle'
 brew "fzf"
 brew "ripgrep"
-brew "gh"
+# brew "gh"
 brew "lazygit"
 brew "neovim"
 brew "starship"
