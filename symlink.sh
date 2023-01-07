@@ -21,22 +21,22 @@
 WORK_DIR=`pwd`
 
 # # symlink starship.toml
-# ln -sf $WORK_DIR"/starship.toml" ~/.config/starship.toml
+ln -sf $WORK_DIR"/starship.toml" ~/.config/starship.toml
 
-# # symlink config.fish to ~/.config/fish/config.fish
-# # NEEDS STARSHIP.RS
-# ln -sf $WORK_DIR"/config.fish" ~/.config/fish/config.fish
+# symlink config.fish to ~/.config/fish/config.fish
+# NEEDS STARSHIP.RS
+ln -sf $WORK_DIR"/config.fish" ~/.config/fish/config.fish
 
-# # symlink wezterm config
-# ln -s $WORK_DIR"/wezterm" ~/.config/wezterm
+# symlink wezterm config
+ln -s $WORK_DIR"/wezterm" ~/.config/wezterm
 
-# # symlink tmux
-# ln -s $WORK_DIR"/tmux" ~/.config/tmux
+# symlink tmux
+ln -s $WORK_DIR"/tmux" ~/.config/tmux
 
-# # symlink ranger
-# ln -s $WORK_DIR"/ranger" ~/.config/ranger
+# symlink ranger
+ln -s $WORK_DIR"/ranger" ~/.config/ranger
 
 # # picom
-# ln -s $WORK_DIR"/picom" ~/.config/picom
+ln -s $WORK_DIR"/picom" ~/.config/picom
 
 
