@@ -114,7 +114,7 @@ M.setup = function()
         "Sort by language",
       },
     },
-    p = {
+    k = {
       name = "Packer",
       c = { "<cmd>PackerCompile<cr>", "Compile" },
       i = { "<cmd>PackerInstall<cr>", "Install" },
