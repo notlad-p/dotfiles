@@ -59,20 +59,12 @@ local buffer_mappings = {
     ["gr"] = { vim.lsp.buf.references, "Go to references" },
     ["gI"] = { vim.lsp.buf.implementation, "Go to Implementation" },
     ["gs"] = { vim.lsp.buf.signature_help, "Show signature help" },
-    -- ["gp"] = {
-    --   function()
-    --     require("lvim.lsp.peek").Peek "definition"
-    --   end,
-    --   "Peek definition",
-    -- },
-    -- ["gl"] = {
-    --   function()
-    --     local config = lvim.lsp.diagnostics.float
-    --     config.scope = "line"
-    --     vim.diagnostic.open_float(0, config)
-    --   end,
-    --   "Show line diagnostics",
-    -- },
+    ["gl"] = {
+      function()
+        vim.diagnostic.open_float(0)
+      end,
+      "Show line diagnostics",
+    },
   },
   insert_mode = {},
   visual_mode = {},
