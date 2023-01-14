@@ -22,7 +22,6 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
--- Normal --
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h")
 keymap("n", "<C-j>", "<C-w>j")
@@ -63,11 +62,9 @@ keymap("v", "<leader>d", '"+d')
 keymap("n", "<leader>p", '"+p')
 keymap("v", "<leader>p", '"+p')
 
--- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>")
 
--- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv")
 keymap("v", ">", ">gv")
@@ -77,14 +74,19 @@ keymap("v", "<A-j>", ":m .+1<CR>==")
 keymap("v", "<A-k>", ":m .-2<CR>==")
 keymap("v", "p", '"_dP')
 
--- Visual Block --
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv")
 keymap("x", "K", ":move '<-2<CR>gv-gv")
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv")
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv")
 
--- Terminal --
+-- Useful insert mode motions
+keymap("i", "<C-,>", "<C-o>^", { desc = "Beginning of line" })
+keymap("i", "<C-.>", "<C-o>$", { desc = "End of line" })
+
+-- oil.nvim
+keymap("n", "-", require("oil").open, { desc = "Open parent directory" })
+
 -- Better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 -- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
