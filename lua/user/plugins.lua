@@ -388,7 +388,7 @@ return require("packer").startup(function(use)
   use "rktjmp/shipwright.nvim"
 
   -- code generation using OpenAI - for generating code directly in editor
-  use { "aduros/ai.vim" }
+  -- use { "aduros/ai.vim" }
 
   -- OpenAI chat interface - for asking questions and messing around mainly
   use {
@@ -402,7 +402,15 @@ return require("packer").startup(function(use)
     },
   }
 
-  use { "nvim-treesitter/playground" }
+  use "nvim-treesitter/playground"
+
+  -- File explorer to edit filesystem like a normal buffer
+  use {
+    "stevearc/oil.nvim",
+    config = function()
+      require("oil").setup()
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
