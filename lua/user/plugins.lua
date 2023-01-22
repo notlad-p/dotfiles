@@ -387,9 +387,6 @@ return require("packer").startup(function(use)
   use "rktjmp/lush.nvim"
   use "rktjmp/shipwright.nvim"
 
-  -- code generation using OpenAI - for generating code directly in editor
-  -- use { "aduros/ai.vim" }
-
   -- OpenAI chat interface - for asking questions and messing around mainly
   use {
     "jackMort/ChatGPT.nvim",
