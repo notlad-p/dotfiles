@@ -47,6 +47,11 @@ M.setup = function()
       opts = vim.tbl_deep_extend("force", tailwindcss_opts, opts)
     end
 
+    if server_name == "sumneko_lua" then
+      local sumneko_lua_opts = require "user.lsp.providers.sumneko_lua"
+      opts = vim.tbl_deep_extend("force", sumneko_lua_opts, opts)
+    end
+
     lspconfig[server_name].setup(opts)
   end
 
