@@ -1,5 +1,9 @@
 # Neovim Config
 
+### Configuration:
+
+- I use the fish shell, so toggleterm.nvim has the default shell set to `/usr/bin/fish`, if you use something else make sure to change it to `vim.o.shell` to use the shell you set vim to or something else
+
 ### Installed Plugins
 
 - [packer](https://github.com/wbthomason/packer.nvim) - plugin manager
@@ -9,7 +13,9 @@
 - lualine - status line
 - gitsigns - git integration
 - nvim-lspconfig - LSP
-- nvim-lsp-installer - easy to use LSP installer
+<!-- TODO: list all new plugins-->
+- mason.nvim &
+<!-- - nvim-lsp-installer - easy to use LSP installer -->
 - null-ls - for formatters and linter's (requires plenary.nvim)
   - You will need to install linters and formatters separately on your machine
     - For example [luacheck](https://github.com/mpeterv/luacheck#installation) and [stylua](https://github.com/JohnnyMorganz/StyLua#installation)
