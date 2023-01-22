@@ -84,6 +84,10 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv")
 keymap("i", "<C-,>", "<C-o>^", { desc = "Beginning of line" })
 keymap("i", "<C-.>", "<C-o>$", { desc = "End of line" })
 
+-- use tab to go end of line & shift + tab to go to first character in line
+keymap("n", "<tab>", "$", { desc = "go to end of line" })
+keymap("n", "<S-Tab>", "^", { desc = "go to first character" })
+
 -- oil.nvim
 keymap("n", "-", require("oil").open, { desc = "Open parent directory" })
 

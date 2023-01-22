@@ -80,6 +80,11 @@ M.setup = function()
     nowait = true, -- use `nowait` when creating keymaps
   }
 
+  local function get_hl_under_cursor()
+    local result = vim.treesitter.get_captures_at_cursor(0)
+    print(vim.inspect(result))
+  end
+
   -- normal mode mappings
   local nmappings = {
     -- [";"] = { "<cmd>Alpha<CR>", "Dashboard" },
@@ -90,6 +95,7 @@ M.setup = function()
     ["f"] = { "<cmd>Telescope find_files<cr>", "Find File" },
     ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
     ["o"] = { "<cmd>SymbolsOutline<CR>", "Outline" },
+    ["H"] = { get_hl_under_cursor, "Get hl under cursor" },
     b = {
       name = "Buffers",
       j = { "<cmd>BufferLinePick<cr>", "Jump" },
