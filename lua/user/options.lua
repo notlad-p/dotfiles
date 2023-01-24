@@ -47,7 +47,7 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.cmd "colorscheme lad-schemes"
+--vim.cmd "colorscheme lad-schemes"
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.g["codi#virtual_text"] = "0"
