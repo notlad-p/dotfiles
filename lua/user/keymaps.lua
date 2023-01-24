@@ -89,7 +89,7 @@ keymap("n", "<tab>", "$", { desc = "go to end of line" })
 keymap("n", "<S-Tab>", "^", { desc = "go to first character" })
 
 -- oil.nvim
-keymap("n", "-", require("oil").open, { desc = "Open parent directory" })
+-- keymap("n", "-", require("oil").open, { desc = "Open parent directory" })
 
 -- Better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)

@@ -1,9 +1,30 @@
-require "user.options"
+-- install lazy.nvim if not already installed
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system {
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  }
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- setup keymaps & leader key
+-- must be before lazy.nvim
 require "user.keymaps"
-require "user.plugins"
+require "user.options"
+
+-- any plugins in the lua/user/plugins/ directory
+-- will be merged in the main plugin spec
+require("lazy").setup "plugins"
+
+-- TODO: move lsp config into plugins/lsp/
+-- then let lazy.nvim do its job
 require("user.lsp").setup()
 require("user.autocmds").setup()
--- require("user.cmp").setup()
 
 -- treat mdx files as markdown files
 vim.filetype.add {

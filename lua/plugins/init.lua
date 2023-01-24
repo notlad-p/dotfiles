@@ -1,57 +1,14 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  }
-  print "Installing packer close and reopen Neovim..."
-  vim.cmd [[packadd packer.nvim]]
-end
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
-
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
-
--- Have packer use a popup window
-packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "rounded" }
-    end,
-  },
-}
-
-return require("packer").startup(function(use)
-  -- Packer can manage itself
-  use "wbthomason/packer.nvim"
-
+return {
   -- File tree with icons
-  use {
+  {
     "kyazdani42/nvim-tree.lua",
-    requires = {
+    dependencies = {
       "kyazdani42/nvim-web-devicons", -- optional, for file icons
     },
     config = function()
       require("user.nvimtree").setup()
     end,
-  }
+  },
 
   -- onedark theme
   -- use({
@@ -71,79 +28,80 @@ return require("packer").startup(function(use)
 
   -- use { "Everblush/everblush.nvim", as = "everblush" }
   -- use { "~/projects/yoru", as = "yoru" }
-  use {
-    "~/projects/lad-schemes.nvim",
+  {
+    dir = "~/projects/lad-schemes.nvim",
+    name = "lad-schemes",
     config = function()
       require("lad-schemes").setup {
         scheme = "gruvbox",
       }
     end,
-  }
+  },
 
   -- treesitter styntax highlighting
-  use {
+  {
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    build = ":TSUpdate",
     config = function()
       require("user.treesitter").config()
     end,
-  }
+  },
 
   -- bufferline
-  use {
+  {
     "akinsho/bufferline.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
+    dependencies = "kyazdani42/nvim-web-devicons",
     config = function()
       require("user.bufferline").config()
     end,
     event = "BufWinEnter",
-  }
+  },
 
   -- lualine status line
-  use {
+  {
     "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    dependencies = { "kyazdani42/nvim-web-devicons", lazy = true },
     config = function()
       require("user.lualine").config()
     end,
     event = "BufWinEnter",
-  }
+  },
 
   -- gitsigns
-  use {
+  {
     "lewis6991/gitsigns.nvim",
     config = function()
       require("gitsigns").setup()
     end,
     event = "BufRead",
-  }
+  },
 
   -- LSP
-  use "neovim/nvim-lspconfig"
-  use "williamboman/mason-lspconfig.nvim"
-  use "williamboman/mason.nvim"
-  use "jose-elias-alvarez/null-ls.nvim"
-  use "nvim-lua/plenary.nvim"
+  "neovim/nvim-lspconfig",
+  "williamboman/mason-lspconfig.nvim",
+  "williamboman/mason.nvim",
+  "jose-elias-alvarez/null-ls.nvim",
+  "nvim-lua/plenary.nvim",
 
   -- completions
-  use {
+  {
     "hrsh7th/nvim-cmp",
     config = function()
       require("user.cmp").setup()
     end,
-    requires = {
+    dependencies = {
       "L3MON4D3/LuaSnip",
     },
-  }
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-path"
-  use "hrsh7th/cmp-buffer"
-  use "saadparwaiz1/cmp_luasnip"
-  use "hrsh7th/cmp-nvim-lua"
+  },
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-path",
+  "hrsh7th/cmp-buffer",
+  "saadparwaiz1/cmp_luasnip",
+  "hrsh7th/cmp-nvim-lua",
 
   -- snippets
-  use "rafamadriz/friendly-snippets"
-  use {
+  "rafamadriz/friendly-snippets",
+  {
     "L3MON4D3/LuaSnip",
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
@@ -154,17 +112,17 @@ return require("packer").startup(function(use)
         },
       }
     end,
-  }
+  },
 
   -- autopairs / tags
-  use {
+  {
     "windwp/nvim-autopairs",
     config = function()
       require("user.autopairs").setup()
     end,
     event = "InsertEnter",
-  }
-  use {
+  },
+  {
     "windwp/nvim-ts-autotag",
     config = function()
       require("nvim-ts-autotag").setup {
@@ -173,80 +131,80 @@ return require("packer").startup(function(use)
         },
       }
     end,
-  }
+  },
 
   -- telescope
-  use {
+  {
     "nvim-telescope/telescope.nvim",
     config = function()
       require("user.telescope").setup()
     end,
-  }
-  use {
+  },
+  {
     "nvim-telescope/telescope-fzf-native.nvim",
-    requires = { "nvim-telescope/telescope.nvim" },
-    run = "make",
-  }
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    build = "make",
+  },
 
   -- project
-  use {
+  {
     "ahmedkhalf/project.nvim",
     config = function()
       require("project_nvim").setup()
     end,
-  }
+  },
 
   -- comments
-  use {
+  {
     "numToStr/Comment.nvim",
     event = "BufRead",
     config = function()
       require("user.comment").config()
     end,
-  }
-  use {
+  },
+  {
     "JoosepAlviste/nvim-ts-context-commentstring",
     event = "BufReadPost",
-  }
+  },
 
   -- whichkey
-  use {
+  {
     "max397574/which-key.nvim",
     config = function()
       require("user.whichkey").setup()
     end,
     event = "BufWinEnter",
-  }
+  },
 
   -- alpha dashboard
-  use {
-    "goolord/alpha-nvim",
-    config = function()
-      require("user.alpha").setup()
-    end,
-  }
+  -- {
+  --   "goolord/alpha-nvim",
+  --   config = function()
+  --     require("user.alpha").setup()
+  --   end,
+  -- },
 
   -- toggleterm
-  use {
+  {
     "akinsho/toggleterm.nvim",
-    tag = "v2.*",
+    version = "v2.*",
     config = function()
       -- require("toggleterm").setup()
       require("user.toggleterm").setup()
     end,
-  }
+  },
 
   -- better buffer delete
-  use "famiu/bufdelete.nvim"
+  "famiu/bufdelete.nvim",
 
   -- adds indent text object
-  use "michaeljsmith/vim-indent-object"
+  "michaeljsmith/vim-indent-object",
 
   -- adds surroundings text object
-  use "tpope/vim-surround"
+  "tpope/vim-surround",
 
   -- shows indent lines & current indent
-  use {
+  {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
       require("indent_blankline").setup {
@@ -254,10 +212,10 @@ return require("packer").startup(function(use)
         show_current_context_start = true,
       }
     end,
-  }
+  },
 
   -- highlight color codes in editor
-  use {
+  {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup({ "*" }, {
@@ -270,52 +228,52 @@ return require("packer").startup(function(use)
         css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
       })
     end,
-  }
+  },
 
   -- quick motions with 's' key
-  use "ggandor/lightspeed.nvim"
+  "ggandor/lightspeed.nvim",
 
   -- smooth scrolling & other scrolling behaviors
-  use {
+  {
     "karb94/neoscroll.nvim",
     config = function()
       require("neoscroll").setup()
     end,
-  }
+  },
 
   -- create searchable to do comments
-  use {
+  {
     "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
     config = function()
       require("todo-comments").setup()
     end,
-  }
+  },
 
   -- enable repeating with supported plugins
-  use "tpope/vim-repeat"
+  "tpope/vim-repeat",
 
   -- List of diagnostics
-  use {
+  {
     "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
+    dependencies = "kyazdani42/nvim-web-devicons",
     config = function()
       require("trouble").setup()
     end,
-  }
+  },
 
   -- preview markdown in browser with command
-  use {
+  {
     "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
-    setup = function()
+    build = "cd app && npm install",
+    init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
-  }
+  },
 
   -- illuminate other uses of a word under cursor
-  use {
+  {
     "RRethy/vim-illuminate",
     config = function()
       require("illuminate").configure {
@@ -326,25 +284,25 @@ return require("packer").startup(function(use)
         },
       }
     end,
-  }
+  },
 
   -- run snippets of code in editor
-  use { "michaelb/sniprun", run = "bash ./install.sh" }
+  { "michaelb/sniprun", build = "bash ./install.sh" },
 
   -- speed up neovim startup time
-  use "lewis6991/impatient.nvim"
+  "lewis6991/impatient.nvim",
 
   -- zen mode
   -- TODO: add keybinds in which key
-  use {
+  {
     "Pocco81/true-zen.nvim",
     config = function()
       require("true-zen").setup()
     end,
-  }
+  },
 
   -- typescript helper functions
-  use {
+  {
     "jose-elias-alvarez/typescript.nvim",
     config = function()
       require("typescript").setup {
@@ -355,63 +313,57 @@ return require("packer").startup(function(use)
         },
       }
     end,
-  }
+  },
 
   -- treesitter symbols outline
-  use {
+  {
     "simrat39/symbols-outline.nvim",
     config = function()
       require("user.symbols-outline").setup()
     end,
-  }
+  },
 
   -- schemeas for autocompletion in files like `tsconfig.json` and `package.json`
-  use "b0o/schemastore.nvim"
+  "b0o/schemastore.nvim",
 
   -- sessions
-  use {
+  {
     "rmagatti/auto-session",
     config = function()
       require("user.autosession").setup()
     end,
-  }
+  },
   -- session searcher
-  use {
+  {
     "rmagatti/session-lens",
-    requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
+    dependencies = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
     config = function()
       require("session-lens").setup()
     end,
-  }
+  },
 
-  use "rktjmp/lush.nvim"
-  use "rktjmp/shipwright.nvim"
+  "rktjmp/lush.nvim",
+  "rktjmp/shipwright.nvim",
 
   -- OpenAI chat interface - for asking questions and messing around mainly
-  use {
+  {
     "jackMort/ChatGPT.nvim",
     config = function()
       require("chatgpt").setup()
     end,
-    requires = {
+    dependencies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
     },
-  }
+  },
 
-  use "nvim-treesitter/playground"
+  "nvim-treesitter/playground",
 
   -- File explorer to edit filesystem like a normal buffer
-  use {
-    "stevearc/oil.nvim",
-    config = function()
-      require("oil").setup()
-    end,
-  }
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
-end)
+  -- {
+  --   "stevearc/oil.nvim",
+  --   config = function()
+  --     require("oil").setup()
+  --   end,
+  -- },
+}
