@@ -30,14 +30,6 @@ return {
     end,
   },
 
-  -- alpha dashboard
-  -- {
-  --   "goolord/alpha-nvim",
-  --   config = function()
-  --     require("user.alpha").setup()
-  --   end,
-  -- },
-
   -- zen mode
   -- TODO: add keybinds in which key
   {
