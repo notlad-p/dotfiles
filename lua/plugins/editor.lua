@@ -1,17 +1,47 @@
--- nvim-tree.lua : nvim-neo-tree/neo-tree.nvim
 -- lightspeed.nvim : ggandor/leap.nvim
 -- bufdelete.nvim : mini.bufremove
 return {
-
-  -- File tree with icons
   {
-    "kyazdani42/nvim-tree.lua",
+    "nvim-neo-tree/neo-tree.nvim",
+    cmd = "Neotree",
     dependencies = {
+      -- "nvim-lua/plenary.nvim",
+      -- "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "kyazdani42/nvim-web-devicons", -- optional, for file icons
+      "MunifTanjim/nui.nvim",
     },
-    config = function()
-      require("user.nvimtree").setup()
+    -- TODO: have <leader>e always open in root file
+    -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/editor.lua#L13
+    keys = {
+      {
+        "<leader>e",
+        function()
+          require("neo-tree.command").execute { toggle = true }
+        end,
+      },
+    },
+    init = function()
+      vim.g.neo_tree_remove_legacy_commands = 1
     end,
+    opts = {
+      source_selector = {
+        winbar = true,
+      },
+      window = {
+        width = 35,
+      },
+      filesystem = {
+        follow_current_file = true,
+        filtered_items = {
+          hide_by_name = {
+            "node_modules",
+          },
+          always_show = {
+            ".gitignore",
+          },
+        },
+      },
+    },
   },
 
   -- quick motions with 's' key
