@@ -5,21 +5,10 @@ local conditions = {
   end,
 }
 
--- colors for status line
-local colors = {
-  bg = "#202328",
-  fg = "#bbc2cf",
-  yellow = "#ECBE7B",
-  cyan = "#008080",
-  darkblue = "#081633",
-  green = "#98be65",
-  orange = "#FF8800",
-  violet = "#a9a1e1",
-  magenta = "#c678dd",
-  purple = "#c678dd",
-  blue = "#51afef",
-  red = "#ec5f67",
-}
+local function fg(name)
+  local hl = vim.api.nvim_get_hl_by_name(name, true)
+  return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
+end
 
 local function diff_source()
   local gitsigns = vim.b.gitsigns_status_dict
@@ -41,7 +30,6 @@ end
 -- components to show in status line
 local M = {
   -- mode indicator on left side of status line
-  -- 
   mode = {
     function()
       return "﫜"
@@ -59,15 +47,9 @@ local M = {
     separator = { left = "", right = " " },
     cond = conditions.hide_in_width,
   },
-  filename = {
-    "filename",
-    color = {},
-    cond = nil,
-  },
   diff = {
     "diff",
     source = diff_source,
-    -- separator = { left = "", right = " " },
     symbols = { added = "  ", modified = " ", removed = " " },
     diff_color = {
       added = "DiffAdded",
@@ -90,22 +72,8 @@ local M = {
       end
       return ""
     end,
-    color = { fg = colors.green },
+    color = fg "String",
     cond = conditions.hide_in_width,
-  },
-  filetype = { "filetype", cond = conditions.hide_in_width },
-  scrollbar = {
-    function()
-      local current_line = vim.fn.line "."
-      local total_lines = vim.fn.line "$"
-      local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
-      local line_ratio = current_line / total_lines
-      local index = math.ceil(line_ratio * #chars)
-      return chars[index]
-    end,
-    padding = { left = 0, right = 0 },
-    color = { fg = colors.yellow, bg = colors.bg },
-    cond = nil,
   },
   lsp = {
     function(msg)
@@ -145,10 +113,9 @@ local M = {
       local unique_client_names = vim.fn.uniq(buf_client_names)
       return table.concat(unique_client_names, ", ")
     end,
-    color = { gui = "bold" },
+    color = fg "Normal",
     cond = conditions.hide_in_width,
   },
-  location = { "location" },
 }
 
 return M

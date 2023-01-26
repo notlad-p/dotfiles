@@ -3,19 +3,41 @@ return {
   {
     "akinsho/bufferline.nvim",
     dependencies = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("user.bufferline").config()
-    end,
-    event = "BufWinEnter",
-  },
-
-  -- lualine status line
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "kyazdani42/nvim-web-devicons", lazy = true },
-    config = function()
-      require("user.lualine").config()
-    end,
+    opts = {
+      options = {
+        themable = false, -- whether or not the highlights for this plugin can be overriden.
+        name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
+          -- remove extension from markdown files for example
+          if buf.name:match "%.md" then
+            return vim.fn.fnamemodify(buf.name, ":t:r")
+          end
+        end,
+        diagnostics = "nvim_lsp", -- false | "nvim_lsp" | "coc"
+        diagnostics_indicator = function(num, _, diagnostics, _)
+          local result = {}
+          local symbols = { error = "", warning = "", info = "" }
+          for name, count in pairs(diagnostics) do
+            if symbols[name] and count > 0 then
+              table.insert(result, symbols[name] .. " " .. count)
+            end
+          end
+          result = table.concat(result, " ")
+          return #result > 0 and result or ""
+        end,
+        separator_style = "thin", -- "slant" | "padded_slant" | "thick" | "thin" | { "any", "any" },
+        always_show_bufferline = false,
+        offsets = {
+          { filetype = "NvimTree", text = "Explorer", text_align = "center", padding = 1 },
+          {
+            filetype = "neo-tree",
+            text = "Explorer",
+            highlight = "Directory",
+            text_align = "center",
+          },
+        },
+        sort_by = "id",
+      },
+    },
     event = "BufWinEnter",
   },
 
