@@ -5,15 +5,20 @@
 return {
   -- comments
   {
-    "numToStr/Comment.nvim",
-    event = "BufRead",
-    config = function()
-      require("user.comment").config()
-    end,
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    lazy = true,
   },
   {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    event = "BufReadPost",
+    "numToStr/Comment.nvim",
+    event = "VeryLazy",
+    opts = {
+      pre_hook = function()
+        require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
+      end,
+    },
+    config = function(_, opts)
+      require("Comment").setup(opts)
+    end,
   },
 
   -- autopairs / tags
