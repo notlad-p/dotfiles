@@ -6,6 +6,7 @@ return {
       require("user.telescope").setup()
     end,
   },
+
   {
     "nvim-telescope/telescope-fzf-native.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
@@ -18,5 +19,11 @@ return {
     config = function()
       require("project_nvim").setup()
     end,
+  },
+
+  -- session searcher
+  {
+    "rmagatti/session-lens",
+    opts = { theme = "dropdown" },
   },
 }

@@ -21,17 +21,21 @@ return {
   -- sessions
   {
     "rmagatti/auto-session",
-    config = function()
-      require("user.autosession").setup()
-    end,
-  },
-  -- session searcher
-  {
-    "rmagatti/session-lens",
-    dependencies = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
-    config = function()
-      require("session-lens").setup()
-    end,
+    opts = {
+      log_level = "error",
+      auto_restore_enabled = false,
+      pre_save_cmds = {
+        function()
+          -- if a blank buffer exists, remove it
+          local buffers = vim.api.nvim_list_bufs()
+          for _, buffer in ipairs(buffers) do
+            if vim.api.nvim_buf_get_name(buffer) == "" then
+              vim.api.nvim_command("bwipeout! " .. buffer)
+            end
+          end
+        end,
+      },
+    },
   },
 
   -- OpenAI chat interface - for asking questions and messing around mainly

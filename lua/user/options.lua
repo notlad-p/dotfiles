@@ -36,6 +36,7 @@ local options = {
   shell = "/bin/bash",
 }
 
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.opt.shortmess:append "c"
 
 -- remove ~ from blank lines
