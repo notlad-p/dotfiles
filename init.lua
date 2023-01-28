@@ -12,16 +12,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- setup keymaps & leader key
--- must be before lazy.nvim
-require "user.keymaps"
-require "user.options"
+-- Setup core neovim features: keymaps, options, & autocmds
+-- NOTE: leader key must be before lazy.nvim
+require('core').setup()
 
 -- any plugins in the lua/user/plugins/ directory
 -- will be merged in the main plugin spec
 require("lazy").setup "plugins"
-
-require("user.autocmds").setup()
 
 -- treat mdx files as markdown files
 vim.filetype.add {

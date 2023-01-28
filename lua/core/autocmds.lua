@@ -13,6 +13,7 @@ M.setup = function()
         end,
       },
     },
+
     {
       "FileType",
       {
@@ -22,6 +23,7 @@ M.setup = function()
         command = "setlocal  spell",
       },
     },
+
     {
       "ColorScheme",
       {
