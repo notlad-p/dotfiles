@@ -21,9 +21,6 @@ require "user.options"
 -- will be merged in the main plugin spec
 require("lazy").setup "plugins"
 
--- TODO: move lsp config into plugins/lsp/
--- then let lazy.nvim do its job
-require("user.lsp").setup()
 require("user.autocmds").setup()
 
 -- treat mdx files as markdown files

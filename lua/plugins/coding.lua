@@ -43,23 +43,4 @@ return {
 
   -- adds indent text object
   "michaeljsmith/vim-indent-object",
-
-  -- typescript helper functions
-  {
-    "jose-elias-alvarez/typescript.nvim",
-    config = function()
-      -- TODO: create autocmd for TS, TSX, JS, JSX filetypes
-      -- that adds typescript util keybinds under T
-      -- -----OR------
-      -- Use null-ls to add commands to code action menu using null-ls!!!
-      -- https://github.com/jose-elias-alvarez/typescript.nvim#integrations
-      require("typescript").setup {
-        disable_commands = false, -- prevent the plugin from creating Vim commands
-        debug = false, -- enable debug logging for commands
-        go_to_source_definition = {
-          fallback = true, -- fall back to standard LSP definition on failure
-        },
-      }
-    end,
-  },
 }

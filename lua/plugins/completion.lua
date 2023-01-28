@@ -31,5 +31,5 @@ return {
   },
 
   -- schemeas for autocompletion in files like `tsconfig.json` and `package.json`
-  "b0o/SchemaStore.nvim",
+  -- "b0o/SchemaStore.nvim",
 }
