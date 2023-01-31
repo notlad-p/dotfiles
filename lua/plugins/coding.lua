@@ -10,6 +10,10 @@ return {
   {
     "numToStr/Comment.nvim",
     event = "VeryLazy",
+    keys = {
+      { "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Toggle comment" },
+      { "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Toggle comment", mode = "v" },
+    },
     opts = {
       pre_hook = function()
         require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()

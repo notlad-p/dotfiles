@@ -22,6 +22,33 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
+-- write files
+keymap("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save" })
+
+-- smart quit
+keymap("n", "<leader>q", function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
+  if modified then
+    -- TODO: change to plugin input with better UI?
+    vim.ui.input({
+      prompt = "You have unsaved changes. Quit anyway? (y/n) ",
+    }, function(input)
+      if input == "y" then
+        vim.cmd "q!"
+      end
+    end)
+  else
+    vim.cmd "q!"
+  end
+end, { desc = "Quit" })
+
+-- close buffer
+keymap("n", "<leader>c", "<cmd>Bdelete<CR>", { desc = "Close buffer" })
+
+-- remove search highlight
+keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Remove search highlight" })
+
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h")
 keymap("n", "<C-j>", "<C-w>j")
@@ -33,10 +60,6 @@ keymap("n", "<C-Up>", ":resize -2<CR>")
 keymap("n", "<C-Down>", ":resize +2<CR>")
 keymap("n", "<C-Left>", ":vertical resize -2<CR>")
 keymap("n", "<C-Right>", ":vertical resize +2<CR>")
-
--- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>")
-keymap("n", "<S-h>", ":bprevious<CR>")
 
 -- Move Buffers
 keymap("n", "<S-Right>", ":BufferLineMoveNext<CR>")

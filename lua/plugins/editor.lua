@@ -18,6 +18,7 @@ return {
         function()
           require("neo-tree.command").execute { toggle = true }
         end,
+        desc = "File tree",
       },
     },
     init = function()
@@ -57,19 +58,55 @@ return {
   -- whichkey
   {
     "max397574/which-key.nvim",
-    config = function()
-      require("user.whichkey").setup()
-    end,
     event = "BufWinEnter",
+    opts = {
+      plugins = {
+        spelling = true,
+      },
+      window = { border = "single" },
+    },
+    config = function(_, opts)
+      local which_key = require "which-key"
+      which_key.setup(opts)
+
+      which_key.register {
+        mode = { "n", "v" },
+        ["<leader>b"] = { name = "Buffers" },
+        ["<leader>g"] = { name = "Git" },
+        ["<leader>l"] = { name = "LSP" },
+        ["<leader>s"] = { name = "Search" },
+        ["<leader>t"] = { name = "Terminal" },
+        ["<leader>x"] = { name = "Trouble" },
+      }
+    end,
   },
 
   -- gitsigns
   {
     "lewis6991/gitsigns.nvim",
-    config = function()
-      require("gitsigns").setup()
-    end,
     event = "BufRead",
+    opts = {
+      signcolumn = true,
+    },
+    keys = {
+      { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Jump next hunk" },
+      { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Jump prev hunk" },
+      { "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame line" },
+      { "<leader>gp", "<cmd>lua require 'gitsigns'.preview_hunk_inline()<cr>", desc = "Preview hunk" },
+      { "<leader>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset hunk" },
+      { "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", desc = "Reset buffer" },
+      { "<leader>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Stage hunk" },
+      { "<leader>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo stage hunk" },
+      { "<leader>gD", "<cmd>lua require 'gitsigns'.toggle_deleted()<cr>", desc = "Toggle deleted lines" },
+      { "<leader>gq", "<cmd>lua require 'gitsigns'.setqflist()<cr>", desc = "Quickfix list hunks" },
+      { "<leader>gt", "<cmd>lua require 'gitsigns'.diffthis()<cr>", desc = "View file diff" },
+
+      { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file" },
+      { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
+      { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit" },
+      { "<leader>gC", "<cmd>Telescope git_bcommits<cr>", desc = "Checkout commit(for current file)" },
+      { "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Git Diff" },
+    },
   },
 
   -- illuminate other uses of a word under cursor
@@ -93,6 +130,16 @@ return {
   {
     "folke/trouble.nvim",
     dependencies = "kyazdani42/nvim-web-devicons",
+    keys = {
+      { "<leader>xx", "<cmd>TroubleToggle<cr>", "Toggle trouble" },
+      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", "Document diagnostics" },
+      { "<leader>xD", "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace diagnostics" },
+      { "<leader>xr", "<cmd>TroubleToggle lsp_references<cr>", "LSP references" },
+      { "<leader>xf", "<cmd>TroubleToggle lsp_definitions<cr>", "LSP definitions" },
+      { "<leader>xt", "<cmd>TroubleToggle lsp_type_definitions<cr>", "LSP type definitions" },
+      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", "Quickfix items" },
+      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>", "Location list items" },
+    },
     config = function()
       require("trouble").setup()
     end,
@@ -102,6 +149,12 @@ return {
   {
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
+    event = "BufRead",
+    keys = {
+      { "<leader>sT", "<cmd>TodoTelescope theme=dropdown<cr>", desc = "Todos" },
+      { "<leader>xT", "<cmd>TodoTrouble<cr>", desc = "Todos" },
+      -- TODO: add TodoQuickFix and TodoLocList keymaps
+    },
     config = function()
       require("todo-comments").setup()
     end,
@@ -111,6 +164,10 @@ return {
   {
     "akinsho/toggleterm.nvim",
     cmd = { "ToggleTerm", "TermExec" },
+    keys = {
+      { "<leader>tl", "5:TermExec cmd='lazygit'<CR>", desc = "LazyGit" },
+      { "<c-t>", "<cmd>ToggleTerm<CR>", desc = "Toggle floating term", mode = { "i", "n" } },
+    },
     version = "v2.*",
     opts = {
       size = 20,
@@ -144,9 +201,6 @@ return {
           background = "Normal",
         },
       },
-    },
-    keys = {
-      { "<c-t>", "<cmd>ToggleTerm<CR>", mode = { "i", "n" } },
     },
   },
 

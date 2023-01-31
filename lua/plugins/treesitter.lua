@@ -4,6 +4,16 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = "BufReadPost",
+    keys = {
+      {
+        "<leader>H",
+        function()
+          local result = vim.treesitter.get_captures_at_cursor(0)
+          print(vim.inspect(result))
+        end,
+        desc = "Get hl under cursor",
+      },
+    },
     opts = {
       ensure_installed = {
         "javascript",
