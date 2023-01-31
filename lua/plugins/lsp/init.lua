@@ -125,7 +125,7 @@ return {
       -- See :help lspconfig-global-defaults
       local lsp_defaults = lspconfig.util.default_config
       lsp_defaults.capabilities =
-      vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+        vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       local handler = function(server_name)
         local server_opts = opts.servers[server_name] or {}
@@ -169,9 +169,11 @@ return {
             extra_filetypes = { "svelte" },
           },
           formatting.stylua,
+          formatting.black,
           -- linters
           diagnostics.eslint_d,
           diagnostics.luacheck,
+          diagnostics.mypy,
           -- extras
           -- add typescript options to code actions menu
           require "typescript.extensions.null-ls.code-actions",
