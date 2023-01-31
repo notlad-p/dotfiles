@@ -69,7 +69,9 @@ return {
 
       return {
         completion = {
-          completeopt = "menu,menuone,noinsert",
+          -- 'noselect' is important for not selecting the first
+          -- completion option by default.
+          completeopt = "menu,menuone,noinsert,preview,noselect",
         },
         -- setup luasnip
         snippet = {
@@ -121,9 +123,17 @@ return {
           ["<C-u>"] = cmp.mapping.scroll_docs(-4),
           ["<C-d>"] = cmp.mapping.scroll_docs(4),
 
-          -- Ctrl Space to complete
-          ["<C-Space>"] = cmp.mapping.complete(),
-
+          -- Ctrl y to complete
+          ["<C-y>"] = cmp.mapping {
+            i = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
+            c = function(fallback)
+              if cmp.visible() then
+                cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
+              else
+                fallback()
+              end
+            end,
+          },
           -- Ctrl e to abort
           ["<C-e>"] = cmp.mapping.abort(),
 
