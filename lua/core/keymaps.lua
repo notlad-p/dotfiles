@@ -22,6 +22,10 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
+-- better up & down, goes through visual lines not file lines
+keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+
 -- write files
 keymap("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save" })
 
@@ -50,10 +54,10 @@ keymap("n", "<leader>c", "<cmd>Bdelete<CR>", { desc = "Close buffer" })
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Remove search highlight" })
 
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h")
-keymap("n", "<C-j>", "<C-w>j")
-keymap("n", "<C-k>", "<C-w>k")
-keymap("n", "<C-l>", "<C-w>l")
+keymap("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
+keymap("n", "<C-j>", "<C-w>j", { desc = "Move to below window" })
+keymap("n", "<C-k>", "<C-w>k", { desc = "Move to above window" })
+keymap("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>")
@@ -74,18 +78,18 @@ keymap("n", "<leader>e", "<cmd>:NvimTreeToggle<CR>")
 
 -- Clipboard --
 -- yank to clipboard
-keymap("n", "<leader>y", '"+y')
-keymap("n", "<leader>Y", '"+Y')
-keymap("v", "<leader>y", '"+y')
+keymap("n", "<leader>y", '"+y', { desc = "Yank to clipboard" })
+keymap("n", "<leader>Y", '"+Y', { desc = "Yank line to clipboard" })
+keymap("v", "<leader>y", '"+y', { desc = "Yank to clipboard" })
 -- Delete to clipboard
-keymap("n", "<leader>d", '"+d')
-keymap("n", "<leader>D", '"+D')
-keymap("v", "<leader>d", '"+d')
+keymap("n", "<leader>d", '"+d', { desc = "Delete to clipboard" })
+keymap("n", "<leader>D", '"+D', { desc = "Delete line to clipboard" })
+keymap("v", "<leader>d", '"+d', { desc = "Delete to clipboard" })
 -- Paste from clipboard
-keymap("n", "<leader>p", '"+p')
-keymap("v", "<leader>p", '"+p')
+keymap("n", "<leader>p", '"+p', { desc = "Paste from clipboard" })
+keymap("v", "<leader>p", '"+p', { desc = "Paste from clipboard" })
 
--- Press jk fast to enter
+-- jk to enter normal mode
 keymap("i", "jk", "<ESC>")
 
 -- Stay in indent mode
