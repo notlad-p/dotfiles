@@ -29,26 +29,11 @@ keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 -- write files
 keymap("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save" })
 
--- smart quit
-keymap("n", "<leader>q", function()
-  local bufnr = vim.api.nvim_get_current_buf()
-  local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
-  if modified then
-    -- TODO: change to plugin input with better UI?
-    vim.ui.input({
-      prompt = "You have unsaved changes. Quit anyway? (y/n) ",
-    }, function(input)
-      if input == "y" then
-        vim.cmd "q!"
-      end
-    end)
-  else
-    vim.cmd "q!"
-  end
-end, { desc = "Quit" })
+-- safe quit with native confirm (enhanced with noice.nvim)
+keymap("n", "<leader>q", "<cmd>confirm q<CR>", { desc = "Quit" })
 
--- close buffer
-keymap("n", "<leader>c", "<cmd>Bdelete<CR>", { desc = "Close buffer" })
+-- safe close buffer
+keymap("n", "<leader>c", "<cmd>confirm bd<CR>", { desc = "Close buffer" })
 
 -- remove search highlight
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Remove search highlight" })
