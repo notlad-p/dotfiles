@@ -25,6 +25,18 @@ M.setup = function()
     },
 
     {
+      "VimResized",
+      {
+        group = "_general_settings",
+        pattern = "*",
+        desc = "resize splits if window got resized",
+        callback = function()
+          vim.cmd "tabdo wincmd ="
+        end,
+      },
+    },
+
+    {
       "ColorScheme",
       {
         group = "_illuminate_settings",
