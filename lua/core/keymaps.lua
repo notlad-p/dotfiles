@@ -63,16 +63,13 @@ keymap("n", "<leader>e", "<cmd>:NvimTreeToggle<CR>")
 
 -- Clipboard --
 -- yank to clipboard
-keymap("n", "<leader>y", '"+y', { desc = "Yank to clipboard" })
-keymap("n", "<leader>Y", '"+Y', { desc = "Yank line to clipboard" })
-keymap("v", "<leader>y", '"+y', { desc = "Yank to clipboard" })
+keymap({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to clipboard" })
+keymap("n", "<leader>Y", [["+Y]], { desc = "Yank line to clipboard" })
 -- Delete to clipboard
-keymap("n", "<leader>d", '"+d', { desc = "Delete to clipboard" })
-keymap("n", "<leader>D", '"+D', { desc = "Delete line to clipboard" })
-keymap("v", "<leader>d", '"+d', { desc = "Delete to clipboard" })
+keymap({ "n", "v" }, "<leader>d", [["+d]], { desc = "Delete to clipboard" })
+keymap("n", "<leader>D", [["+D]], { desc = "Delete line to clipboard" })
 -- Paste from clipboard
-keymap("n", "<leader>p", '"+p', { desc = "Paste from clipboard" })
-keymap("v", "<leader>p", '"+p', { desc = "Paste from clipboard" })
+keymap({ "n", "v" }, "<leader>p", [["+p]], { desc = "Paste from clipboard" })
 
 -- jk to enter normal mode
 keymap("i", "jk", "<ESC>")
@@ -96,15 +93,19 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv")
 keymap("i", "<C-,>", "<C-o>^", { desc = "Beginning of line" })
 keymap("i", "<C-.>", "<C-o>$", { desc = "End of line" })
 
--- use tab to go end of line & shift + tab to go to first character in line
-keymap("n", "<tab>", "$", { desc = "go to end of line" })
-keymap("n", "<S-Tab>", "^", { desc = "go to first character" })
+-- windows
+keymap("n", "<leader>-", "<C-W>s", { desc = "Split window below" })
+keymap("n", "<leader>|", "<C-W>v", { desc = "Split window right" })
 
--- oil.nvim
--- keymap("n", "-", require("oil").open, { desc = "Open parent directory" })
+-- tabs
+keymap("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last" })
+keymap("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First" })
+keymap("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+keymap("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next" })
+keymap("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close" })
+keymap("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous" })
 
--- Better terminal navigation
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+-- open lazygit in a floating term
+keymap("n", "<leader>gl", function()
+  require("lazy.util").float_term { "lazygit" }
+end, { desc = "Lazygit" })
