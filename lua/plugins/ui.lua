@@ -76,6 +76,96 @@ return {
     end,
   },
 
+  -- improve default vim.ui
+  {
+    "stevearc/dressing.nvim",
+    lazy = true,
+    opts = {
+      input = {
+        prompt_align = "center",
+        relative = "win",
+        win_options = {
+          winblend = 5,
+        },
+      },
+    },
+    init = function()
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.select = function(...)
+        require("lazy").load { plugins = { "dressing.nvim" } }
+        return vim.ui.select(...)
+      end
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.input = function(...)
+        require("lazy").load { plugins = { "dressing.nvim" } }
+        return vim.ui.input(...)
+      end
+    end,
+  },
+
+  -- noicer ui for cmdline, messages, & popupmenu
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      cmdline = {
+        format = {
+          cmdline = { icon = " " },
+        },
+      },
+      lsp = {
+        override = {
+          -- override the default lsp markdown formatter with Noice
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          -- override the lsp markdown formatter with Noice
+          ["vim.lsp.util.stylize_markdown"] = true,
+        },
+        message = {
+          enabled = true,
+        },
+        -- disable lsp messages, it's distracting
+        progress = { enabled = false },
+      },
+      presets = {
+        bottom_search = true,
+        long_message_to_split = true,
+        lsp_doc_border = true,
+      },
+      views = {
+        cmdline_popup = {
+          border = {
+            style = "none",
+            padding = { 1, 2 },
+          },
+          filter_options = {},
+          win_options = {
+            winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+          },
+        },
+      },
+      routes = {
+        -- show `recording @` messages
+        {
+          view = "notify",
+          filter = { event = "msg_showmode" },
+        },
+      },
+    },
+    -- stylua: ignore
+    keys = {
+      { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
+      { "<leader>nl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
+      { "<leader>nh", function() require("noice").cmd("history") end, desc = "Noice History" },
+      { "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
+      { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true,
+        desc = "Scroll forward" },
+      { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true,
+        expr = true, desc = "Scroll backward" },
+    },
+  },
+
+  { "MunifTanjim/nui.nvim", lazy = true },
+
   -- zen mode
   -- TODO: add keybinds in which key
   {

@@ -19,6 +19,7 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
+      { "folke/neodev.nvim", opts = { pathStrict = true } },
       -- schemeas for autocompletion in files like `tsconfig.json` and `package.json`
       {
         "b0o/SchemaStore.nvim",
