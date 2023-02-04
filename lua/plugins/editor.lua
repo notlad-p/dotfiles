@@ -58,7 +58,7 @@ return {
   -- whichkey
   {
     "max397574/which-key.nvim",
-    event = "BufWinEnter",
+    event = "VeryLazy",
     opts = {
       plugins = {
         spelling = true,
@@ -77,6 +77,11 @@ return {
         ["<leader>s"] = { name = "Search" },
         ["<leader>t"] = { name = "Terminal" },
         ["<leader>x"] = { name = "Trouble" },
+        ["<leader>n"] = { name = "Noice" },
+        ["<leader>m"] = { name = "Harpoon" },
+        ["<leader><tab>"] = { name = "Tabs" },
+        ["]"] = { name = "Next" },
+        ["["] = { name = "Prev" },
       }
     end,
   },
