@@ -71,7 +71,7 @@ return {
         completion = {
           -- 'noselect' is important for not selecting the first
           -- completion option by default.
-          completeopt = "menu,menuone,noinsert,preview,noselect",
+          completeopt = "menu,menuone,noinsert,noselect",
         },
         -- setup luasnip
         snippet = {
