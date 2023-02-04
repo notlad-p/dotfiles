@@ -7,8 +7,11 @@ M.format_on_save = true
 M.toggle = function()
   M.format_on_save = not M.format_on_save
 
-  -- TODO: add notification that format on save has been enabled/disabled
-  -- https://github.com/LazyVim/LazyVim/blob/40d363cf3f468a1cc4ea482eaabbd5c7e224f397/lua/lazyvim/plugins/lsp/format.lua#L9
+  if M.format_on_save then
+    vim.notify("Enabled format on save", vim.log.levels.INFO)
+  else
+    vim.notify("Disabled format on save", vim.log.levels.INFO)
+  end
 end
 
 M.format = function()
