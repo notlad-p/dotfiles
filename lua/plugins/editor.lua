@@ -89,6 +89,8 @@ return {
       signcolumn = true,
     },
     keys = {
+      { "]h", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Jump next hunk" },
+      { "[h", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Jump prev hunk" },
       { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Jump next hunk" },
       { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Jump prev hunk" },
       { "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame line" },
@@ -121,6 +123,22 @@ return {
         },
       }
     end,
+    keys = {
+      {
+        "]]",
+        function()
+          require("illuminate").goto_next_reference(false)
+        end,
+        desc = "Next reference",
+      },
+      {
+        "[[",
+        function()
+          require("illuminate").goto_prev_reference(false)
+        end,
+        desc = "Prev Reference",
+      },
+    },
   },
 
   -- better buffer delete
@@ -153,6 +171,20 @@ return {
     keys = {
       { "<leader>sT", "<cmd>TodoTelescope theme=dropdown<cr>", desc = "Todos" },
       { "<leader>xT", "<cmd>TodoTrouble<cr>", desc = "Todos" },
+      {
+        "]t",
+        function()
+          require("todo-comments").jump_next()
+        end,
+        desc = "Next todo comment",
+      },
+      {
+        "[t",
+        function()
+          require("todo-comments").jump_prev()
+        end,
+        desc = "Previous todo comment",
+      },
       -- TODO: add TodoQuickFix and TodoLocList keymaps
     },
     config = function()

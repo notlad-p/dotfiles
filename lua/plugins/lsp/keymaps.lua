@@ -1,5 +1,14 @@
 local M = {}
 
+-- taken from LazyVim: https://github.com/LazyVim/LazyVim
+M.diagnostic_goto = function(next, severity)
+  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    go { severity = severity }
+  end
+end
+
 -- TODO: use more uniform lsp keymaps?
 -- c - code (code editing like formating, rename, code action, line diagnostics)
 -- g - goto (definitions, references, declaration, implementation, type def, signature help)
@@ -38,6 +47,13 @@ local buffer_mappings = {
     ["<leader>ls"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
     ["<leader>lS"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
     ["<leader>le"] = { "<cmd>Telescope quickfix<cr>", "Telescope Quickfix" },
+
+    ["]d"] = { M.diagnostic_goto(true), "Next Diagnostic" },
+    ["[d"] = { M.diagnostic_goto(false), "Prev Diagnostic" },
+    ["]e"] = { M.diagnostic_goto(true, "ERROR"), "Next Error" },
+    ["[e"] = { M.diagnostic_goto(false, "ERROR"), "Prev Error" },
+    ["]w"] = { M.diagnostic_goto(true, "WARN"), "Next Warning" },
+    ["[w"] = { M.diagnostic_goto(false, "WARN"), "Prev Warning" },
   },
   insert_mode = {},
   visual_mode = {},
