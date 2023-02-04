@@ -113,6 +113,9 @@ return {
           cmdline = { icon = " " },
         },
       },
+      messages = {
+        view = "mini",
+      },
       lsp = {
         override = {
           -- override the default lsp markdown formatter with Noice
@@ -161,6 +164,13 @@ return {
         desc = "Scroll forward" },
       { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true,
         expr = true, desc = "Scroll backward" },
+    },
+  },
+
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      timeout = 3000,
     },
   },
 
