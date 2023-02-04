@@ -111,17 +111,6 @@ return {
       -- diagnostics
       require("plugins.lsp.diagnostics").setup()
 
-      -- hover / signature styles
-      local float = {
-        focusable = true,
-        style = "minimal",
-        border = "rounded",
-      }
-      -- hover style (Shift K keybind)
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, float)
-      -- signatureHelp style (gs keybind)
-      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, float)
-
       -- set lspconfig defaults or cmp capabilities
       -- See :help lspconfig-global-defaults
       local lsp_defaults = lspconfig.util.default_config
