@@ -105,6 +105,10 @@ keymap("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next" })
 keymap("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close" })
 keymap("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous" })
 
+-- open Location / Quickfix list
+keymap("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Open Location List" })
+keymap("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Open Quickfix List" })
+
 -- open lazygit in a floating term
 keymap("n", "<leader>gl", function()
   require("lazy.util").float_term { "lazygit" }
