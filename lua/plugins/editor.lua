@@ -114,14 +114,15 @@ return {
   -- illuminate other uses of a word under cursor
   {
     "RRethy/vim-illuminate",
-    config = function()
-      require("illuminate").configure {
-        delay = 150,
-        filetypes_denylist = {
-          "NvimTree",
-          "alpha",
-        },
-      }
+    opts = {
+      delay = 150,
+      filetypes_denylist = {
+        "NvimTree",
+        "alpha",
+      },
+    },
+    config = function(_, opts)
+      require("illuminate").configure(opts)
     end,
     keys = {
       {

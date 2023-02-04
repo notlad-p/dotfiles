@@ -20,11 +20,9 @@ return {
   {
     dir = "~/projects/lad-schemes.nvim",
     name = "lad-schemes",
-    config = function()
-      require("lad-schemes").setup {
-        scheme = "gruvbox",
-      }
-    end,
+    opts = {
+      scheme = "gruvbox",
+    },
   },
 
   -- tools for creating colorschemes
