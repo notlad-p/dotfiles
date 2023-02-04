@@ -98,7 +98,7 @@ return {
       { "[h", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Jump prev hunk" },
       { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Jump next hunk" },
       { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Jump prev hunk" },
-      { "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame line" },
+      { "<leader>gB", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame line" },
       { "<leader>gp", "<cmd>lua require 'gitsigns'.preview_hunk_inline()<cr>", desc = "Preview hunk" },
       { "<leader>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset hunk" },
       { "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", desc = "Reset buffer" },
@@ -155,14 +155,14 @@ return {
     "folke/trouble.nvim",
     dependencies = "kyazdani42/nvim-web-devicons",
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle<cr>", "Toggle trouble" },
-      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", "Document diagnostics" },
-      { "<leader>xD", "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace diagnostics" },
-      { "<leader>xr", "<cmd>TroubleToggle lsp_references<cr>", "LSP references" },
-      { "<leader>xf", "<cmd>TroubleToggle lsp_definitions<cr>", "LSP definitions" },
-      { "<leader>xt", "<cmd>TroubleToggle lsp_type_definitions<cr>", "LSP type definitions" },
-      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", "Quickfix items" },
-      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>", "Location list items" },
+      { "<leader>xx", "<cmd>TroubleToggle<cr>", desc = "Toggle trouble" },
+      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document diagnostics" },
+      { "<leader>xD", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace diagnostics" },
+      { "<leader>xr", "<cmd>TroubleToggle lsp_references<cr>", desc = "LSP references" },
+      { "<leader>xf", "<cmd>TroubleToggle lsp_definitions<cr>", desc = "LSP definitions" },
+      { "<leader>xt", "<cmd>TroubleToggle lsp_type_definitions<cr>", desc = "LSP type definitions" },
+      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix items" },
+      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>", desc = "Location list items" },
     },
     config = function()
       require("trouble").setup()
@@ -203,13 +203,12 @@ return {
     "akinsho/toggleterm.nvim",
     cmd = { "ToggleTerm", "TermExec" },
     keys = {
-      { "<leader>tl", "5:TermExec cmd='lazygit'<CR>", desc = "LazyGit" },
-      { "<c-t>", "<cmd>ToggleTerm<CR>", desc = "Toggle floating term", mode = { "i", "n" } },
+      { [[<c-\>]], "<cmd>ToggleTerm<CR>", desc = "Toggle floating term", mode = { "i", "n" } },
     },
     version = "v2.*",
     opts = {
       size = 20,
-      open_mapping = [[<c-t>]],
+      open_mapping = [[<c-\>]],
       hide_numbers = true, -- hide the number column in toggleterm buffers
       shade_filetypes = {},
       shade_terminals = true,
