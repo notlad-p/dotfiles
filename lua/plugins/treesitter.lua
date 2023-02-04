@@ -16,6 +16,7 @@ return {
     },
     opts = {
       ensure_installed = {
+        "html",
         "javascript",
         "typescript",
         "tsx",
@@ -26,6 +27,12 @@ return {
         "python",
         "help",
         "svelte",
+        "query",
+        "regex",
+        "bash",
+        "markdown",
+        "markdown_inline",
+        "vim",
       },
       highlight = {
         enable = true,
