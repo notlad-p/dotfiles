@@ -113,3 +113,5 @@ keymap("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Open Quickfix List" })
 keymap("n", "<leader>gl", function()
   require("lazy.util").float_term { "lazygit" }
 end, { desc = "Lazygit" })
+
+keymap("t", "jk", [[<C-\><C-n>]])
