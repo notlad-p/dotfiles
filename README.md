@@ -1,47 +1,72 @@
 # Neovim Config
 
+## Requirements:
+
+- Lazygit
+
 ### Configuration:
 
 - I use the fish shell, so toggleterm.nvim has the default shell set to `/usr/bin/fish`, if you use something else make sure to change it to `vim.o.shell` to use the shell you set vim to or something else
 
-### Installed Plugins
+### Plugins
 
-- [packer](https://github.com/wbthomason/packer.nvim) - plugin manager
-- onedark - color scheme
-- treesitter - syntax highlighting (note: Specific language parsers must be installed with `:TSInstall <language_to_install>`. Here's the [official documentation](https://github.com/nvim-treesitter/nvim-treesitter#language-parsers).)
-- nvim-tree - file tree
-- lualine - status line
-- gitsigns - git integration
-- nvim-lspconfig - LSP
-<!-- TODO: list all new plugins-->
-- mason.nvim &
-<!-- - nvim-lsp-installer - easy to use LSP installer -->
-- null-ls - for formatters and linter's (requires plenary.nvim)
-  - You will need to install linters and formatters separately on your machine
-    - For example [luacheck](https://github.com/mpeterv/luacheck#installation) and [stylua](https://github.com/JohnnyMorganz/StyLua#installation)
-- nvim-cmp - completion engine
-- cmp-nvim-lsp - completion plugin for LSP
-- cmp-path - completion plugin for path
-- cmp-buffer - completion plugin for current buffer
-- cmp_luasnip - completion plugin for luasnip code snippets
-- LuaSnip - snippet engine
-- friendly-snippets - set of preconfigured snippets
+- [Lazy.nvim](https://github.com/folke/lazy.nvim) - Plugin manager
+- [ChatGPT.nvim](https://github.com/jackMort/ChatGPT.nvim)
+- [Comment.nvim](https://github.com/numToStr/Comment.nvim)
+- [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
+- [SchemaStore.nvim](https://github.com/b0o/SchemaStore.nvim)
+- [alpha-nvim](https://github.com/goolord/alpha-nvim)
+- [auto-session](https://github.com/rmagatti/auto-session)
+- [bufdelete.nvim](https://github.com/famiu/bufdelete.nvim)
+- [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
+- [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
+- [cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline)
+- [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
+- [cmp-path](https://github.com/hrsh7th/cmp-path)
+- [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
+- dressing.nvim
+- friendly-snippets
+- gitsigns.nvim
+- harpoon
+- indent-blankline.nvim
+- lazy.nvim
+- leap.nvim
+- lualine.nvim
+- lush.nvim
+- markdown-preview.nvim
+- mason-lspconfig.nvim
+- mason.nvim
+- neo-tree.nvim
+- neodev.nvim
+- neoscroll.nvim
+- noice.nvim
+- nui.nvim
+- null-ls.nvim
 - nvim-autopairs
+- nvim-cmp
+- nvim-colorizer.lua
+- nvim-lspconfig
+- nvim-notify
+- nvim-treesitter
 - nvim-ts-autotag
-- telescope.nvim - requires plenary.nvim
-- telescope-fzf-native.nvim
+- nvim-ts-context-commentstring
+- nvim-web-devicons
+- playground
+- plenary.nvim
+- session-lens
+- shipwright.nvim
+- sniprun
+- telescope.nvim
+- todo-comments.nvim
+- toggleterm.nvim
+- trouble.nvim
+- true-zen.nvim
+- typescript.nvim
+- vim-illuminate
+- vim-indent-object
+- vim-repeat
+- vim-surround
 - which-key.nvim
-- alpha-nvim - start up dashboard
-- toggleterm.nvim - floating terminal window
-- bufdelete.nvim - delete buffers and keep window orientation
-- vim-indent-object - adds indent text object
-- vim-surround - adds surroundings text object
-- indent-blankline.nvim - shows indent lines & current indent
-- nvim-colorizer.lua - highlights color codes in editor
-- lightspeed.nvim - better find motion
-- neoscroll.nvim - smooth scrolling motions
-- todo-comments.nvim - highlight, list, and search todo comments
-- markdown-preview.nvim - preview markdown files
 
 ### Useful links
 
