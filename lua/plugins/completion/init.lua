@@ -217,6 +217,26 @@ return {
     end,
   },
 
+  -- copilot
+  {
+    "zbirenbaum/copilot.lua",
+    enabled = true,
+    cmd = "Copilot",
+    event = "InsertEnter",
+    opts = {
+      panel = {
+        enabled = true,
+        keymap = { open = "<M-p>" },
+        layout = { position = "bottom", ratio = 0.3 },
+      },
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        keymap = { accept_word = "<M-i>", accept_line = "<M-o>" },
+      },
+    },
+  },
+
   -- snippets
   {
     "L3MON4D3/LuaSnip",
