@@ -37,7 +37,7 @@ return {
         -- servers to automatically install if they're not already installed
         ensure_installed = {
           "tsserver",
-          "sumneko_lua",
+          "lua_ls",
         },
         -- extra server setup
         setup = {
@@ -161,7 +161,8 @@ return {
           formatting.stylua,
           formatting.black,
           -- linters
-          diagnostics.eslint_d,
+          -- diagnostics.eslint_d,
+          diagnostics.eslint,
           diagnostics.luacheck,
           diagnostics.mypy,
           -- extras
