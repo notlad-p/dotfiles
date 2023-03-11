@@ -136,6 +136,8 @@ return {
           },
           -- Ctrl e to abort
           ["<C-e>"] = cmp.mapping.abort(),
+          -- Alt w to abort
+          ["<M-w>"] = cmp.mapping.abort(),
 
           -- Tab, Shift Tab, and Enter mappings
           -- Stolen from LunarVim:
