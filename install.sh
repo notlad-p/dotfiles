@@ -25,7 +25,10 @@ set -e
 
 # install apt packages
 echo "Installing apt packages"
-sudo apt install -y rofi curl wget tmux htop ranger exa zoxide
+sudo apt install -y rofi curl wget tmux htop ranger exa zoxide scrot
+
+# set git editor to neovim
+git config --global core.editor "nvim"
 
 # Fish Shell
 sudo apt-add-repository ppa:fish-shell/release-3
@@ -136,8 +139,8 @@ echo "Done installing!"
 echo "Now symlinking configs."
 . ./symlink.sh
 
-# TODO: next clone configs by running clone.sh
 # Clone configs with their own repo
+echo "cloning configurations"
 . ./clone.sh
 
 echo "-------------------------------"
