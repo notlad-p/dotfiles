@@ -115,3 +115,5 @@ keymap("n", "<leader>gl", function()
 end, { desc = "Lazygit" })
 
 keymap("t", "jk", [[<C-\><C-n>]])
+
+keymap("n", "<leader>gy", "<cmd>set signcolumn=yes<CR>", { desc = "Show sign column" })
