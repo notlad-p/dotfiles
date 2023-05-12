@@ -52,20 +52,53 @@ end
 # ---------------------
 # Set fish color scheme
 # ---------------------
-set fish_color_normal 93a4c3 # #93a4c3
-set fish_color_command 34bfd0 # #34bfd0
-# $ set -U fish_color_keyword # falls back to command color
-set fish_color_quote 8bcd5b # #8bcd5b
-set fish_color_redirection c75ae8 # #c75ae8
-set fish_color_end dd9046 # #dd9046
-set fish_color_error f65866 # #f65866
-set fish_color_param 93a4c3 # #93a4c3
+
+# ----------------
+# onedark:
+# ----------------
+# set fish_color_normal 93a4c3 # #93a4c3
+# set fish_color_command 34bfd0 # #34bfd0
+# set fish_color_quote 8bcd5b # #8bcd5b
+# set fish_color_redirection c75ae8 # #c75ae8
+# set fish_color_end dd9046 # #dd9046
+# set fish_color_error f65866 # #f65866
+# set fish_color_param 93a4c3 # #93a4c3
+# set fish_color_valid_path --bold
+# set fish_color_option c75ae8 # #c75ae8
+# set fish_color_comment 455574 # #455574
+# set fish_color_escape dd9046 # #dd9046 
+# set fish_pager_color_description f2cc81 # #f2cc81
+# set fish_pager_color_selected_background --background=141b24 # #141b24
+
+# ----------------
+# gruvbox
+# ----------------
+
+set fish_color_normal ebdbb2 # #ebdbb2
+set fish_color_command 83a598 # #83a598 
+set fish_color_quote b8bb26 # #b8bb26
+set fish_color_redirection d3869b # #d3869b 
+set fish_color_end fe8019 # #fe8019 
+set fish_color_error fb4934 # #fb4934 
+set fish_color_param ebdbb2 # #ebdbb2 
+set fish_color_option d3869b # #d3869b 
+set fish_color_comment 4b4b4b # #4b4b4b 
+set fish_color_escape fe8019 # #fe8019 
+set fish_pager_color_description fbf1c7 # #fbf1c7 
+set fish_pager_color_selected_background --background=232323 # #232323 
+
+# ----------------
+# defaults
+# ----------------
+set fish_pager_color_prefix normal --bold
 set fish_color_valid_path --bold
-set fish_color_option c75ae8 # #c75ae8
-set fish_color_comment 455574 # #455574
+
+# ----------------
+# unset colors:
+# ----------------
+# $ set -U fish_color_keyword # falls back to command color
 # $ set -U fish_color_selection --background=#FFCC66
 # $ set -U fish_color_operator #FFCC66
-set fish_color_escape dd9046 # #dd9046 
 # $ set -U fish_color_autosuggestion #707A8C
 # $ set -U fish_color_cwd #73D0FF
 # $ set -U fish_color_cwd_root red
@@ -74,14 +107,9 @@ set fish_color_escape dd9046 # #dd9046
 # $ set -U fish_color_host_remote
 # $ set -U fish_color_cancel --reverse
 # $ set -U fish_color_search_match --background=#FFCC66
-
-
 # $ set -U fish_pager_color_progress brwhite --background=cyan
 # $ set -U fish_pager_color_background
-set fish_pager_color_prefix normal --bold
 # $ set -U fish_pager_color_completion normal
-set fish_pager_color_description f2cc81 # #f2cc81
-set fish_pager_color_selected_background --background=141b24 # #141b24
 # $ set -U fish_pager_color_selected_prefix
 # $ set -U fish_pager_color_selected_completion
 # $ set -U fish_pager_color_selected_description
@@ -89,7 +117,6 @@ set fish_pager_color_selected_background --background=141b24 # #141b24
 # $ set -U fish_pager_color_secondary_prefix
 # $ set -U fish_pager_color_secondary_completion
 # $ set -U fish_pager_color_secondary_description
-
 # $ set -U fish_color_history_current --bold
 # $ set -U fish_color_match #F28779
 

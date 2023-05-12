@@ -1,18 +1,28 @@
+# TODO: set up several toml configs for different colorschemes
+# example: https://starship.rs/config/#prompt
+command_timeout = 1500
+
 [directory]
 format = " [$path]($style)[$read_only]($read_only_style) "
-style = "bold #41a7fc"
+# style = "bold #41a7fc"
+style = "bold #fabd2f"
 read_only = " "
-read_only_style = "bold #f65866"
+# read_only_style = "bold #f65866"
+read_only_style = "bold #fb4934"
 # home_symbol = " ~"
 
 [character]
 format = " $symbol "
-success_symbol = "[](bold #efbd5d)"
-error_symbol = "[](bold #f65866)"
-vicmd_symbol = "[](bold #8bcd5b)"
+success_symbol = "[](bold #8ec07c)"
+error_symbol = "[](bold #fb4934)"
+vicmd_symbol = "[](bold #d65d0e)"
+# success_symbol = "[](bold #efbd5d)"
+# error_symbol = "[](bold #f65866)"
+# vicmd_symbol = "[](bold #8bcd5b)"
+
 
 [cmd_duration]
-style = "bold #efbd5d"
+style = "bold #fabd2f"
 
 [aws]
 symbol = "  "
@@ -40,10 +50,11 @@ symbol = " "
 
 [git_branch]
 symbol = " "
-style = "bold #c75ae8"
+style = "bold #d3869b"
+# style = "bold #c75ae8"
 
 [git_status]
-style = "bold #34bfd0"
+style = "bold #83a598"
 
 [golang]
 symbol = " "
