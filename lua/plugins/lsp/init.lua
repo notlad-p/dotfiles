@@ -49,6 +49,15 @@ return {
         },
         -- LSP server settings
         servers = {
+          tsserver = {
+            root_dir = function(fname)
+              local util = require "lspconfig/util"
+              return util.root_pattern("tsconfig.json", "package.json")(fname)
+            end,
+            -- so that deno projects can't use tsserver: https://www.reddit.com/r/neovim/comments/10n795v/disable_tsserver_in_deno_projects/
+            single_file_support = false,
+          },
+
           jsonls = {
             on_new_config = function(new_config)
               new_config.settings.json.schemas = new_config.settings.json.schemas or {}
@@ -71,7 +80,14 @@ return {
             end,
           },
 
-          sumneko_lua = {
+          denols = {
+            root_dir = function(fname)
+              local util = require "lspconfig/util"
+              return util.root_pattern "deno.json" (fname)
+            end,
+          },
+
+          lua_ls = {
             settings = {
               Lua = {
                 runtime = {
@@ -115,7 +131,7 @@ return {
       -- See :help lspconfig-global-defaults
       local lsp_defaults = lspconfig.util.default_config
       lsp_defaults.capabilities =
-        vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+      vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       local handler = function(server_name)
         local server_opts = opts.servers[server_name] or {}
@@ -162,7 +178,19 @@ return {
           formatting.black,
           -- linters
           -- diagnostics.eslint_d,
-          diagnostics.eslint,
+          diagnostics.eslint.with {
+            condition = function(utils)
+              -- return params.root:match("supabase-workout-buddy")
+              return utils.root_has_file {
+                ".eslintrc.js",
+                ".eslintrc.cjs",
+                ".eslintrc.yaml",
+                ".eslintrc.yml",
+                ".eslintrc.json",
+                "package.json",
+              }
+            end,
+          },
           diagnostics.luacheck,
           diagnostics.mypy,
           -- extras
