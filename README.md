@@ -4,6 +4,7 @@
 
 - Create one script to run all scripts in order
 - Create init.sh script to install awesomewm-git and luarocks
+- Symlink 10-monitors.conf to /etc/X11/xorg.conf.d/10-monitors.conf
 
 ## Install
 
