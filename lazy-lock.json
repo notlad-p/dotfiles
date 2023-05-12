@@ -3,6 +3,7 @@
   "Comment.nvim": { "branch": "master", "commit": "6821b3ae27a57f1f3cf8ed030e4a55d70d0c4e43" },
   "LuaSnip": { "branch": "master", "commit": "58236e8b2f20de23ff35106dace9212b41d78860" },
   "SchemaStore.nvim": { "branch": "main", "commit": "809c05360a0dabfc018093a090045d292d362ef4" },
+  "aerial.nvim": { "branch": "master", "commit": "24fe657357320cab076eb88d17aae64d014fae38" },
   "alpha-nvim": { "branch": "main", "commit": "4b0ba68022d8612b04b26844f1ce5e708c0d23b0" },
   "auto-session": { "branch": "main", "commit": "04ccdac802200ecc363b251cf922b2b022bb515c" },
   "bufdelete.nvim": { "branch": "master", "commit": "8933abc09df6c381d47dc271b1ee5d266541448e" },
