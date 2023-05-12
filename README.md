@@ -1,5 +1,9 @@
 # Neovim Config
 
+## TODO:
+
+- Create snippet for generating starter files like `package.json`, `.eslintrc.json`, `.prettierrc.json`
+
 ## Requirements:
 
 - Lazygit
