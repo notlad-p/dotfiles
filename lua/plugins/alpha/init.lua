@@ -13,7 +13,7 @@ return {
         dashboard.button("p", "  Projects", "<CMD>Telescope projects<CR>"),
         dashboard.button("r", "  Recently Files", "<CMD>Telescope oldfiles<CR>"),
         dashboard.button("t", "  Find Text", "<CMD>Telescope live_grep<CR>"),
-        dashboard.button("s", "  Restore Last Session", "<CMD>RestoreSession<CR>"),
+        dashboard.button("s", "  Restore Last Session", "<CMD>SessionRestore<CR>"),
         dashboard.button("c", "  Configuration", "<CMD>edit ~/.config/nvim/init.lua<CR>"),
       }
 
