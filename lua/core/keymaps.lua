@@ -117,3 +117,5 @@ end, { desc = "Lazygit" })
 keymap("t", "jk", [[<C-\><C-n>]])
 
 keymap("n", "<leader>gy", "<cmd>set signcolumn=yes<CR>", { desc = "Show sign column" })
+
+keymap('n', "<leader>W", "<cmd> set linebreak wrap<CR>", { desc = "Wrap and break lines" })
