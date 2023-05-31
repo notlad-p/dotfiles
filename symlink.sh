@@ -28,15 +28,16 @@ ln -sf $WORK_DIR"/starship.toml" ~/.config/starship.toml
 ln -sf $WORK_DIR"/config.fish" ~/.config/fish/config.fish
 
 # symlink wezterm config
-ln -s $WORK_DIR"/wezterm" ~/.config/wezterm
+ln -sf $WORK_DIR"/wezterm" ~/.config/wezterm
 
 # symlink tmux
-ln -s $WORK_DIR"/tmux" ~/.config/tmux
+ln -sf $WORK_DIR"/tmux" ~/.config/tmux
 
 # symlink ranger
-ln -s $WORK_DIR"/ranger" ~/.config/ranger
+ln -sf $WORK_DIR"/ranger" ~/.config/ranger
 
 # # picom
-ln -s $WORK_DIR"/picom" ~/.config/picom
+#ln -s $WORK_DIR"/picom" ~/.config/picom
 
-
+# symlink sddm setup script for monitors
+ln -sf $WORK_DIR"/sddm/Xsetup" /etc/sddm/Xsetup
