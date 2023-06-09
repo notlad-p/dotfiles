@@ -169,6 +169,7 @@ return {
 
   {
     "rcarriga/nvim-notify",
+    event = "VeryLazy",
     opts = {
       timeout = 3000,
     },
