@@ -1,7 +1,7 @@
+local trouble = require("trouble.providers.telescope")
+
 return {
   -- telescope
-  -- TODO: add `open_with_trouble` key mapping:
-  -- https://github.com/folke/trouble.nvim#telescope
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
@@ -33,6 +33,10 @@ return {
         selection_caret = " ",
         entry_prefix = "  ",
         file_ignore_patterns = { "node_modules" },
+        mappings = {
+          i = { ["<c-t>"] = trouble.open_with_trouble },
+          n = { ["<c-t>"] = trouble.open_with_trouble },
+        }
       },
       pickers = {
         -- File Pickers
