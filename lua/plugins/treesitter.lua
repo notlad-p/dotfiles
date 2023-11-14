@@ -4,6 +4,9 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = "BufReadPost",
+    dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+    },
     keys = {
       {
         "<leader>H",
