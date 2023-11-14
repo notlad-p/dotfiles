@@ -55,7 +55,8 @@ return {
               return util.root_pattern("tsconfig.json", "package.json")(fname)
             end,
             -- so that deno projects can't use tsserver: https://www.reddit.com/r/neovim/comments/10n795v/disable_tsserver_in_deno_projects/
-            single_file_support = false,
+            -- NOTE: enable this if you intend to use tsserver for single file javascript/typescript files
+            single_file_support = true,
           },
 
           jsonls = {
@@ -131,7 +132,7 @@ return {
       -- See :help lspconfig-global-defaults
       local lsp_defaults = lspconfig.util.default_config
       lsp_defaults.capabilities =
-      vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+          vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       local handler = function(server_name)
         local server_opts = opts.servers[server_name] or {}
@@ -173,26 +174,43 @@ return {
             -- to use with svelte install plugin globaly
             -- https://github.com/sveltejs/prettier-plugin-svelte
             extra_filetypes = { "svelte" },
+            condition = function(utils)
+              return not utils.root_has_file { "pyproject.toml" }
+            end,
           },
           formatting.stylua,
           formatting.black,
           -- linters
           -- diagnostics.eslint_d,
-          diagnostics.eslint.with {
-            condition = function(utils)
-              -- return params.root:match("supabase-workout-buddy")
-              return utils.root_has_file {
-                ".eslintrc.js",
-                ".eslintrc.cjs",
-                ".eslintrc.yaml",
-                ".eslintrc.yml",
-                ".eslintrc.json",
-                "package.json",
-              }
-            end,
-          },
+          -- diagnostics.eslint.with {
+          --   condition = function(utils)
+          --     -- return params.root:match("supabase-workout-buddy")
+          --     return utils.root_has_file {
+          --       ".eslintrc.js",
+          --       ".eslintrc.cjs",
+          --       ".eslintrc.yaml",
+          --       ".eslintrc.yml",
+          --       ".eslintrc.json",
+          --       "package.json",
+          --     }
+          --   end,
+          -- },
           diagnostics.luacheck,
           diagnostics.mypy,
+          formatting.djlint.with {
+            filetypes = { "html", "htmldjango" },
+            -- extra_args = { '--blank-line-before-tag "load,extends,include"' },
+            -- condition = function(utils)
+            --   return utils.root_has_file { "pyproject.toml" }
+            -- end,
+          },
+          diagnostics.djlint.with {
+            filetypes = { "html", "htmldjango" },
+            -- extra_args = { '--blank-line-before-tag "load,extends,include"' },
+            -- condition = function(utils)
+            --   return utils.root_has_file { "pyproject.toml" }
+            -- end,
+          },
           -- extras
           -- add typescript options to code actions menu
           require "typescript.extensions.null-ls.code-actions",
@@ -201,7 +219,6 @@ return {
     end,
   },
   {
-
     "williamboman/mason.nvim",
     cmd = "Mason",
     keys = { { "<leader>lm", "<cmd>Mason<cr>", desc = "Mason" } },
