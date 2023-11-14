@@ -178,7 +178,6 @@ return {
   { "MunifTanjim/nui.nvim", lazy = true },
 
   -- zen mode
-  -- TODO: add keybinds in which key
   {
     "Pocco81/true-zen.nvim",
     config = function()

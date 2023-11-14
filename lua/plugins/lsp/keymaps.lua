@@ -9,11 +9,6 @@ M.diagnostic_goto = function(next, severity)
   end
 end
 
--- TODO: use more uniform lsp keymaps?
--- c - code (code editing like formating, rename, code action, line diagnostics)
--- g - goto (definitions, references, declaration, implementation, type def, signature help)
--- https://github.com/LazyVim/LazyVim/blob/65fb26fe9726eede3f3c2f0067b87f91cf302940/lua/lazyvim/plugins/lsp/keymaps.lua
-
 -- lsp keybinds
 local buffer_mappings = {
   normal_mode = {

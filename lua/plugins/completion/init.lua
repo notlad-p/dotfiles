@@ -16,7 +16,6 @@ return {
       "hrsh7th/cmp-buffer",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-cmdline",
-      -- "hrsh7th/cmp-nvim-lua",
     },
     opts = function()
       local cmp = require "cmp"

@@ -10,8 +10,6 @@ return {
       "kyazdani42/nvim-web-devicons", -- optional, for file icons
       "MunifTanjim/nui.nvim",
     },
-    -- TODO: have <leader>e always open in root file
-    -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/editor.lua#L13
     keys = {
       {
         "<leader>e",
@@ -45,7 +43,6 @@ return {
     },
   },
 
-  -- TODO: finish adding icons / look at other icon configs
   {
     "stevearc/aerial.nvim",
     event = "BufRead",
@@ -251,7 +248,6 @@ return {
         end,
         desc = "Previous todo comment",
       },
-      -- TODO: add TodoQuickFix and TodoLocList keymaps
     },
     config = function()
       require("todo-comments").setup()

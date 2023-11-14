@@ -8,7 +8,7 @@ local on_attach = function(callback)
     end,
   })
 end
--- add: neodev.nvim & remove neovim cmp source
+
 return {
   -- lspconfig
   {

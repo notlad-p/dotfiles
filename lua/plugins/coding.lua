@@ -21,8 +21,6 @@ return {
   },
 
   -- autopairs / tags
-  -- TODO: insert '()' after functions and methods using cmp + nvim-autopairs?
-  -- https://github.com/windwp/nvim-autopairs#you-need-to-add-mapping-cr-on-nvim-cmp-setupcheck-readmemd-on-nvim-cmp-repo
   {
     "windwp/nvim-autopairs",
     event = "VeryLazy",
