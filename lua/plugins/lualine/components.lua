@@ -46,10 +46,11 @@ local M = {
   -- mode indicator on left side of status line
   mode = {
     function()
-      return "﫜"
+      return "󰠖 "
     end,
-    separator = { left = "", right = " " },
-    padding = { left = 1, right = 0 },
+    -- TODO: figure out why two of the right characters are being rendered?
+    -- separator = { left = "", right = "" },
+    padding = { left = 1, right = 1 },
     color = {},
     cond = nil,
   },
@@ -58,7 +59,7 @@ local M = {
     "b:gitsigns_head",
     icon = " ",
     color = { gui = "bold" },
-    separator = { left = "", right = " " },
+    -- separator = { left = "", right = " " },
     cond = conditions.hide_in_width,
   },
   diff = {
