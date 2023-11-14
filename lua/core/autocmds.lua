@@ -35,22 +35,6 @@ M.setup = function()
         end,
       },
     },
-
-    {
-      "ColorScheme",
-      {
-        group = "_illuminate_settings",
-        pattern = "*",
-        desc = "Highlighting for vim-illuminate",
-        callback = function()
-          vim.api.nvim_set_hl(0, "IlluminatedWordText", { bold = true, underline = false })
-
-          vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#455574" })
-
-          vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#455574" })
-        end,
-      },
-    },
   }
 
   M.define_autocmds(autocmds)
