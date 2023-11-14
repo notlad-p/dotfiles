@@ -41,6 +41,7 @@ return {
   -- OpenAI chat interface - for asking questions and messing around mainly
   {
     "jackMort/ChatGPT.nvim",
+    enabled = false,
     config = function()
       require("chatgpt").setup()
     end,
