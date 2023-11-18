@@ -58,4 +58,13 @@ return {
 
   -- adds indent text object
   "michaeljsmith/vim-indent-object",
+
+  -- better split / join block
+  {
+    "Wansmer/treesj",
+    keys = {
+      { "J", "<cmd>TSJToggle<cr>", desc = "Join Toggle" },
+    },
+    opts = { use_default_keymaps = false, max_join_length = 150 },
+  },
 }
