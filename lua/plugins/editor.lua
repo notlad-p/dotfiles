@@ -44,6 +44,20 @@ return {
   },
 
   {
+    "stevearc/oil.nvim",
+    opts = {},
+    keys = {
+      {
+        "-",
+        "<CMD>Oil<CR>",
+        desc = "Open parent directory",
+      },
+    },
+    -- Optional dependencies
+    dependencies = { "kyazdani42/nvim-web-devicons" },
+  },
+
+  {
     "stevearc/aerial.nvim",
     event = "BufRead",
     opts = {
@@ -132,7 +146,6 @@ return {
         ["<leader>g"] = { name = "Git" },
         ["<leader>l"] = { name = "LSP" },
         ["<leader>s"] = { name = "Search" },
-        ["<leader>t"] = { name = "Terminal" },
         ["<leader>x"] = { name = "Trouble" },
         ["<leader>n"] = { name = "Noice" },
         ["<leader>m"] = { name = "Harpoon" },
@@ -151,24 +164,27 @@ return {
       signcolumn = true,
     },
     keys = {
-      { "]h", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Jump next hunk" },
-      { "[h", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Jump prev hunk" },
-      { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Jump next hunk" },
-      { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Jump prev hunk" },
-      { "<leader>gB", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame line" },
+      { "]h",         "<cmd>lua require 'gitsigns'.next_hunk()<cr>",           desc = "Jump next hunk" },
+      { "[h",         "<cmd>lua require 'gitsigns'.prev_hunk()<cr>",           desc = "Jump prev hunk" },
+      { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>",           desc = "Jump next hunk" },
+      { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>",           desc = "Jump prev hunk" },
+      { "<leader>gB", "<cmd>lua require 'gitsigns'.blame_line()<cr>",          desc = "Blame line" },
       { "<leader>gp", "<cmd>lua require 'gitsigns'.preview_hunk_inline()<cr>", desc = "Preview hunk" },
-      { "<leader>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset hunk" },
-      { "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", desc = "Reset buffer" },
-      { "<leader>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Stage hunk" },
-      { "<leader>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo stage hunk" },
-      { "<leader>gD", "<cmd>lua require 'gitsigns'.toggle_deleted()<cr>", desc = "Toggle deleted lines" },
-      { "<leader>gq", "<cmd>lua require 'gitsigns'.setqflist()<cr>", desc = "Quickfix list hunks" },
-      { "<leader>gt", "<cmd>lua require 'gitsigns'.diffthis()<cr>", desc = "View file diff" },
-
-      { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file" },
-      { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
-      { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit" },
-      { "<leader>gC", "<cmd>Telescope git_bcommits<cr>", desc = "Checkout commit(for current file)" },
+      { "<leader>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>",          desc = "Reset hunk" },
+      { "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",        desc = "Reset buffer" },
+      { "<leader>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>",          desc = "Stage hunk" },
+      { "<leader>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",     desc = "Undo stage hunk" },
+      { "<leader>gD", "<cmd>lua require 'gitsigns'.toggle_deleted()<cr>",      desc = "Toggle deleted lines" },
+      { "<leader>gq", "<cmd>lua require 'gitsigns'.setqflist()<cr>",           desc = "Quickfix list hunks" },
+      { "<leader>gt", "<cmd>lua require 'gitsigns'.diffthis()<cr>",            desc = "View file diff" },
+      { "<leader>go", "<cmd>Telescope git_status<cr>",                         desc = "Open changed file" },
+      { "<leader>gb", "<cmd>Telescope git_branches<cr>",                       desc = "Checkout branch" },
+      { "<leader>gc", "<cmd>Telescope git_commits<cr>",                        desc = "Checkout commit" },
+      {
+        "<leader>gC",
+        "<cmd>Telescope git_bcommits<cr>",
+        desc = "Checkout commit(for current file)",
+      },
       { "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Git Diff" },
     },
   },
@@ -212,14 +228,14 @@ return {
     "folke/trouble.nvim",
     dependencies = "kyazdani42/nvim-web-devicons",
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle<cr>", desc = "Toggle trouble" },
-      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document diagnostics" },
+      { "<leader>xx", "<cmd>TroubleToggle<cr>",                       desc = "Toggle trouble" },
+      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "Document diagnostics" },
       { "<leader>xD", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace diagnostics" },
-      { "<leader>xr", "<cmd>TroubleToggle lsp_references<cr>", desc = "LSP references" },
-      { "<leader>xf", "<cmd>TroubleToggle lsp_definitions<cr>", desc = "LSP definitions" },
-      { "<leader>xt", "<cmd>TroubleToggle lsp_type_definitions<cr>", desc = "LSP type definitions" },
-      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix items" },
-      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>", desc = "Location list items" },
+      { "<leader>xr", "<cmd>TroubleToggle lsp_references<cr>",        desc = "LSP references" },
+      { "<leader>xf", "<cmd>TroubleToggle lsp_definitions<cr>",       desc = "LSP definitions" },
+      { "<leader>xt", "<cmd>TroubleToggle lsp_type_definitions<cr>",  desc = "LSP type definitions" },
+      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",              desc = "Quickfix items" },
+      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>",               desc = "Location list items" },
     },
     config = function()
       require("trouble").setup()
@@ -233,7 +249,7 @@ return {
     event = "BufRead",
     keys = {
       { "<leader>sT", "<cmd>TodoTelescope theme=dropdown<cr>", desc = "Todos" },
-      { "<leader>xT", "<cmd>TodoTrouble<cr>", desc = "Todos" },
+      { "<leader>xT", "<cmd>TodoTrouble<cr>",                  desc = "Todos" },
       {
         "]t",
         function()
@@ -268,14 +284,14 @@ return {
       hide_numbers = true, -- hide the number column in toggleterm buffers
       shade_filetypes = {},
       shade_terminals = true,
-      shading_factor = 2, -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
+      shading_factor = 2,       -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
       start_in_insert = true,
-      insert_mappings = true, -- whether or not the open mapping applies in insert mode
+      insert_mappings = true,   -- whether or not the open mapping applies in insert mode
       terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
       persist_size = false,
       -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
       direction = "float",
-      close_on_exit = true, -- close the terminal window when the process exits
+      close_on_exit = true,    -- close the terminal window when the process exits
       -- CHANGE THIS IF NOT USING FISH SHELL
       shell = "/usr/bin/fish", -- change the default shell
       -- This field is only relevant if direction is set to 'float'
@@ -302,13 +318,13 @@ return {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup({ "*" }, {
-        RGB = true, -- #RGB hex codes
-        RRGGBB = true, -- #RRGGBB hex codes
+        RGB = true,      -- #RGB hex codes
+        RRGGBB = true,   -- #RRGGBB hex codes
         RRGGBBAA = true, -- #RRGGBBAA hex codes
-        rgb_fn = true, -- CSS rgb() and rgba() functions
-        hsl_fn = true, -- CSS hsl() and hsla() functions
-        css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        rgb_fn = true,   -- CSS rgb() and rgba() functions
+        hsl_fn = true,   -- CSS hsl() and hsla() functions
+        css = true,      -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = true,   -- Enable all CSS *functions*: rgb_fn, hsl_fn
       })
     end,
   },
