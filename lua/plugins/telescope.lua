@@ -1,4 +1,4 @@
-local trouble = require("trouble.providers.telescope")
+local trouble = require "trouble.providers.telescope"
 
 return {
   -- telescope
@@ -6,6 +6,16 @@ return {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     version = false,
+    dependencies = {
+      {
+        "debugloop/telescope-undo.nvim",
+        keys = { { "<leader>U", "<cmd>Telescope undo<cr>" } },
+        config = function()
+          require("telescope").load_extension "undo"
+        end,
+        desc = "Undo tree",
+      },
+    },
     keys = {
       -- file pickers
       { "<leader>f", "<cmd>Telescope find_files<cr>", desc = "Find file" },
@@ -78,7 +88,6 @@ return {
         keymaps = {
           theme = "dropdown",
         },
-
         -- Git Pickers
         git_branches = {
           theme = "dropdown",
