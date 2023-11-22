@@ -20,6 +20,8 @@ return {
       { "<leader>bL", "<cmd>BufferLineSortByExtension<cr>", "Sort by language" },
     },
     opts = function()
+      local bufferline = require("bufferline")
+
       return {
         options = {
           themable = false, -- whether or not the highlights for this plugin can be overriden.
@@ -41,8 +43,9 @@ return {
             result = table.concat(result, " ")
             return #result > 0 and result or ""
           end,
-          separator_style = "thin", -- "slant" | "padded_slant" | "thick" | "thin" | { "any", "any" },
           always_show_bufferline = false,
+          separator_style = { "|", "|" }, -- "slant" | "padded_slant" | "thick" | "thin" | { "any", "any" },
+          style_preset = bufferline.style_preset.no_italic,
           offsets = {
             { filetype = "NvimTree", text = "Explorer", text_align = "center", padding = 1 },
             {
