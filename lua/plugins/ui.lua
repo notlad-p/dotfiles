@@ -118,7 +118,8 @@ return {
         },
       },
       messages = {
-        view = "mini",
+        -- view = "mini",
+        enabled = false -- disable this shit
       },
       lsp = {
         override = {
@@ -126,6 +127,7 @@ return {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           -- override the lsp markdown formatter with Noice
           ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
         },
         message = {
           enabled = true,
