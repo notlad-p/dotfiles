@@ -15,6 +15,7 @@ return {
         end,
         desc = "Undo tree",
       },
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     keys = {
       -- file pickers
@@ -37,49 +38,45 @@ return {
       -- git pickers
       { "<leader>sb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
     },
-    opts = {
-      defaults = {
-        prompt_prefix = " ",
-        selection_caret = " ",
-        entry_prefix = "  ",
-        multi_icon = "⤞ ",
-        file_ignore_patterns = { "node_modules" },
-        mappings = {
-          i = { ["<c-t>"] = trouble.open_with_trouble },
-          n = { ["<c-t>"] = trouble.open_with_trouble },
+    opts = function ()
+      local actions    = require('telescope.actions')
+      return {
+        defaults = {
+          prompt_prefix = " ",
+          selection_caret = " ",
+          entry_prefix = "  ",
+          multi_icon = "⤞ ",
+          file_ignore_patterns = { "node_modules" },
+          mappings = {
+            i = {
+              ["<c-t>"] = trouble.open_with_trouble,
+              ["<ESC>"] = actions.close,
+            },
+            n = { ["<c-t>"] = trouble.open_with_trouble },
+          },
+          layout_strategy = "center",
+          sorting_strategy = "ascending",
+          layout_config = {
+            height = 0.35,
+            width = 0.65,
+            anchor = "S",
+          },
         },
-        layout_strategy = "center",
-        sorting_strategy = "ascending",
-        layout_config = {
-          height = 0.35,
-          width = 0.65,
-          anchor = "S",
+        extensions = {
+          fzf = {
+            fuzzy = true,                   -- false will only do exact matching
+            override_generic_sorter = true, -- override the generic sorter
+            override_file_sorter = true,    -- override the file sorter
+            case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+            -- the default case_mode is "smart_case"
+          },
         },
-        man_pages = {
-          theme = "dropdown",
-        },
-        highlights = {
-          theme = "dropdown",
-        },
-        registers = {
-          theme = "dropdown",
-        },
-        keymaps = {
-          theme = "dropdown",
-        },
-        -- Git Pickers
-        git_branches = {
-          theme = "dropdown",
-        },
-        -- LSP Pickers
-        lsp_document_symbols = {
-          theme = "dropdown",
-        },
-        diagnostics = {
-          theme = "dropdown",
-        },
-      },
-    },
+      }
+    end,
+    config = function(_, opts)
+      require("telescope").setup(opts)
+      require("telescope").load_extension "fzf"
+    end,
   },
 
   -- session searcher
