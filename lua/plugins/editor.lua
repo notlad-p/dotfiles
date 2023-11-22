@@ -142,7 +142,7 @@ return {
 
       which_key.register {
         mode = { "n", "v" },
-        ["<leader>b"] = { name = "Buffers" },
+        ["<leader>B"] = { name = "Buffers" },
         ["<leader>g"] = { name = "Git" },
         ["<leader>l"] = { name = "LSP" },
         ["<leader>s"] = { name = "Search" },
