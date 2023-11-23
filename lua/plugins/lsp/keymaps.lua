@@ -51,7 +51,7 @@ local buffer_mappings = {
     ["[w"] = { M.diagnostic_goto(false, "WARN"), "Prev Warning" },
   },
   insert_mode = {},
-  visual_mode = {},
+  visual_mode = { ["<leader>f"] = { function() vim.lsp.buf.format() end, "Format" } },
 }
 
 -- typescript mappings
