@@ -185,12 +185,4 @@ return {
   },
 
   { "MunifTanjim/nui.nvim", lazy = true },
-
-  -- zen mode
-  {
-    "Pocco81/true-zen.nvim",
-    config = function()
-      require("true-zen").setup()
-    end,
-  },
 }

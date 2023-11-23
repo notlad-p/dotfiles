@@ -57,65 +57,6 @@ return {
     dependencies = { "kyazdani42/nvim-web-devicons" },
   },
 
-  {
-    "stevearc/aerial.nvim",
-    event = "BufRead",
-    opts = {
-      attach_mode = "global",
-      backends = { "lsp", "treesitter", "markdown", "man" },
-      layout = { min_width = 28, default_direction = "right" },
-      show_guides = true,
-      filter_kind = false,
-      guides = {
-        mid_item = "├ ",
-        last_item = "└ ",
-        nested_top = "│ ",
-        whitespace = "  ",
-      },
-      keymaps = {
-        ["[y"] = "actions.prev",
-        ["]y"] = "actions.next",
-        ["[Y"] = "actions.prev_up",
-        ["]Y"] = "actions.next_up",
-        ["{"] = false,
-        ["}"] = false,
-        ["[["] = false,
-        ["]]"] = false,
-      },
-      icons = {
-        Array = " ",
-        Boolean = " ",
-        Class = " ",
-        Constant = "ﲀ ",
-        Constructor = " ",
-        Enum = "練",
-        EnumMember = " ",
-        Event = " ",
-        Field = " ",
-        File = " ",
-        Function = " ",
-        Interface = "ﰮ ",
-        Key = " ",
-        Method = " ",
-        Module = " ",
-        -- Namespace = " ",
-        -- Null = " ",
-        Number = " ",
-        -- Object = " ",
-        Operator = "",
-        Package = " ",
-        Property = " ",
-        String = " ",
-        Struct = " ",
-        TypeParameter = " ",
-        Variable = " ",
-      },
-    },
-    keys = {
-      { "<leader>o", "<cmd>AerialToggle<cr>", desc = "Toggle Aerial" },
-    },
-  },
-
   -- quick motions with 's' key
   {
     "ggandor/leap.nvim",
@@ -194,6 +135,7 @@ return {
   -- illuminate other uses of a word under cursor
   {
     "RRethy/vim-illuminate",
+    event = "BufWinEnter",
     opts = {
       delay = 150,
       filetypes_denylist = {
