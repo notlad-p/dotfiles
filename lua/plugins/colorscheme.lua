@@ -18,6 +18,8 @@ return {
   -- use { "Everblush/everblush.nvim", as = "everblush" }
 
   {
+    lazy = false,
+    priority = 1000,
     dir = "~/projects/lad-schemes.nvim",
     name = "lad-schemes",
     opts = {
