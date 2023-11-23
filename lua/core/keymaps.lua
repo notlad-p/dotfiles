@@ -33,7 +33,7 @@ keymap("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save" })
 keymap("n", "<leader>q", "<cmd>confirm q<CR>", { desc = "Quit" })
 
 -- safe close buffer
-keymap("n", "<leader>c", "<cmd>confirm bd<CR>", { desc = "Close buffer" })
+keymap("n", "<leader>c", "<cmd>confirm Bdelete<CR>", { desc = "Close buffer" })
 
 -- remove search highlight
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Remove search highlight" })
