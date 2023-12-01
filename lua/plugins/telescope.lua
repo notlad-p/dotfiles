@@ -61,6 +61,7 @@ return {
             height = 0.35,
             width = 0.65,
             anchor = "S",
+            preview_cutoff = 1,
           },
         },
         extensions = {
