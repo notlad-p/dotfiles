@@ -51,11 +51,18 @@ return {
     },
   },
 
-  -- File explorer to edit filesystem like a normal buffer
-  -- {
-  --   "stevearc/oil.nvim",
-  --   config = function()
-  --     require("oil").setup()
-  --   end,
-  -- },
+  {
+    "rest-nvim/rest.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      {
+        "<leader><CR>",
+        function()
+          local rest = require "rest-nvim"
+          rest.run()
+        end,
+        desc = "Run request under cursor",
+      },
+    },
+  },
 }
