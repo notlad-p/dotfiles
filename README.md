@@ -1,7 +1,13 @@
 # Neovim Config
 
+## REMOVE:
+aerial.nvim
+**Maybe remove/ replace?**
+harpoon.nvim
+
 ## Requirements:
 
+- fzf
 - Lazygit
 
 ### Configuration:
