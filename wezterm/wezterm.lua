@@ -76,6 +76,8 @@ end
 return {
 	font = wezterm.font("Liga SFMono Nerd Font"),
 	font_size = 13.5,
+  underline_position = -3,
+  underline_thickness = 1.5,
 	line_height = 1.1,
 	window_padding = {
 		left = 0,
