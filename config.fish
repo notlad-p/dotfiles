@@ -152,6 +152,15 @@ alias gp "git push"
 # uses npm if its an npm repo. https://www.npmjs.com/package/narn
 alias yarn=narn
 
+# find file with fzf then open in nvim
+alias f "fd --type f --hidden --exclude node_modules --exclude .git | fzf-tmux -p | xargs nvim"
+# 'find project directory' with fzf then cd into it
+alias fpd "cd (fd --full-path '/home/dalton/projects' --max-depth 2 --type d --hidden --exclude node_modules --exclude .git | fzf-tmux -p)"
+# 'find directory neovim' with fzf then cd into it & start nvim with session restore
+alias fdn "cd (fd --type d --hidden --exclude node_modules --exclude .git | fzf-tmux -p); nvim -c 'SessionRestore'"
+# TODO: add more aliases?
+# Create a new directory and enter it
+
 # Best default keybinds:
 # Autocomplete and start search mode - Shift + tab 
 # list current directory - Alt + l 
@@ -169,9 +178,20 @@ alias yarn=narn
 
 # Ctrl + n - Open neovim
 bind \cn 'nvim'
+# Alt + n - Open neovim and restore session
+bind \en 'nvim -c "SessionRestore"'
 
 # Ctrl + t - Start tmux session
 bind \ct 'tmux'
 
+# Alt + z - Open zellij
+bind \ez 'zellij'
+
 # initialize zoxide
 zoxide init fish | source
+
+# add cargo to fish path
+#export PATH="$HOME/.cargo/bin:$PATH"
+#set PATH $HOME/.cargo/bin $PATH
+set -gx EDITOR nvim
+set -gx VISUAL nvim
