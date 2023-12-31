@@ -1,7 +1,7 @@
 local conditions = {
   -- don't show if window width is less than 70
   hide_in_width = function()
-    return vim.fn.winwidth(0) > 70
+    return vim.fn.winwidth(0) > 100
   end,
 }
 
@@ -48,18 +48,16 @@ local M = {
     function()
       return "󰠖 "
     end,
-    -- TODO: figure out why two of the right characters are being rendered?
-    -- separator = { left = "", right = "" },
-    padding = { left = 1, right = 1 },
-    color = {},
+    -- "mode",
+    -- color = { gui = "bold" },
+    separator = { left = '█', right = ''},
     cond = nil,
   },
   -- current git branch
   branch = {
     "b:gitsigns_head",
     icon = " ",
-    color = { gui = "bold" },
-    -- separator = { left = "", right = " " },
+    separator = { left = '', right = ''},
     cond = conditions.hide_in_width,
   },
   diff = {
@@ -93,7 +91,7 @@ local M = {
   lsp = {
     function(msg)
       msg = msg or "LS Inactive"
-      local buf_clients = vim.lsp.buf_get_clients()
+      local buf_clients = vim.lsp.get_active_clients()
       if next(buf_clients) == nil then
         if type(msg) == "boolean" or #msg == 0 then
           return "LS Inactive"
