@@ -8,7 +8,8 @@ return {
   -- preview markdown in browser with command
   {
     "iamcco/markdown-preview.nvim",
-    build = "cd app && npm install",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
