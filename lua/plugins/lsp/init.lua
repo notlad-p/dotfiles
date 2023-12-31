@@ -88,6 +88,13 @@ return {
             end,
           },
 
+          clangd = {
+            cmd = {
+              "clangd",
+              "--offset-encoding=utf-16",
+            }
+          },
+
           lua_ls = {
             settings = {
               Lua = {
@@ -180,6 +187,11 @@ return {
           },
           formatting.stylua,
           formatting.black,
+          formatting.clang_format.with {
+            filetypes = { "c", "cpp", "objc", "objcpp" },
+            extra_args = { "--offset-encoding=utf-16", }
+            -- extra_args = { "-assume-filename=" .. vim.api.nvim_buf_get_name(0) },
+          },
           -- linters
           -- diagnostics.eslint_d,
           -- diagnostics.eslint.with {
@@ -210,6 +222,11 @@ return {
             -- condition = function(utils)
             --   return utils.root_has_file { "pyproject.toml" }
             -- end,
+          },
+          diagnostics.cpplint.with {
+            -- extra_args = {"--offset-encoding=utf-16",}
+            filetypes = { "c", "cpp", "objc", "objcpp" },
+            -- extra_args = { "--quiet" },
           },
           -- extras
           -- add typescript options to code actions menu
