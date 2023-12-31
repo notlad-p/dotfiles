@@ -13,7 +13,7 @@ read_only_style = "bold #fb4934"
 
 [character]
 format = " $symbol "
-success_symbol = "[](bold #8ec07c)"
+success_symbol = "[](bold #b8bb26)"
 error_symbol = "[](bold #fb4934)"
 vicmd_symbol = "[](bold #d65d0e)"
 # success_symbol = "[](bold #efbd5d)"
