@@ -1,16 +1,17 @@
 # reload zsh config
 alias reload!='source ~/.config/zsh/.zshrc'
 
-# ls aliases 
-alias ls='ls --color=auto'
-alias l='ls -l'
-alias ll='ls -lahF'
-alias lls='ls -lahFtr'
-alias la='ls -A'
+# exa/ls aliases
+if [ -x "$(command -v exa)" ]; then
+  alias ls='exa -Gl --no-permissions --no-user --icons --group-directories-first' # better looking ls
+  alias lls='exa -lgh --icons --group-directories-first'
 
-# exa aliases
-alias e='exa -G -l --no-permissions --no-user --icons --group-directories-first' # better looking ls
-alias et='exa -T --icons' # ls recursivly as a tree
+  alias la='exa -Gla --no-permissions --no-user --icons --group-directories-first' # better looking ls
+  alias lla='exa -lGha --icons --group-directories-first'
+
+  # alias lls
+  alias lt='exa -T --icons' # ls recursivly as a tree
+fi
 
 # bat
 alias bat='bat --theme gruvbox-dark' # use gruvbox-dark theme
@@ -35,7 +36,9 @@ alias pacs='pacman -Ss' # search arch packages
 # search paru & pip to fzf
 
 # neovim
-alias vim='nvim'
-alias vi='nvim'
+if [ -x "$(command -v nvim)" ]; then
+  alias vim='nvim'
+  alias vi='nvim'
+  alias nvimd='nvim --noplugin -u NONE' # (nvim debug) - launch nvim without plugins or config
+fi
 alias svim='sudoedit'
-alias nvimd='nvim --noplugin -u NONE' # (nvim debug) - launch nvim without plugins or config
