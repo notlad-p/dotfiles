@@ -34,12 +34,6 @@ bindkey -s '^N' 'nvim^M' # bind CTRL n to enter neovim
 bindkey -s '^O' 'nvim $(fzf)^M' # bind CTRL o to search for file and open in nvim
 bindkey -s '^T' 'tmux^M' # bind CTRL t to enter tmux
 
-# bind changed default fzf binds
-# if [ -x "$(command -v fzf)"  ]
-# then
-#     source $ZDOTDIR/fzf.zsh
-# fi
-
 # fzf
 # rebind CTRL-t to CTRL-p
 # zle -N fzf-file-widget 
