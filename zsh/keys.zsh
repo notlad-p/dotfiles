@@ -14,6 +14,16 @@ bindkey "^?" backward-delete-char
 bindkey "^H" backward-delete-char
 bindkey "^U" backward-kill-line
 
+# add clipboard copy
+# Yank to the system clipboard
+function vi-yank-xclip {
+  zle vi-yank
+  echo "$CUTBUFFER" | xclip -selection "clipboard" 
+}
+
+zle -N vi-yank-xclip
+bindkey -M vicmd ' ' vi-yank-xclip
+
 # enable text objects for things like da" or ci(
 autoload -Uz select-bracketed select-quoted
 zle -N select-quoted
