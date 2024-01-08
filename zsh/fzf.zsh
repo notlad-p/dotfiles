@@ -16,7 +16,7 @@ fpac() {
 }
 
 fparu() {
-    paru -Slq | fzf --multi --reverse --preview 'yay -Si {1}' | xargs -ro yay -S
+    paru -Slq | fzf --multi --reverse --preview 'paru -Si {1}' | xargs -ro paru -S
 }
 
 f() {
