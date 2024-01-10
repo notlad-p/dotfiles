@@ -28,7 +28,7 @@ return {
         "java",
         "lua",
         "python",
-        "help",
+        "vimdoc",
         "svelte",
         "query",
         "regex",
