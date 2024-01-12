@@ -50,5 +50,8 @@ export FZF_DEFAULT_OPTS="
   --border horizontal
   --height 40"
 
-# zoxide
-eval "$(zoxide init zsh)"
+# if zoxide is installed, initialize it
+[ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
+
+# Fast Node Manager (fnm)
+[ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd)"
