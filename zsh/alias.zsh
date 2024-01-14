@@ -31,10 +31,6 @@ alias paci='sudo pacman -S' # install packages
 alias pacsi= 'pacman -Qs'# search installed packages
 alias pacs='pacman -Ss' # search arch packages
 
-# TODO: aliases to add
-# search pacman & pipe to fzf
-# search paru & pip to fzf
-
 # neovim
 if [ -x "$(command -v nvim)" ]; then
   alias vim='nvim'
@@ -42,3 +38,8 @@ if [ -x "$(command -v nvim)" ]; then
   alias nvimd='nvim --noplugin -u NONE' # (nvim debug) - launch nvim without plugins or config
 fi
 alias svim='sudoedit'
+
+# nmcli
+alias lswifi='nmcli device wifi list'
+# TODO: add a connect to wifi function with:
+# nmcli device wifi connect $ID password $PASSWORD
