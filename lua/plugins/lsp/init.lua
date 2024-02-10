@@ -94,6 +94,9 @@ return {
               "--offset-encoding=utf-16",
             }
           },
+          ansiblels = {
+            filetypes = { "yaml", "yaml.ansible" }
+          },
 
           lua_ls = {
             settings = {
@@ -228,6 +231,11 @@ return {
             filetypes = { "c", "cpp", "objc", "objcpp" },
             -- extra_args = { "--quiet" },
           },
+
+          -- TODO: fix this on arch linux (for some reason it fails to run generator?)
+          -- diagnostics.ansiblelint.with {
+          --   filetypes = { "yaml" }
+          -- },
           -- extras
           -- add typescript options to code actions menu
           require "typescript.extensions.null-ls.code-actions",
