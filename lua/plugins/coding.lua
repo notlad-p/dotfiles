@@ -39,6 +39,7 @@ return {
   -- better buffer navigation
   {
     "ThePrimeagen/harpoon",
+    enabled = false,
     event = "VeryLazy",
     opts = {
       save_on_toggle = false,
