@@ -16,6 +16,14 @@ function zsh_add_plugin() {
   source $HOME/Packages/$PLUGIN_NAME/$PLUGIN_NAME.zsh
 }
 
+function ya() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 # TODO: add fzf functions here
 # https://github.com/Phantas0s/.dotfiles/blob/master/zsh/scripts_fzf.zsh
