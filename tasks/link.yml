@@ -26,10 +26,6 @@
     - { src: "~/projects/dotfiles/zsh", dest: "~/.config/zsh" }
     - { src: "~/projects/dotfiles/zsh/.zshenv", dest: "~/.zshenv" }
 
-# TODO: this should only symlink my home nvidia xorg config (3 monitors & settings to remove screen tearing)
-# - Only symlink `10-nvidia.conf`
-# - Exclude by default?
-# - delete `10-monitors.conf` file
 - name: Symlink Nvidia config (for 3 monitor setup at home)
   become: true
   tags:
