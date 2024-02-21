@@ -11,6 +11,9 @@
     - name: Create Directories
       ansible.builtin.include_tasks: "tasks/directories.yml"
 
+    - name: Symlink configs
+      ansible.builtin.include_tasks: "tasks/link.yml"
+
     - name: Install Packages
       ansible.builtin.include_tasks: "tasks/packages.yml"
 
