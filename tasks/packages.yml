@@ -41,6 +41,7 @@
       - playerctl # music/video controls in awesome menu
       - rofi # application launcher
       - networkmanager # wifi/bluetooth controls (nmcli)
+      - inter-font # font face used in awesome config
     state: present
 
 # Kitty term
