@@ -1,0 +1,18 @@
+---
+- name: Change user default shell to zsh
+  become: true # become sudo
+  ansible.builtin.user:
+    name: "{{ remote_regular_user }}"
+    shell: /usr/bin/zsh
+# NOTE: could create a new .zshenv and output ZDOTDIR everytime?
+- name: Symlink .zshenv
+  ansible.builtin.file:
+    src: "{{ ansible_env.PWD }}/zsh/.zshenv"
+    dest: "{{ ansible_env.HOME }}/.zshenv"
+    state: link
+- name: Symlink zsh config
+  ansible.builtin.file:
+    src: "{{ ansible_env.PWD }}/zsh"
+    dest: "{{ ansible_env.HOME }}/.config/zsh"
+    state: link
+# TODO: Install ZSH plugins? (they will install automatically when first running zsh)

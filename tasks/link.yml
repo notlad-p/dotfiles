@@ -1,0 +1,61 @@
+---
+- name: Symlink TMUX config
+  tags:
+    - tmux
+  ansible.builtin.file:
+    src: "~/projects/dotfiles/tmux"
+    dest: "~/.config/tmux"
+    state: link
+
+- name: Symlink Starship config
+  tags:
+    - starship
+  ansible.builtin.file:
+    src: "~/projects/dotfiles/starship.toml"
+    dest: "~/.config/starship.toml"
+    state: link
+
+- name: Symlink ZSH config
+  tags:
+    - zsh
+  ansible.builtin.file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  loop:
+    - { src: "~/projects/dotfiles/zsh", dest: "~/.config/zsh" }
+    - { src: "~/projects/dotfiles/zsh/.zshenv", dest: "~/.zshenv" }
+
+# TODO: this should only symlink my home nvidia xorg config (3 monitors & settings to remove screen tearing)
+# - Only symlink `10-nvidia.conf`
+# - Exclude by default?
+# - delete `10-monitors.conf` file
+- name: Symlink Nvidia config (for 3 monitor setup at home)
+  become: true
+  tags:
+    - never # skip this task by default
+    - personal
+    - home-setup
+  ansible.builtin.file:
+    src: "~/projects/dotfiles/xorg.conf.d/10-nvidia.conf"
+    dest: "/etc/X11/xorg.conf.d/10-nvidia.conf"
+    state: link
+
+# NOTE: I now use ZSH and Kitty, so these tasks are skipped unless the 'fish' or 'wezterm' tags are specified
+- name: Symlink fish config
+  tags:
+    - never # skip this task by default
+    - fish
+  ansible.builtin.file:
+    src: "~/projects/dotfiles/config.fish"
+    dest: "~/.config/fish/config.fish"
+    state: link
+
+- name: Symlink WezTerm config
+  tags:
+    - never # skip this task by default
+    - wezterm
+  ansible.builtin.file:
+    src: "~/projects/dotfiles/wezterm"
+    dest: "~/.config/wezterm"
+    state: link

@@ -1,117 +1,39 @@
 ---
 - name: Dotfiles config
   hosts: localhost
-  become: yes # become sudo
+  connection: local
   tasks:
     - name: Get user
+      become: true # become sudo
       ansible.builtin.set_fact:
-        remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
+        remote_regular_user: "{{ ansible_user_id }}"
 
-    # NOTE: Prerequisites:
-    # - Git is installed and configured
-    # - Authenticated through GitHub if cloning private repos
-    # TODO: make a separate git.yml, that
-    # - Runs a script for github-cli auth login (waits for user input)
-    # git stuff
-    - name: Install terminal tools
-      community.general.pacman:
-        - git
-        - github-cli # TODO: login to github via `gh auth`
+    - name: Create Directories
+      ansible.builtin.include_tasks: "tasks/directories.yml"
 
-    # NOTE: create directories: 
-    # - ~/Packages for stuff like Paru and ZSH plugins (manually installed)
-    # - ~/projects for personal projects
-    - name: Create ~/Packages directory
-      ansible.builtin.file:
-        path: "{{ ansible_env.HOME }}/Packages"
-        state: directory
-        mode: '0755'
-    - name: Create ~/projects directory
-      ansible.builtin.file:
-        path: "{{ ansible_env.HOME }}/projects"
-        state: directory
-        mode: '0755'
+    - name: Install Packages
+      ansible.builtin.include_tasks: "tasks/packages.yml"
 
-    # setup global git config (required for cloning repos later)
-    - name: Set git name
-      community.general.git_config:
-        name: user.name
-        scope: global
-        value: "Dalton Perkins"
-    - name: Set git email
-      community.general.git_config:
-        name: user.email
-        scope: global
-        value: contact@daltonp.dev
-    - name: Set git editor
-      community.general.git_config:
-        name: core.editor
-        scope: global
-        value: nvim
+    - name: Install AUR Packages
+      ansible.builtin.include_tasks: "tasks/aur.yml"
 
-    # NOTE: this doesn't work
-    # - name: Authenticate through GitHub CLI
-    #   ansible.builtin.shell: gh auth login
-
-    - name: Install terminal tools
-      community.general.pacman:
-        name: 
-        - starship
-        - tmux # TODO: separate this out
-        - eza # better ls
-        - zoxide # better cd
-        - git-delta # TODO: set as default git pager
-        - lazygit
-        - bat
-        - bottom
-        - fzf
-        - fd
-        - ripgrep
-        state: present
+    - name: Setup ZSH
+      ansible.builtin.include_tasks: "tasks/zsh.yml"
+      tags:
+        - zsh
 
     # Dotfiles
-    # TODO: this isn't needed since this script is already in the dotfiles
+    # TODO: this isn't needed (BUT IS GOOD TO HAVE FOR ANSIBLE-PULL) since this script is already in the dotfiles
     # - Move this to linux-bootsrap repo
-    - name: Clone dotfiles
-      ansible.builtin.git:
-        repo: 'https://github.com/notlad-p/dotfiles.git'
-        version: main
-        dest: "{{ ansible_env.HOME }}/projects"
+    # - name: Clone dotfiles
+    #   ansible.builtin.git:
+    #     repo: 'https://github.com/notlad-p/dotfiles.git'
+    #     version: main
+    #     dest: "{{ ansible_env.HOME }}/projects"
 
-
-    # NeoVim
-    - name: Install NeoVim and dependencies
-      community.general.pacman:
-        name: 
-        - neovim
-        - xclip # for copying to clipboard in nvim
-        state: present
-
-    # ZSH
-    - name: Install zsh
-      community.general.pacman:
-        name: zsh
-    - name: Change user default shell to zsh
-      ansible.builtin.user:
-        name: "{{ remote_regular_user }}"
-        shell: /usr/bin/zsh
-    # NOTE: could create a new .zshenv and output ZDOTDIR everytime?
-    - name: Symlink .zshenv
-      ansible.builtin.file:
-        src: "{{ ansible_env.PWD }}/zsh/.zshenv"
-        dest: "{{ ansible_env.HOME }}/.zshenv"
-        state: link
-    - name: Symlink zsh config
-      ansible.builtin.file:
-        src: "{{ ansible_env.PWD }}/zsh"
-        dest: "{{ ansible_env.HOME }}/.config/zsh"
-        state: link
-    # TODO: Install ZSH plugins, either by just running zsh the first time or manually cloning
-
-    # Paru
-    - name: Clone Paru (Arch User Repository helper)
-      ansible.builtin.git:
-        repo: 'https://aur.archlinux.org/paru.git'
-        version: main
-        dest: "{{ ansible_env.HOME }}/projects"
-
+    # # Paru
+    # - name: Clone Paru (Arch User Repository helper)
+    #   ansible.builtin.git:
+    #     repo: 'https://aur.archlinux.org/paru.git'
+    #     version: main
+    #     dest: "{{ ansible_env.HOME }}/projects"
