@@ -1,4 +1,12 @@
 ---
+- name: Symlink Kitty config
+  tags:
+    - kitty
+  ansible.builtin.file:
+    src: "~/projects/dotfiles/kitty"
+    dest: "~/.config/kitty"
+    state: link
+
 - name: Symlink TMUX config
   tags:
     - tmux

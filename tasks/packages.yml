@@ -43,6 +43,17 @@
       - networkmanager # wifi/bluetooth controls (nmcli)
     state: present
 
+# Kitty term
+- name: Install Kitty and dependencies
+  become: true
+  tags:
+    - kitty
+  community.general.pacman:
+    name:
+      - kitty
+      - ttf-firacode-nerd # fira code nerd font
+    state: present
+
 # ZSH
 - name: Install zsh
   become: true # become sudo
