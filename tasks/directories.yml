@@ -1,5 +1,5 @@
 ---
-# - ~/Packages for manually installed tools (like Paru and ZSH plugins)
+# - ~/Packages for manually installed tools (ZSH plugins & others)
 - name: Create ~/Packages directory
   # TODO: add tags here?
   ansible.builtin.file:
@@ -9,6 +9,7 @@
 # - ~/projects for personal projects
 - name: Create ~/projects directory
   tags:
+    - never # NOTE: don't create this directory unless `personal` tag is specified
     - personal
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/projects"
