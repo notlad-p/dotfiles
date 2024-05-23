@@ -1,4 +1,9 @@
 # Dotfiles
+<img src="assets/desktop.png" alt="Desktop">
+
+<img src="assets/desktop-toggle-menu.png" alt="Desktop Toggle Menu">
+
+<img src="assets/desktop-application-launcher.png" alt="Desktop Application Launcher">
 
 ## Prerequisites
 
