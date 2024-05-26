@@ -8,7 +8,7 @@ return {
     event = "VeryLazy",
     keys = {
       { "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Toggle comment" },
-      { "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Toggle comment", mode = "v" },
+      { "<leader>/", "<Plug>(comment_toggle_linewise_visual)",  desc = "Toggle comment", mode = "v" },
     },
     opts = {
       pre_hook = function()
@@ -23,7 +23,7 @@ return {
   -- autopairs / tags
   {
     "windwp/nvim-autopairs",
-    event = "VeryLazy",
+    event = "InsertEnter",
     opts = {
       check_ts = true,
       ts_config = {
@@ -35,24 +35,6 @@ return {
     },
   },
   "windwp/nvim-ts-autotag",
-
-  -- better buffer navigation
-  {
-    "ThePrimeagen/harpoon",
-    enabled = false,
-    event = "VeryLazy",
-    opts = {
-      save_on_toggle = false,
-    },
-    keys = {
-      { "<leader>a", '<cmd>lua require("harpoon.mark").add_file()<CR>', desc = "Add harpoon mark" },
-      { "<leader>me", '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', desc = "Toggle harpoon menu" },
-      { "<leader>ma", '<cmd>lua require("harpoon.ui").nav_file(1)<CR>', desc = "Goto file 1" },
-      { "<leader>ms", '<cmd>lua require("harpoon.ui").nav_file(2)<CR>', desc = "Goto file 2" },
-      { "<leader>md", '<cmd>lua require("harpoon.ui").nav_file(3)<CR>', desc = "Goto file 3" },
-      { "<leader>mf", '<cmd>lua require("harpoon.ui").nav_file(4)<CR>', desc = "Goto file 4" },
-    },
-  },
 
   -- adds surroundings text object
   "tpope/vim-surround",
