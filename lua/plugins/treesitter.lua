@@ -4,9 +4,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = "BufReadPost",
-    dependencies = {
-      'JoosepAlviste/nvim-ts-context-commentstring',
-    },
     keys = {
       {
         "<leader>H",
@@ -46,11 +43,6 @@ return {
       autotag = {
         enable = true,
       },
-      -- for nvim-ts-context-commentstring plugin
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-      },
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
@@ -58,5 +50,6 @@ return {
     end,
   },
 
+  "JoosepAlviste/nvim-ts-context-commentstring",
   "nvim-treesitter/playground",
 }
