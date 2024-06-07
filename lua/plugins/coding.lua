@@ -34,7 +34,20 @@ return {
       fast_wrap = {},
     },
   },
-  "windwp/nvim-ts-autotag",
+  {
+    "windwp/nvim-ts-autotag",
+    event = "BufReadPre",
+    opts = {
+      opts = {
+        enable_close = true,           -- Auto close tags
+        enable_rename = true,          -- Auto rename pairs of tags
+        enable_close_on_slash = false, -- Auto close on trailing </
+      },
+    },
+    config = function(_, opts)
+      require("nvim-ts-autotag").setup(opts)
+    end,
+  },
 
   -- adds surroundings text object
   "tpope/vim-surround",

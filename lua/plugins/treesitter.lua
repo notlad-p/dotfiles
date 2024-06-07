@@ -39,10 +39,6 @@ return {
         additional_vim_regex_highlighting = true,
       },
       indent = { enable = true },
-      -- for nvim-ts-autotag plugin
-      autotag = {
-        enable = true,
-      },
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
