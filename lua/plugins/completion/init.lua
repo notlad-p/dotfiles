@@ -223,7 +223,7 @@ return {
   -- copilot
   {
     "zbirenbaum/copilot.lua",
-    enabled = true,
+    enabled = false,
     cmd = "Copilot",
     event = "InsertEnter",
     opts = {
