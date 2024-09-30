@@ -11,8 +11,14 @@ return {
       { "<leader>/", "<Plug>(comment_toggle_linewise_visual)",  desc = "Toggle comment", mode = "v" },
     },
     opts = {
-      pre_hook = function()
-        return vim.bo.commentstring
+      -- pre_hook = function()
+      --   return require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
+      -- end,
+      pre_hook = function(...)
+        local loaded, ts_comment = pcall(require, "ts_context_commentstring.integrations.comment_nvim")
+        if loaded and ts_comment then
+          return ts_comment.create_pre_hook()(...)
+        end
       end,
     },
     config = function(_, opts)

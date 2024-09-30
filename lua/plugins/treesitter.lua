@@ -46,6 +46,14 @@ return {
     end,
   },
 
-  "JoosepAlviste/nvim-ts-context-commentstring",
+  {
+    -- loaded by Comment.nvim
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    opts = {
+      enable_autocmd = false,
+    },
+    lazy = true,
+  },
+
   "nvim-treesitter/playground",
 }
