@@ -36,12 +36,12 @@ return {
       return {
         -- servers to automatically install if they're not already installed
         ensure_installed = {
-          "tsserver",
+          "ts_ls",
           "lua_ls",
         },
         -- extra server setup
         setup = {
-          tsserver = function(_, opts)
+          ts_ls = function(_, opts)
             -- keymaps are added in `plugins/lsp/keymaps.lua`
             require("typescript").setup { server = opts }
             return true
@@ -49,13 +49,13 @@ return {
         },
         -- LSP server settings
         servers = {
-          tsserver = {
+          ts_ls = {
             root_dir = function(fname)
               local util = require "lspconfig/util"
               return util.root_pattern("tsconfig.json", "package.json")(fname)
             end,
-            -- so that deno projects can't use tsserver: https://www.reddit.com/r/neovim/comments/10n795v/disable_tsserver_in_deno_projects/
-            -- NOTE: enable this if you intend to use tsserver for single file javascript/typescript files
+            -- so that deno projects can't use ts_ls: https://www.reddit.com/r/neovim/comments/10n795v/disable_tsserver_in_deno_projects/
+            -- NOTE: enable this if you intend to use ts_ls for single file javascript/typescript files
             single_file_support = true,
           },
 

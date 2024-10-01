@@ -86,7 +86,7 @@ end
 M.on_attach = function(client, bufnr)
   add_lsp_buffer_keybindings(bufnr, buffer_mappings)
 
-  if client.name == "tsserver" then
+  if client.name == "ts_ls" then
     add_lsp_buffer_keybindings(bufnr, ts_mappings)
   end
 end
