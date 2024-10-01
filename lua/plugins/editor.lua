@@ -31,7 +31,7 @@ return {
       },
       filesystem = {
         follow_current_file = {
-          enabled = true
+          enabled = true,
         },
         filtered_items = {
           hide_by_name = {
@@ -77,25 +77,23 @@ return {
       plugins = {
         spelling = true,
       },
-      window = { border = "single" },
     },
     config = function(_, opts)
       local which_key = require "which-key"
       which_key.setup(opts)
 
-      which_key.register {
-        mode = { "n", "v" },
-        ["<leader>B"] = { name = "Buffers" },
-        ["<leader>g"] = { name = "Git" },
-        ["<leader>l"] = { name = "LSP" },
-        ["<leader>s"] = { name = "Search" },
-        ["<leader>x"] = { name = "Trouble" },
-        ["<leader>n"] = { name = "Noice" },
-        ["<leader>m"] = { name = "Harpoon" },
-        ["<leader><tab>"] = { name = "Tabs" },
-        ["]"] = { name = "Next" },
-        ["["] = { name = "Prev" },
-      }
+      which_key.add({
+        { "<leader>B", group = "Buffers" },
+        { "<leader>g", group = "Git" },
+        { "<leader>l", group = "LSP" },
+        { "<leader>s", group = "Search" },
+        { "<leader>x", group = "Trouble" },
+        { "<leader>n", group = "Noice" },
+        { "<leader>m", group = "Harpoon" },
+        { "<leader><tab>", group = "Tabs" },
+        { "]", group = "Next" },
+        { "[", group = "Prev" },
+      }, { mode = { "n", "v" } })
     end,
   },
 
@@ -108,23 +106,23 @@ return {
       numhl = true,
     },
     keys = {
-      { "]h",         "<cmd>lua require 'gitsigns'.next_hunk()<cr>",           desc = "Jump next hunk" },
-      { "[h",         "<cmd>lua require 'gitsigns'.prev_hunk()<cr>",           desc = "Jump prev hunk" },
-      { "<leader>gB", "<cmd>lua require 'gitsigns'.blame_line()<cr>",          desc = "Blame line" },
-      { "<leader>gD", "<cmd>lua require 'gitsigns'.toggle_deleted()<cr>",      desc = "Toggle deleted lines" },
-      { "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",        desc = "Reset buffer" },
-      { "<leader>gb", "<cmd>Telescope git_branches<cr>",                       desc = "Checkout branch" },
-      { "<leader>gc", "<cmd>Telescope git_commits<cr>",                        desc = "Checkout commit" },
-      { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>",           desc = "Jump next hunk" },
-      { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>",           desc = "Jump prev hunk" },
-      { "<leader>go", "<cmd>Telescope git_status<cr>",                         desc = "Open changed file" },
+      { "]h", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Jump next hunk" },
+      { "[h", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Jump prev hunk" },
+      { "<leader>gB", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame line" },
+      { "<leader>gD", "<cmd>lua require 'gitsigns'.toggle_deleted()<cr>", desc = "Toggle deleted lines" },
+      { "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", desc = "Reset buffer" },
+      { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
+      { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit" },
+      { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Jump next hunk" },
+      { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Jump prev hunk" },
+      { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file" },
       { "<leader>gp", "<cmd>lua require 'gitsigns'.preview_hunk_inline()<cr>", desc = "Preview hunk" },
-      { "<leader>gq", "<cmd>lua require 'gitsigns'.setqflist()<cr>",           desc = "Quickfix list hunks" },
-      { "<leader>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>",          desc = "Reset hunk" },
-      { "<leader>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>",          desc = "Stage hunk" },
-      { "<leader>gS", "<cmd>lua require 'gitsigns'.stage_buffer()<cr>",          desc = "Stage buffer" },
-      { "<leader>gt", "<cmd>lua require 'gitsigns'.diffthis()<cr>",            desc = "View file diff" },
-      { "<leader>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",     desc = "Undo stage hunk" },
+      { "<leader>gq", "<cmd>lua require 'gitsigns'.setqflist()<cr>", desc = "Quickfix list hunks" },
+      { "<leader>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset hunk" },
+      { "<leader>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Stage hunk" },
+      { "<leader>gS", "<cmd>lua require 'gitsigns'.stage_buffer()<cr>", desc = "Stage buffer" },
+      { "<leader>gt", "<cmd>lua require 'gitsigns'.diffthis()<cr>", desc = "View file diff" },
+      { "<leader>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo stage hunk" },
       {
         "<leader>gC",
         "<cmd>Telescope git_bcommits<cr>",
@@ -174,14 +172,14 @@ return {
     "folke/trouble.nvim",
     dependencies = "kyazdani42/nvim-web-devicons",
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle<cr>",                       desc = "Toggle trouble" },
-      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "Document diagnostics" },
+      { "<leader>xx", "<cmd>TroubleToggle<cr>", desc = "Toggle trouble" },
+      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document diagnostics" },
       { "<leader>xD", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace diagnostics" },
-      { "<leader>xr", "<cmd>TroubleToggle lsp_references<cr>",        desc = "LSP references" },
-      { "<leader>xf", "<cmd>TroubleToggle lsp_definitions<cr>",       desc = "LSP definitions" },
-      { "<leader>xt", "<cmd>TroubleToggle lsp_type_definitions<cr>",  desc = "LSP type definitions" },
-      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",              desc = "Quickfix items" },
-      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>",               desc = "Location list items" },
+      { "<leader>xr", "<cmd>TroubleToggle lsp_references<cr>", desc = "LSP references" },
+      { "<leader>xf", "<cmd>TroubleToggle lsp_definitions<cr>", desc = "LSP definitions" },
+      { "<leader>xt", "<cmd>TroubleToggle lsp_type_definitions<cr>", desc = "LSP type definitions" },
+      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix items" },
+      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>", desc = "Location list items" },
     },
     config = function()
       require("trouble").setup()
@@ -195,7 +193,7 @@ return {
     event = "BufRead",
     keys = {
       { "<leader>sT", "<cmd>TodoTelescope theme=dropdown<cr>", desc = "Todos" },
-      { "<leader>xT", "<cmd>TodoTrouble<cr>",                  desc = "Todos" },
+      { "<leader>xT", "<cmd>TodoTrouble<cr>", desc = "Todos" },
       {
         "]t",
         function()
@@ -221,13 +219,13 @@ return {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup({ "*" }, {
-        RGB = true,      -- #RGB hex codes
-        RRGGBB = true,   -- #RRGGBB hex codes
+        RGB = true, -- #RGB hex codes
+        RRGGBB = true, -- #RRGGBB hex codes
         RRGGBBAA = true, -- #RRGGBBAA hex codes
-        rgb_fn = true,   -- CSS rgb() and rgba() functions
-        hsl_fn = true,   -- CSS hsl() and hsla() functions
-        css = true,      -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = true,   -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        rgb_fn = true, -- CSS rgb() and rgba() functions
+        hsl_fn = true, -- CSS hsl() and hsla() functions
+        css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
       })
     end,
   },
@@ -248,6 +246,9 @@ return {
     },
     opts = {
       disable_legacy_commands = true,
+    },
+    keys = {
+      { "<leader>si", "<cmd>IconPickerNormal<cr>", desc = "Find icon" },
     },
   },
 }
