@@ -24,6 +24,7 @@ return {
       { "<leader>sw", "<cmd>Telescope grep_string<cr>",  desc = "Word under cursor" },
       { "<leader>t", "<cmd>Telescope live_grep<cr>",    desc = "Find text" },
       { "<leader>st", "<cmd>Telescope live_grep<cr>",    desc = "Find text" },
+      { "<leader>s/", "<cmd>Telescope current_buffer_fuzzy_find<cr>",    desc = "Fuzzy find in current buffer" },
 
       -- vim pickers
       { "<leader>sr", "<cmd>Telescope oldfiles<cr>",     desc = "Recent Files" },
