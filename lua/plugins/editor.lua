@@ -74,8 +74,9 @@ return {
     "max397574/which-key.nvim",
     event = "VeryLazy",
     opts = {
-      plugins = {
-        spelling = true,
+      preset = "modern",
+      icons = {
+        mappings = false,
       },
     },
     config = function(_, opts)
@@ -85,9 +86,9 @@ return {
       which_key.add({
         { "<leader>B", group = "Buffers" },
         { "<leader>g", group = "Git" },
-        { "<leader>l", group = "LSP" },
+        { "<leader>l", group = "LSP", icon = "擄" },
         { "<leader>s", group = "Search" },
-        { "<leader>x", group = "Trouble" },
+        { "<leader>x", group = "Trouble", icon = " " },
         { "<leader>n", group = "Noice" },
         { "<leader>m", group = "Harpoon" },
         { "<leader><tab>", group = "Tabs" },
@@ -95,6 +96,15 @@ return {
         { "[", group = "Prev" },
       }, { mode = { "n", "v" } })
     end,
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show { global = false }
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
   },
 
   -- gitsigns
