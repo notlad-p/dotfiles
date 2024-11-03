@@ -261,4 +261,19 @@ return {
       { "<leader>si", "<cmd>IconPickerNormal<cr>", desc = "Find icon" },
     },
   },
+
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {
+      indent = { enabled = true },
+      heading = {
+        width = "block",
+        min_width = 40,
+        icons = { " ", " ", " ", " ", " ", " " },
+      },
+    },
+  },
 }
