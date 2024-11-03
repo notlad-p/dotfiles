@@ -23,7 +23,7 @@ return {
     dir = "~/projects/lad-schemes.nvim",
     name = "lad-schemes",
     opts = {
-      scheme = "gruvbox",
+      scheme = "yoru",
     },
   },
 
