@@ -42,6 +42,7 @@
   "oil.nvim": { "branch": "master", "commit": "1360be5fda9c67338331abfcd80de2afbb395bcd" },
   "playground": { "branch": "master", "commit": "ba48c6a62a280eefb7c85725b0915e021a1a0749" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
+  "render-markdown.nvim": { "branch": "main", "commit": "fc05fb7c56795f191b6800799a2ec6ea325ba715" },
   "rest.nvim": { "branch": "main", "commit": "e9f923784fbc1c6b69ec1f3d520f5b49d1ea6318" },
   "session-lens": { "branch": "main", "commit": "eae46b472b3150f5ec0f977556e8085683d49eb0" },
   "shipwright.nvim": { "branch": "master", "commit": "e596ab48328c31873f4f4d2e070243bf9de16ff3" },

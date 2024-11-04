@@ -270,8 +270,6 @@ return {
     opts = {
       indent = { enabled = true },
       heading = {
-        width = "block",
-        min_width = 40,
         icons = { " ", " ", " ", " ", " ", " " },
       },
     },
