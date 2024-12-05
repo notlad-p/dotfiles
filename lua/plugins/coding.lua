@@ -55,8 +55,10 @@ return {
     end,
   },
 
-  -- adds surroundings text object
-  "tpope/vim-surround",
+  {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+  },
 
   -- adds indent text object
   "michaeljsmith/vim-indent-object",
