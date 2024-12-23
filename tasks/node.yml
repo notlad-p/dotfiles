@@ -1,0 +1,9 @@
+# TODO:
+# - install node/npm with fnm (fnm install --lts)
+# - use installed node version
+#
+# Maybe call this file `dev-env.yml` and:
+# - Run nvim headless to install plugins
+# - Run nvim headless with mason install command to install lsp stuff
+# - Install tmux plugins (run once for auto-install)
+# - Install ZSH plugins (run once for auto-install)
