@@ -28,11 +28,28 @@ eval "$(starship init zsh)"
 export FZF_DEFAULT_COMMAND='find . \! \( -type d -path ./.git -prune \) \! \( -type d -path ./node_modules -prune \) \! -type d \! -name '\''*.tags'\'' -printf '\''%P\n'\'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+# color0="#061115"
+# color1="#0C171B"
+# color2="#101B1F"
+# color3="#192428"
+# color4="#212C30"
+# color5="#D9D7D6"
+# color6="#E3E1E0"
+# color7="#EDEBEA"
+# color8="#f26e74"
+# color9="#ecd28b"
+# color10="#E9967E"
+# color11="#82c29c"
+# color12="#6791C9"
+# color13="#79AAEB"
+# color14="#C488EC"
+# color15="#F16269"
+
 # FZF bases
 export FZF_DEFAULT_OPTS="
   --color fg:$color7
   --color fg+:$color0
-  --color bg:$background
+  --color bg:$color0
   --color bg+:$color0
   --color hl:$color10
   --color hl+:$color2
@@ -41,13 +58,14 @@ export FZF_DEFAULT_OPTS="
   --color spinner:$color12
   --color pointer:$color7
   --color marker:$color5
-  --color border:$background
+  --color border:$color0
   --color gutter:$color0
   --color header:$color8
   --prompt ' '
   --pointer ' λ'
   --layout=reverse
   --border horizontal
+  --preview 'cat {}'
   --height 40"
 
 # if zoxide is installed, initialize it
