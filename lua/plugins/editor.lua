@@ -29,6 +29,10 @@ return {
       window = {
         width = 35,
       },
+      triggers = {
+        { "<auto>", mode = "nixsotc" },
+        { "s", mode = { "n", "v" } },
+      },
       filesystem = {
         follow_current_file = {
           enabled = true,
@@ -74,6 +78,11 @@ return {
     "max397574/which-key.nvim",
     event = "VeryLazy",
     opts = {
+      -- delay = 600,
+      triggers = {
+        { "<auto>", mode = "nixsotc" },
+        { "s", mode = { "n", "v" } },
+      },
       preset = "modern",
       icons = {
         mappings = false,
