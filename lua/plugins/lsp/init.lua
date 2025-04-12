@@ -53,10 +53,11 @@ return {
             root_dir = function(fname)
               local util = require "lspconfig/util"
               return util.root_pattern("tsconfig.json", "package.json")(fname)
+              -- and not util.root_pattern "deno.json"(fname)
             end,
             -- so that deno projects can't use ts_ls: https://www.reddit.com/r/neovim/comments/10n795v/disable_tsserver_in_deno_projects/
             -- NOTE: enable this if you intend to use ts_ls for single file javascript/typescript files
-            single_file_support = true,
+            single_file_support = false,
           },
 
           jsonls = {
@@ -82,20 +83,25 @@ return {
           },
 
           denols = {
+            single_file_support = false,
             root_dir = function(fname)
               local util = require "lspconfig/util"
-              return util.root_pattern "deno.json" (fname)
+              return util.root_pattern "deno.json"(fname)
+              -- return false
             end,
+          },
+          sqls = {
+            filetypes = { "sql", "mysql" },
           },
 
           clangd = {
             cmd = {
               "clangd",
               "--offset-encoding=utf-16",
-            }
+            },
           },
           ansiblels = {
-            filetypes = { "yaml", "yaml.ansible" }
+            filetypes = { "yaml.ansible" },
           },
 
           lua_ls = {
@@ -142,7 +148,7 @@ return {
       -- See :help lspconfig-global-defaults
       local lsp_defaults = lspconfig.util.default_config
       lsp_defaults.capabilities =
-          vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+        vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       local handler = function(server_name)
         local server_opts = opts.servers[server_name] or {}
@@ -192,9 +198,14 @@ return {
           formatting.black,
           formatting.clang_format.with {
             filetypes = { "c", "cpp", "objc", "objcpp" },
-            extra_args = { "--offset-encoding=utf-16", }
+            extra_args = { "--offset-encoding=utf-16" },
             -- extra_args = { "-assume-filename=" .. vim.api.nvim_buf_get_name(0) },
           },
+
+          formatting.sqlfluff.with {
+            extra_args = { "--dialect", "postgres" }, -- change to your dialect
+          },
+
           -- linters
           -- diagnostics.eslint_d,
           -- diagnostics.eslint.with {
@@ -232,6 +243,10 @@ return {
             -- extra_args = { "--quiet" },
           },
 
+          diagnostics.sqlfluff.with {
+            extra_args = { "--dialect", "postgres" }, -- change to your dialect
+          },
+
           -- TODO: fix this on arch linux (for some reason it fails to run generator?)
           -- diagnostics.ansiblelint.with {
           --   filetypes = { "yaml" }
@@ -256,6 +271,14 @@ return {
           server_uninstalled = "✗",
         },
       },
+    },
+  },
+
+  {
+    "adoyle-h/lsp-toggle.nvim",
+    opts = {
+      create_cmds = true, -- Whether to create user commands
+      telescope = true, -- Whether to load telescope extensions
     },
   },
 }
