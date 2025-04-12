@@ -1,0 +1,180 @@
+@use "sass:color";
+@use "../variables" as v;
+
+window.local-info-window {
+  padding: 16px;
+  border-radius: v.$radius;
+  background-color: v.$black;
+  color: v.$white;
+  font-weight: bold;
+
+  .hour-min {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0px 4px;
+
+    &.hour {
+      margin-right: 8px;
+    }
+
+    &.min {
+      margin-left: 8px;
+    }
+  }
+
+  .divider {
+    /* all: unset; */
+    min-width: 3px;
+    /* min-height: 31px; */
+    background-image: linear-gradient(to bottom, v.$blue, v.$one-bg);
+  }
+
+  .am-pm {
+    margin-top: 8px;
+    margin-left: 4px;
+  }
+
+  .cal {
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: v.$one-bg;
+    font-size: 14px;
+
+    .cal-header {
+      padding: 4px;
+      margin-bottom: 16px;
+      border-radius: 8px;
+      background-color: v.$one-bg-two;
+      font-weight: 600;
+    }
+
+    .btn-icon {
+      background-color: v.$one-bg-three;
+
+      &:hover {
+        background-color: color.adjust(v.$white, $alpha: -0.9);
+      }
+    }
+
+    .day-of-week {
+      min-width: 24px;
+      min-height: 24px;
+      font-weight: 400;
+      color: color.adjust(v.$white, $alpha: -0.4);
+    }
+
+    .day {
+      min-width: 20px;
+      /* padding */
+      min-height: 24px;
+      font-weight: 500;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: color.adjust(v.$white, $alpha: -0.9);
+      }
+    }
+
+    .day-grey {
+      color: v.$grey-fg-two;
+    }
+
+    .day-today {
+      color: v.$black;
+      background-color: v.$blue;
+
+      &:hover {
+        background-color: color.adjust(v.$blue, $alpha: -0.2);
+      }
+    }
+  }
+
+  .weather {
+    margin-top: 12px;
+    padding: 16px;
+    background-color: v.$one-bg;
+    border-radius: 8px;
+
+    .location-container {
+      label {
+        padding-left: 6px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+    }
+
+    .current {
+      margin-top: 12px;
+
+      .weather-icon {
+        -gtk-icon-size: 36px;
+      }
+
+      .temp-text {
+        padding-left: 12px;
+        font-size: 36px;
+        font-weight: 700;
+      }
+
+      .weather-text {
+        padding-top: 4px;
+        font-size: 14px;
+        font-weight: 400;
+      }
+
+      .high-low {
+        font-size: 12px;
+        font-weight: 500;
+        padding-top: 8px;
+        color: color.adjust(v.$white, $alpha: -0.2);
+
+        image {
+          -gtk-icon-size: 14px;
+        }
+
+        label {
+          padding-left: 2px;
+        }
+
+        .high-icon {
+          padding-left: 12px;
+        }
+      }
+
+      .current-stats {
+        /* box { */
+        /*   margin-bottom: 8px; */
+        /* } */
+        /* .stat-item { */
+        /*   margin-bottom: 8px; */
+        /* } */
+
+        image {
+          -gtk-icon-size: 18px;
+        }
+
+        label {
+          padding-left: 6px;
+          font-weight: 400;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .hourly-weather {
+      margin-top: 18px;
+      padding: 12px;
+      background-color: v.$one-bg-two;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 400;
+
+      image {
+        padding-top: 6px;
+        padding-bottom: 8px;
+        -gtk-icon-size: 16px;
+      }
+    }
+  }
+}
