@@ -7,8 +7,11 @@ import weather from "services/weather";
 const Weather = () => {
   return (
     <box spacing={8}>
-      <image iconName="cloud-symbolic" />
-      {/* <label label="63°F" /> */}
+      <image
+        iconName={bind(weather, "weather").as(
+          ({ current }) => current.values.weatherCodeIcon,
+        )}
+      />
       <label
         label={bind(weather, "weather").as(
           ({ current }) => `${current.values.temperature}°F`,

@@ -34,7 +34,9 @@ const Weather = () => {
           <box>
             <image
               cssClasses={["weather-icon"]}
-              iconName="weather-partly-cloudy-day-symbolic"
+              iconName={bind(weather, "weather").as(
+                ({ current }) => current.values.weatherCodeIcon,
+              )}
             />
             <label
               cssClasses={["temp-text"]}
@@ -71,7 +73,7 @@ const Weather = () => {
           spacing={8}
         >
           <box cssClasses={["stat-item"]}>
-            <image iconName="thermometer-symbolic" />
+            <image iconName="precipitation-chance-symbolic" />
             <label
               label={`Precipitation: ${current.values.precipitationProbability}%`}
             />
@@ -83,7 +85,7 @@ const Weather = () => {
           </box>
 
           <box>
-            <image iconName="droplet-half-symbolic" />
+            <image iconName="humidity-symbolic" />
             <label label={`Humidity: ${current.values.humidity}%`} />
           </box>
         </box>

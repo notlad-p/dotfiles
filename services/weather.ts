@@ -159,7 +159,7 @@ class Weather extends GObject.Object {
       case WeatherCode.CLOUDY:
         return "weather-cloudy-symbolic";
       case WeatherCode.FOG || WeatherCode.LIGHT_FOG:
-        return "weather-fog-symbolic";
+        return "weather-custom-fog-symbolic";
       case WeatherCode.DRIZZLE ||
         WeatherCode.LIGHT_RAIN ||
         WeatherCode.FREEZING_DRIZZLE ||
@@ -175,7 +175,7 @@ class Weather extends GObject.Object {
         WeatherCode.LIGHT_SNOW ||
         WeatherCode.SNOW ||
         WeatherCode.HEAVY_SNOW:
-        return "weather-snow-symbolic";
+        return "weather-custom-snow-symbolic";
       case WeatherCode.THUNDERSTORM:
         return "weather-thunderstorm-symbolic";
       default:
