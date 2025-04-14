@@ -100,6 +100,39 @@ const Weather = () => {
           </box>
         ))}
       </box>
+
+      <box vertical spacing={10} cssClasses={["days-container"]}>
+        {daily.slice(1, 4).map((day) => {
+          const weekDayNum = new Date(day.startTime).getDay();
+          const days = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ];
+
+          return (
+            <box cssClasses={["day-weather"]}>
+              <label label={`${days[weekDayNum]}`} />
+
+              <box hexpand halign={Gtk.Align.END}>
+                <image iconName={day.values.weatherCodeIcon} />
+                <label
+                  cssClasses={["min-temp"]}
+                  label={`${day.values.temperatureMin}°F`}
+                />
+                <label
+                  halign={Gtk.Align.END}
+                  label={`${day.values.temperatureMax}°F`}
+                />
+              </box>
+            </box>
+          );
+        })}
+      </box>
     </box>
   ));
 };

@@ -176,5 +176,31 @@ window.local-info-window {
         -gtk-icon-size: 16px;
       }
     }
+
+    .days-container {
+      margin-top: 12px;
+      padding: 16px;
+      background-color: v.$one-bg-two;
+      border-radius: 8px;
+
+      label {
+        font-weight: 500;
+      }
+
+      box {
+        image {
+          -gtk-icon-size: 18px;
+        }
+
+        label {
+          min-width: 42px;
+
+          &.min-temp {
+            margin-left: 18px;
+            color: color.adjust(v.$white, $alpha: -0.4);
+          }
+        }
+      }
+    }
   }
 }
