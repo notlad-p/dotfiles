@@ -2,6 +2,8 @@
 @use "sass:color";
 
 @use "widgets/local-info";
+@use "widgets/audio-settings";
+@use "create-utils";
 
 * {
   font-family: "Inter", sans-serif;
@@ -12,13 +14,12 @@ button {
   border-radius: v.$radius;
 }
 
-
 window.Bar {
   background: transparent;
   color: v.$white;
   font-weight: bold;
 
-  >centerbox {
+  > centerbox {
     background: v.$black;
     border-radius: v.$radius;
     margin: 8px 8px 0px 8px;
