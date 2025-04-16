@@ -259,10 +259,13 @@ class Weather extends GObject.Object {
 
   private async _get_location() {
     // const locationRes = await execAsync("curl ipinfo.io")
-    const locationRes = await execAsync("curl http://ip-api.com/json");
+    // const locationRes = await execAsync("curl http://ip-api.com/json");
+    // const { city, lat, lon } = JSON.parse(locationRes);
+    const locationRes = await execAsync("curl ipinfo.io");
 
-    const { city, lat, lon } = JSON.parse(locationRes);
+    const { city, loc } = JSON.parse(locationRes);
 
+    const [lat, lon] = loc.split(",")
     this.city = city;
 
     return { lat, lon };
