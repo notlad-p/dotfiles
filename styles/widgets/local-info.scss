@@ -183,22 +183,9 @@ window.local-info-window {
       background-color: v.$one-bg-two;
       border-radius: 8px;
 
-      label {
-        font-weight: 500;
-      }
-
       box {
-        image {
-          -gtk-icon-size: 18px;
-        }
-
         label {
-          min-width: 42px;
-
-          &.min-temp {
-            margin-left: 18px;
-            color: color.adjust(v.$white, $alpha: -0.4);
-          }
+          min-width: 32px;
         }
       }
     }

@@ -13,8 +13,8 @@ const LocalInfo = (gdkmonitor: Gdk.Monitor) => {
 
   return (
     <window
-      // visible={false}
-      visible
+      visible={false}
+      // visible
       layer={Astal.Layer.TOP}
       marginTop={52}
       name={`${LocalInfoWindowName}-${monitorName}`}
