@@ -23,7 +23,7 @@ if [[ -f "$cache_file" ]]; then
   # if [[ $((current_time - last_modified_time)) -lt $cache_max_age ]]; then
   if ((current_time - last_modified_time < cache_max_age)); then
       cat "$cache_file"
-      notify-send "Updated weather from cache"
+      # notify-send "Updated weather from cache"
       # echo "From cache: $((current_time - last_modified)) sec"
       exit 0
   fi
@@ -73,5 +73,5 @@ curl --request POST \
 
 echo "$weather" >"$cache_file"
 cat "$cache_file"
-notify-send "Updated weather from API"
+# notify-send "Updated weather from API"
 # echo "From API"
