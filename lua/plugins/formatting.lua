@@ -1,5 +1,28 @@
+local prettier = { "prettierd" }
+
 return {
   "stevearc/conform.nvim",
+  ---@type conform.setupOpts
+  opts = {
+    formatters_by_ft = {
+      javascript = prettier,
+      javascriptreact = prettier,
+      typescript = prettier,
+      typescriptreact = prettier,
+      vue = prettier,
+      css = prettier,
+      scss = prettier,
+      less = prettier,
+      html = prettier,
+      json = prettier,
+      jsonc = prettier,
+      yaml = prettier,
+      markdown = prettier,
+      ["markdown.mdx"] = prettier,
+      graphql = prettier,
+      handlebars = prettier,
+    },
+  },
   keys = {
     {
       "<leader>cF",
