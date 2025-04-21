@@ -43,9 +43,6 @@ Snacks.toggle.zoom():map("<leader>Wm"):map("<leader>uZ")
 del("n", "<leader>cf")
 del("n", "<leader>cd")
 
-keymap({ "n", "v" }, "<leader>lf", function()
-  LazyVim.format({ force = true })
-end, { desc = "Format" })
 keymap("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 
 -- write files (first replace top level `w` maps)
@@ -73,9 +70,10 @@ keymap("n", "<leader>t", function()
 end, { desc = "Find Text (grep)" })
 
 -- search files
--- keymap("n", "<leader>f", function()
---   Snacks.dashboard.pick("files")
--- end, { desc = "Find files" })
+-- del("n", "<leader> ")
+keymap("n", "<leader><CR>", function()
+  Snacks.dashboard.pick("files")
+end, { desc = "Find files" })
 
 -- Clipboard --
 -- yank to clipboard
