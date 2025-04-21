@@ -33,6 +33,7 @@ return {
               return require("which-key.extras").expand.buf()
             end,
           },
+          { "<leader>bs", group = "sort buffers" },
 
           {
             "<leader>W",
