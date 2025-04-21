@@ -5,4 +5,3 @@
 local opt = vim.opt
 
 opt.clipboard = ""
-opt.termguicolors = true
