@@ -11,9 +11,25 @@ return {
       },
     },
   },
+
+  {
+    "catgoose/nvim-colorizer.lua",
+    event = "VeryLazy",
+    opts = {
+      lazy_load = true,
+      user_default_options = {
+        names = false,
+        css = true,
+        tailwind = "both",
+        tailwind_opts = {
+          update_names = true,
+        },
+      },
+    },
+  },
+
   {
     "akinsho/bufferline.nvim",
-    -- TODO: add sort buffers keys
     keys = {
 
       -- move buffers
@@ -61,5 +77,65 @@ return {
         desc = "sort by buffer id",
       },
     },
+  },
+
+  ---@type LazySpec
+  {
+    "mikavilpas/yazi.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      -- check the installation instructions at
+      -- https://github.com/folke/snacks.nvim
+      "folke/snacks.nvim",
+    },
+    keys = {
+      -- 👇 in this section, choose your own keymappings!
+      {
+        "<leader>e",
+        mode = { "n", "v" },
+        "<cmd>Yazi<cr>",
+        desc = "Open yazi explorer (current file)",
+        remap = true,
+      },
+      {
+        -- Open in the current working directory
+        "<leader><c-e>",
+        "<cmd>Yazi cwd<cr>",
+        desc = "Open yazi explorer (working directory)",
+      },
+      {
+        "<leader><c-y>",
+        "<cmd>Yazi toggle<cr>",
+        desc = "Resume the last yazi session",
+      },
+    },
+    ---@type YaziConfig | {}
+    opts = {
+      -- if you want to open yazi instead of netrw, see below for more info
+      open_for_directories = false,
+      -- keymaps = {
+      --   show_help = "<f1>",
+      -- },
+      future_features = {
+        -- Neovim nightly 0.11 has deprecated `termopen` in favor of `jobstart`
+        -- (https://github.com/neovim/neovim/pull/31343). By default on nightly,
+        -- this option is `false` and `jobstart` is used. Some users have
+        -- reported issues with this, and can set this to `true` to keep using
+        -- the old `termopen` for the time being.
+        nvim_0_10_termopen_fallback = true,
+
+        -- By default, this is `true`, which means yazi.nvim processes events
+        -- before yazi has been closed. If this is `false`, events are processed
+        -- in a batch when the user closes yazi. If this is `true`, events are
+        -- processed immediately.
+        process_events_live = true,
+      },
+    },
+    -- 👇 if you use `open_for_directories=true`, this is recommended
+    -- init = function()
+    --   -- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
+    --   -- vim.g.loaded_netrw = 1
+    --   vim.g.loaded_netrwPlugin = 1
+    -- end,
   },
 }

@@ -104,8 +104,10 @@ keymap({ "v" }, "<leader>f", function()
   vim.lsp.buf.format()
 end, { desc = "Format" })
 
+-- NOTE: removed because of yazi.nvim plugin, it was causing delays when pressing `j`
 -- terminal escape
-keymap("t", "jk", [[<C-\><C-n>]])
+-- keymap("t", "jk", [[<C-\><C-n>]])
+-- del("t", "jk")
 
 -- keymap("n", "<leader>gy", "<cmd>set signcolumn=yes<CR>", { desc = "Show sign column" })
 -- keymap("n", "<leader>W", "<cmd> set linebreak wrap<CR>", { desc = "Wrap and break lines" })
