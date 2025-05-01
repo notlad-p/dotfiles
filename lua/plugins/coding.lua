@@ -27,23 +27,6 @@ return {
         documentation = { window = { border = "single" } },
       },
       signature = { window = { border = "single" } },
-      cmdline = {
-        keymap = {
-
-          preset = "cmdline",
-          ["<Tab>"] = { "show", "select_next" },
-        },
-        -- list = {
-        --   selection = { preselect = false },
-        -- },
-        enabled = true,
-        completion = {
-          ghost_text = { enabled = true },
-          menu = {
-            auto_show = true,
-          },
-        },
-      },
       keymap = {
         preset = "super-tab",
         ["<Tab>"] = {
