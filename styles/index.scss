@@ -3,7 +3,9 @@
 
 @use "widgets/local-info";
 @use "widgets/audio-settings";
-@use "create-utils";
+
+/* Tailwind utility classes */
+@use "utils";
 
 * {
   font-family: "Inter", sans-serif;
@@ -43,10 +45,6 @@ image {
   font-weight: bold;
   padding: 6px 12px;
   border-radius: v.$radius;
-
-  & .min-w-64 {
-    min-width: 60px;
-  }
 }
 
 .btn {
