@@ -215,7 +215,9 @@ const AudioSettings = (gdkmonitor: Gdk.Monitor) => {
 
         <box vertical hexpand={false} spacing={4}>
           {bind(wp, "speakers").as((endpoints) =>
-            endpoints.map((end) => <AudioEndpoint end={end} />),
+            endpoints
+              .sort((a, b) => a.description.localeCompare(b.description))
+              .map((end) => <AudioEndpoint end={end} />),
           )}
         </box>
       </box>
