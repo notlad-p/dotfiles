@@ -16,6 +16,10 @@ button {
   border-radius: v.$radius;
 }
 
+window {
+  box-shadow: none;
+}
+
 window.Bar {
   background: transparent;
   color: v.$white;
