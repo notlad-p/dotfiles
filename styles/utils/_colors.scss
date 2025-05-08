@@ -65,6 +65,14 @@ $properties: (
   background-color: transparent;
 }
 
+.border-black {
+  border-color: #000;
+}
+
+.border-white {
+  border-color: #fff;
+}
+
 @mixin create-color-styles($name, $variant, $color) {
   .bg-#{$name}-#{$variant} {
     /* background-color: unset; */
@@ -74,6 +82,10 @@ $properties: (
   .text-#{$name}-#{$variant} {
     /* color: unset; */
     color: $color;
+  }
+
+  .border-#{$name}-#{$variant} {
+    border-color: $color;
   }
 
   .hover\: {

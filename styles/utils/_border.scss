@@ -1,4 +1,46 @@
-/* TODO: add more border styles */
+.border {
+  border-width: 1px;
+}
+
+.border-t {
+  border-top-width: 1px;
+}
+
+.border-r {
+  border-right-width: 1px;
+}
+
+.border-b {
+  border-bottom-width: 1px;
+}
+
+.border-l {
+  border-left-width: 1px;
+}
+
+@for $i from 1 through 16 {
+  $variant: $i;
+
+  .border-#{$variant} {
+    border-width: $variant * 1px;
+  }
+
+  .border-t-#{$variant} {
+    border-top-width: $variant * 1px;
+  }
+
+  .border-r-#{$variant} {
+    border-right-width: $variant * 1px;
+  }
+
+  .border-b-#{$variant} {
+    border-bottom-width: $variant * 1px;
+  }
+
+  .border-l-#{$variant} {
+    border-left-width: $variant * 1px;
+  }
+}
 
 /* Border radius */
 
