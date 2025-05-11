@@ -9,12 +9,14 @@ import Screenshot from "./Screenshot";
 import Stopwatch from "./Stopwatch";
 import SystemInfo from "./SystemInfo";
 import QuickSettings from "./QuickSettings";
+import Notifications from "./Notifications";
 
 export default function Bar(gdkmonitor: Gdk.Monitor) {
   const { TOP, LEFT, RIGHT } = Astal.WindowAnchor;
 
   return (
     <window
+      namespace="astal-bar"
       visible
       cssClasses={["Bar"]}
       gdkmonitor={gdkmonitor}
@@ -48,6 +50,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
           <Stopwatch />
           <AudioInOut monitor={gdkmonitor} />
           <SystemInfo />
+          <Notifications />
           <QuickSettings />
         </box>
       </centerbox>
