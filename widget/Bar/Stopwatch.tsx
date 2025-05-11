@@ -25,12 +25,14 @@ const Stopwatch = () => {
         />
       </button>
 
-      <label
-        cssClasses={["min-w-64"]}
-        label={bind(secondsEllapsed).as((sec) =>
-          sec > 0 ? formatTimerString(sec) : "00:00:00",
-        )}
-      />
+      <box cssClasses={["min-w-15"]}>
+        <label
+          halign={Gtk.Align.CENTER}
+          label={bind(secondsEllapsed).as((sec) =>
+            sec > 0 ? formatTimerString(sec) : "00:00:00",
+          )}
+        />
+      </box>
 
       <button
         vexpand={false}
