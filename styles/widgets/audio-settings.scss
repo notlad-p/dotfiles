@@ -7,7 +7,7 @@
     all: unset;
     padding-top: 4px;
     padding-bottom: 12px;
-    /* border: 1px solid v.$red; */
+    margin-right: 4px;
 
     marks.top {
       mark {
@@ -25,26 +25,34 @@
       background-color: v.$one-bg-three;
       border-radius: 4px;
 
-      fill {
-        all: unset;
-        background-color: v.$red;
-        border: 1px solid v.$red;
-      }
-
       highlight {
         all: unset;
         background-color: v.$white;
+        transition: background-color 200ms;
       }
 
       slider {
         all: unset;
-        min-width: 3px;
-        min-height: 7px;
+        min-width: 1.5px;
+        min-height: 4px;
         border-radius: 0px;
         background-color: v.$white;
-        outline: 2px solid v.$lighter-black;
+        outline: 1px solid v.$black-700;
         border-radius: 4px;
-        transform: scale(2.6);
+        transform: scale(4.2);
+        transition: background-color 200ms;
+      }
+    }
+  }
+
+  scale.slider-muted {
+    trough {
+      highlight {
+        background-color: v.$black-300;
+      }
+
+      slider {
+        background-color: v.$black-300;
       }
     }
   }
