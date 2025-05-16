@@ -40,4 +40,8 @@ $sizes: (
   .min-w-#{$variant} {
     min-width: $value;
   }
+
+  .min-h-#{$variant} {
+    min-height: $value;
+  }
 }
