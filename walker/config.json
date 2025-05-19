@@ -249,13 +249,13 @@
       "entries": [
         {
           "name": "Google",
-          "url": "https://www.google.com/search?\"q\":%TERM%",
+          "url": "https://www.google.com/search?q=%TERM%",
           "prefix": "g "
         },
 
         {
           "name": "DuckDuckGo",
-          "url": "https://duckduckgo.com/?\"q\":%TERM%",
+          "url": "https://duckduckgo.com/?q=%TERM%",
           "switcher_only": true,
           "prefix": "d "
         },
