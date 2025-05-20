@@ -10,9 +10,12 @@ import Stopwatch from "./Stopwatch";
 import SystemInfo from "./SystemInfo";
 import QuickSettings from "./QuickSettings";
 import Notifications from "./Notifications";
+import { OperatingSystemWindowName } from "../OperatingSystem/OperatingSystem";
+import { PowerMenuWindowName } from "../OperatingSystem/PowerMenu";
 
 export default function Bar(gdkmonitor: Gdk.Monitor) {
   const { TOP, LEFT, RIGHT } = Astal.WindowAnchor;
+  const monitorName = gdkmonitor.get_connector();
 
   return (
     <window
@@ -32,6 +35,17 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
             hexpand={false}
             valign={Gtk.Align.CENTER}
             halign={Gtk.Align.CENTER}
+            onClicked={() => {
+              // close power menu if it's visible
+              const powerMenuWin = App.get_window(
+                `${PowerMenuWindowName}-${monitorName}`,
+              );
+              if (powerMenuWin?.get_visible()) {
+                App.toggle_window(`${PowerMenuWindowName}-${monitorName}`);
+              }
+
+              App.toggle_window(`${OperatingSystemWindowName}-${monitorName}`);
+            }}
           >
             <image iconName="arch-symbolic" />
           </button>
