@@ -61,3 +61,13 @@ $font-weights: (
     -gtk-icon-size: $value;
   }
 }
+
+@for $i from 1 through 16 {
+  .icon-#{$i} {
+    -gtk-icon-size: $i * 4px;
+  }
+
+  .icon-#{$i}\.5 {
+    -gtk-icon-size: ($i + 0.5) * 4px;
+  }
+}

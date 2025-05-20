@@ -146,7 +146,7 @@ const Weather = () => {
                 <box hexpand halign={Gtk.Align.END}>
                   <image
                     iconName={day.values.weatherCodeIcon}
-                    cssClasses={["icon-md"]}
+                    cssClasses={["icon-4"]}
                   />
                   <label
                     cssClasses={["text-white-500/60", "ml-3"]}

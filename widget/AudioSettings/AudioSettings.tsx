@@ -60,7 +60,7 @@ const AudioSettings = (gdkmonitor: Gdk.Monitor) => {
                     iconName={defaultSpeakerMuted.as((isMuted) =>
                       isMuted ? "volume-mute-red" : "volume-high-black",
                     )}
-                    cssClasses={["icon-md"]}
+                    cssClasses={["icon-4"]}
                   />
                 </button>
                 <button
@@ -77,7 +77,7 @@ const AudioSettings = (gdkmonitor: Gdk.Monitor) => {
                   ])}
                 >
                   <image
-                    cssClasses={["icon-md"]}
+                    cssClasses={["icon-4"]}
                     iconName={defaultMicMuted.as((isMuted) =>
                       isMuted ? "microphone-mute-red" : "microphone-high-black",
                     )}
@@ -93,7 +93,7 @@ const AudioSettings = (gdkmonitor: Gdk.Monitor) => {
                   subprocess("/usr/bin/pavucontrol");
                 }}
               >
-                <image iconName="settings-cog" cssClasses={["icon-md"]} />
+                <image iconName="settings-cog" cssClasses={["icon-4"]} />
               </button>
             </box>
 
