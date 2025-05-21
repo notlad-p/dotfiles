@@ -33,13 +33,13 @@ const PowerMenu = (gdkmonitor: Gdk.Monitor) => {
     {
       icon: "power",
       action: () => {
-        exec(["bash", "-c", "systemctl poweroff"]);
+        exec(["bash", "-c", "systemctl poweroff || loginctl poweroff"]);
       },
     },
     {
       icon: "restart",
       action: () => {
-        exec(["bash", "-c", "systemctl reboot"]);
+        exec(["bash", "-c", "systemctl reboot || loginctl reboot"]);
       },
     },
     {
@@ -55,7 +55,11 @@ const PowerMenu = (gdkmonitor: Gdk.Monitor) => {
     {
       icon: "logout",
       action: () => {
-        exec(["bash", "-c", "loginctl terminate-user $USER"]);
+        exec([
+          "bash",
+          "-c",
+          "pkill Hyprland || pkill sway || pkill niri || loginctl terminate-user $USER",
+        ]);
       },
     },
     {
