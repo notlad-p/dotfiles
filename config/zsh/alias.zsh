@@ -43,3 +43,31 @@ alias svim='sudoedit'
 alias lswifi='nmcli device wifi list'
 # TODO: add a connect to wifi function with:
 # nmcli device wifi connect $ID password $PASSWORD
+
+# TODO: add fzf prompt: "Watch current directory: Choose file to execute"
+# TODO: create different functions for different files (Python, Bash, JS, etc.)
+
+# Watch current directory & execute $file on save
+we () {
+  local file
+  file=$(fd . --type f | fzf --border-label="Watch current directory")
+  if [[ -n "$file" ]]; then
+    echo "Watching $file..."
+    # echo "${file##*.}"
+    # watchexec -e "${file##*.}" -- "$file"
+  else
+    echo "No file selected."
+  fi
+}
+
+# Watch $file and execute $file on save
+# alias wef
+
+# Watch $file type and execute $file on save
+# Example: If file is `main.py`, all `.py` files will be watched
+# alias weft
+
+# Watch directory and execute $file on save
+# alias wed
+
+# alias kdeconnectd='QT_QPA_PLATFORM=xcb /usr/bin/kdeconnectd'

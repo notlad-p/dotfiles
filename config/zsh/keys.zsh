@@ -16,13 +16,13 @@ bindkey "^U" backward-kill-line
 
 # add clipboard copy
 # Yank to the system clipboard
-function vi-yank-xclip {
-  zle vi-yank
-  echo "$CUTBUFFER" | xclip -selection "clipboard" 
-}
-
-zle -N vi-yank-xclip
-bindkey -M vicmd ' ' vi-yank-xclip
+# function vi-yank-xclip {
+#   zle vi-yank
+#   echo "$CUTBUFFER" | xclip -selection "clipboard" 
+# }
+#
+# zle -N vi-yank-xclip
+# bindkey -M vicmd ' ' vi-yank-xclip
 
 # enable text objects for things like da" or ci(
 autoload -Uz select-bracketed select-quoted
@@ -43,6 +43,7 @@ done
 bindkey -s '^N' 'nvim^M' # bind CTRL n to enter neovim
 bindkey -s '^O' 'nvim $(fzf)^M' # bind CTRL o to search for file and open in nvim
 bindkey -s '^T' 'tmux^M' # bind CTRL t to enter tmux
+bindkey -s '^Y' 'y^M' # bind CTRL y to open yazi
 
 # fzf
 # rebind CTRL-t to CTRL-p
