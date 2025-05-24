@@ -1,0 +1,30 @@
+{
+  "test": {
+    "prefix": "testcl",
+    "body": [
+      "console.log('test')"
+    ]
+  },
+  "import module": {
+    "prefix": "i",
+    "body": [
+      "import ${1:module} from '${2:modulename}'"
+    ]
+  },
+  "import module destructured": {
+    "prefix": "imd",
+    "body": "import { ${1:modules} } from \"${2:modulename}\""
+  },
+  "destructure const object": {
+    "prefix": "cd",
+    "body": "const { ${1:values} } = ${2:object}"
+  },
+  "styled component export": {
+    "prefix": "sce",
+    "body": [
+      "export const ${1:componentname} = styled.${2:element}`",
+      "\t$0",
+      "`"
+    ]
+  }
+}

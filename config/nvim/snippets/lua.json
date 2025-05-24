@@ -1,0 +1,14 @@
+{
+  "module setup": {
+    "prefix": "modset",
+    "body": [
+      "local M = {}",
+      "",
+      "M.setup = function()",
+      "\t$0",
+      "end",
+      "",
+      "return M"
+    ]
+  }
+}
