@@ -3,27 +3,74 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: Get user
-      become: true # become sudo
-      ansible.builtin.set_fact:
-        remote_regular_user: "{{ ansible_user_id }}"
+    - name: Basic usage
+      ansible.builtin.debug:
+        msg: "'{{ lookup('ansible.builtin.env', 'HOME') }}' is the HOME environment variable."
+    - name: Playbook dir
+      ansible.builtin.debug:
+        msg: "'{{ playbook_dir }}' is the playbook directory."
 
-    - name: Create Directories
-      ansible.builtin.include_tasks: "tasks/directories.yml"
+    # loop & symlink configs
+    - name: Create ~/.config
+      ansible.builtin.file:
+        path: ~/.config
+        state: directory
+
+    - name: Find .config files
+      ansible.builtin.find:
+        paths: "{{ playbook_dir }}/config"
+        recurse: no
+        file_type: any
+        hidden: yes
+      register: dotfiles_config
 
     - name: Symlink configs
-      ansible.builtin.include_tasks: "tasks/link.yml"
+      ansible.builtin.file:
+        src: "{{ item.path }}"
+        dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/{{item.path | basename}}"
+        state: link
+      loop: "{{ dotfiles_config.files }}"
+      loop_control:
+        label: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/{{item.path | basename}}"
 
-    - name: Install Packages
-      ansible.builtin.include_tasks: "tasks/packages.yml"
+    - name: Symlink .zshenv to home directory
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/config/zsh/.zshenv"
+        dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.zshenv"
+        state: link
 
-    - name: Install AUR Packages
-      ansible.builtin.include_tasks: "tasks/aur.yml"
-
-    - name: Setup ZSH
-      ansible.builtin.include_tasks: "tasks/zsh.yml"
+    - name: Symlink Nvidia config for 3 monitor setup at home
+      become: true
       tags:
-        - zsh
+        - never # skip this task by default
+        - personal
+        - home-setup
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/xorg.conf.d/10-nvidia.conf"
+        dest: "/etc/X11/xorg.conf.d/10-nvidia.conf"
+        state: link
+
+    # - name: Get user
+    #   become: true # become sudo
+    #   ansible.builtin.set_fact:
+    #     remote_regular_user: "{{ ansible_user_id }}"
+    #
+    # - name: Create Directories
+    #   ansible.builtin.include_tasks: "tasks/directories.yml"
+    #
+    # - name: Symlink configs
+    #   ansible.builtin.include_tasks: "tasks/link.yml"
+    #
+    # - name: Install Packages
+    #   ansible.builtin.include_tasks: "tasks/packages.yml"
+    #
+    # - name: Install AUR Packages
+    #   ansible.builtin.include_tasks: "tasks/aur.yml"
+    #
+    # - name: Setup ZSH
+    #   ansible.builtin.include_tasks: "tasks/zsh.yml"
+    #   tags:
+    #     - zsh
 
     # Dotfiles
     # TODO: this isn't needed (BUT IS GOOD TO HAVE FOR ANSIBLE-PULL) since this script is already in the dotfiles

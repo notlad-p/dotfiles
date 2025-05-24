@@ -1,78 +1,168 @@
 ---
-- name: Install terminal tools
-  become: true # become sudo
+- name: General
+  become: true
+  tags:
+    - general
   community.general.pacman:
     name:
-      - starship
-      - tmux # TODO: separate this out
-      - eza # better ls
-      - zoxide # better cd
-      - git-delta # TODO: set as default git pager
-      - lazygit
-      - bat
-      - bottom # process/system monitor
-      - fzf
-      - fd
-      - ripgrep
+      - git
       - curl
       - wget
+      - bottom
+      - fastfetch
+      - jq
+      - eza
+      - bat
+      - inter-font
+      - playerctl
+      - networkmanager
+      - network-manager-applet
+      - dateutils
+      - pacman-contrib
+      - wl-clipboard
+      - wlr-randr
     state: present
 
-# NeoVim
-- name: Install NeoVim and dependencies
-  become: true # become sudo
-  tags:
-    - nvim
-  community.general.pacman:
-    name:
-      - neovim
-      - xclip # for copying to clipboard in nvim
-      # - xsel
-    state: present
-
-# AwesomeWM tooling
-- name: Install AwesomeWM tooling packages
+- name: Desktop Environment
   become: true
   tags:
+    - desktop-environment
+  community.general.pacman:
+    name:
+      # hyprland + dependencies
+      - hyprland
+      - xdg-desktop-portal-hyprland
+      - xdg-desktop-portal-gtk
+      - xdg-utils
+      - polkit-kde-agent
+      - qt5-wayland
+      - qt6-wayland
+      - hyprpolkitagent
+      # hyprland tools
+      - hypridle
+      - hyprlock
+      - swww
+    state: present
+
+# Setup kewlfft.aur & Install paru
+- name: Create the `aur_builder` user
+  become: true
+  ansible.builtin.user:
+    name: aur_builder
+    create_home: true
+    group: wheel
+
+- name: Allow the `aur_builder` user to run `sudo pacman` without a password
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+    create: true
+    mode: "0644"
+    validate: "visudo -cf %s"
+
+- name: Install paru using makepkg
+  kewlfft.aur.aur:
+    use: makepkg
+    name: paru
+    state: present
+
+# Packages to install
+- name: Desktop Environment
+  tags:
+    - desktop-environment
+  kewlfft.aur.aur:
+    use: paru
+    name:
+      # hyprland + dependencies
+      - hyprland
+      - xdg-desktop-portal-hyprland
+      - xdg-desktop-portal-gtk
+      - xdg-utils
+      - polkit-kde-agent
+      - qt5-wayland
+      - qt6-wayland
+      - hyprpolkitagent
+      # hyprland tools
+      - hypridle
+      - hyprlock
+      - swww
+      # AUR
+      - hyprshot
+      - swaync
+      - libastal-meta
+      - aylurs-gtk-shell-git
+      - walker-bin
+    state: present
+
+- name: AwesomeWM
+  tags:
+    - desktop-environment
     - awesome
-  community.general.pacman:
+  kewlfft.aur.aur:
+    use: paru
     name:
-      - scrot # screenshots
-      - playerctl # music/video controls in awesome menu
-      - rofi # application launcher
-      - networkmanager # wifi/bluetooth controls (nmcli)
-      - inter-font # font face used in awesome config
-    state: present
+      - xclip
+      - scrot
+      # AUR
+      - awesome-git
+    state: presenDesktopt
 
-# Kitty term
-- name: Install Kitty and dependencies
-  become: true
+- name: Applications
   tags:
-    - kitty
-  community.general.pacman:
+    - applications
+  kewlfft.aur.aur:
+    use: paru
+    state: present
     name:
+      - dolphin # TODO: replace with gnome files
+      - firefox
+      - gwenview # TODO: replace with gnome viewer
+      - nwg-look
+      - obs-studio
+      - pavucontrol
+      - steam
+      - vivaldi
+
+- name: Applications (AUR)
+  tags:
+    - applications
+  kewlfft.aur.aur:
+    use: paru
+    state: present
+    aur_only: yes
+    name:
+      - spotify
+      - zen-browser-bin
+      - brave-bin
+      - google-chrome?
+      - obsidian-appimage
+      - vesktop-bin
+      - visual-studio-code-bin
+
+- name: Development Environment / Terminal
+  tags:
+    - development-environment
+  kewlfft.aur.aur:
+    use: paru
+    name:
+      - starship
+      - zoxide
+      - neovim
+      - tmux
       - kitty
-      - ttf-firacode-nerd # fira code nerd font
-    state: present
-
-# ZSH
-- name: Install zsh
-  become: true # become sudo
-  tags:
-    - zsh
-  community.general.pacman:
-    name: zsh
-    state: present
-
-# Yazi (terminal file manager)
-- name: Install yazi and dependencies
-  become: true # become sudo
-  tags:
-    - yazi
-  community.general.pacman:
-    name:
+      - ttf-firacode-nerd
+      - zsh
       - yazi
+      - lazygit
+      - github-cli
+      - ripgrep
+      - fzf
+      - luarocks
+      # yazi dependencies
       - ffmpegthumbnailer
+      - ffmpeg
+      - 7zip
       - unarchiver
       - jq
       - poppler
@@ -80,3 +170,29 @@
       - ripgrep
       - fzf
       - zoxide
+      - imagemagick
+      - xclip
+      - wl-clipboard
+      # TypeScript / JavaScript
+      - typescript
+      - pnpm
+      - deno
+      # Python
+      - python
+      - pip
+      - uv
+    state: present
+
+- name: Development Environment / Terminal (AUR)
+  tags:
+    - development-environment
+  kewlfft.aur.aur:
+    use: paru
+    aur_only: yes
+    state: present
+    name:
+      # yazi dep
+      - resvg
+      # fast node manager
+      - fnm-bin
+      - gowall
