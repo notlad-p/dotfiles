@@ -185,6 +185,8 @@ return {
           },
 
           tailwindcss = {
+            -- enabled = false,
+            enabled = true,
             settings = {
               tailwindCSS = {
                 classAttributes = { "class", "className", "ngClass", "class:list", "cssClasses" },
@@ -205,12 +207,12 @@ return {
 
           --- @deprecated -- tsserver renamed to ts_ls but not yet released, so keep this for now
           --- the proper approach is to check the nvim-lspconfig release version when it's released to determine the server name dynamically
-          -- tsserver = {
-          --   enabled = false,
-          -- },
-          -- ts_ls = {
-          --   enabled = false,
-          -- },
+          tsserver = {
+            enabled = false,
+          },
+          ts_ls = {
+            enabled = false,
+          },
           vtsls = {
             -- explicitly add default filetypes, so that we can extend
             -- them in related extras
