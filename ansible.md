@@ -2,11 +2,16 @@
 
 1. Install ansible
 
-```sh
+````sh
 pacman -S ansible
-```
 
-2. Install ansible requirements
+2. Clone dotfiles
+
+```sh
+git clone https://github.com/notlad-p/dotfiles.git
+````
+
+3. Install ansible requirements
 
 ```sh
 ansible-galaxy collection install -r requirements.yml
@@ -18,21 +23,21 @@ ansible-galaxy collection install -r requirements.yml
 
 In root? This would clutter the root directory, but would make using `ansible-pull` easy.
 
-
 ## Usages:
 
 - Install & configure all tools
-    - Only separated item is AwesomeWM & Hyprland (by default use Awesome, use tag `hyprland` to switch to Hyprland)
-- Install & configure *JUST* what you want. For example, use ansible to only install / configure NeoVim (and dependencies).
-    - Use a `nvim` tag & others
+  - Only separated item is AwesomeWM & Hyprland (by default use Awesome, use tag `hyprland` to switch to Hyprland)
+- Install & configure _JUST_ what you want. For example, use ansible to only install / configure NeoVim (and dependencies).
+  - Use a `nvim` tag & others
 - Install things that only I would use
-    - Use `personal` tag when running
-    - Creates `~/projects` directory
-    - Uses `ansible-pull` to pull personal ansible repo 
-        - Sets up with API keys and such
-        - Clones personal projects
+  - Use `personal` tag when running
+  - Creates `~/projects` directory
+  - Uses `ansible-pull` to pull personal ansible repo
+    - Sets up with API keys and such
+    - Clones personal projects
 
 ### Tags
+
 Theses are the tags used in ansible, they can be used to only install and configure what you want. For example, if you want to only install and configure NeoVim and AwesomeWM:
 
 ```sh
@@ -46,16 +51,18 @@ ansible-playbook main.yml --skip-tags "zsh"
 ```
 
 #### List of tags:
+
 - `personal` - Only useful for me to quickly configure personal stuff
 - **Config tags**
-    - `nvim` - Only install & configure NeoVim
-    - `awesome` - Only 
+  - `nvim` - Only install & configure NeoVim
+  - `awesome` - Only
 
 ---
 
 ## Personal setup
 
-Setup git config / github cli? *This needs to be tested*
+Setup git config / github cli? _This needs to be tested_
+
 ```yaml
 # setup global git config (required for cloning repos later)
 - name: Set git name
@@ -73,7 +80,6 @@ Setup git config / github cli? *This needs to be tested*
     name: core.editor
     scope: global
     value: nvim
-
 # NOTE: this doesn't work
 # - name: Authenticate through GitHub CLI
 #   ansible.builtin.shell: gh auth login
