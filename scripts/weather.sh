@@ -70,7 +70,7 @@ curl --request POST \
 )
 # weather=$(echo '{"type":"Bar","id":"1","title":"Foo"}')
 
-
+# TODO: catch errors and fallback to cached (notify of error with exclaimation mark?)
 echo "$weather" >"$cache_file"
 cat "$cache_file"
 # notify-send "Updated weather from API"
