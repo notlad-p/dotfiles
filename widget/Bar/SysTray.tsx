@@ -27,7 +27,13 @@ const SysTray = () => {
   return (
     <box>
       <button
-        cssClasses={["btn-icon", "no-bg"]}
+        cssClasses={[
+          "bg-black-900",
+          "hover:bg-black-800",
+          "rounded-lg",
+          "p-1.5",
+          "transition",
+        ]}
         vexpand={false}
         hexpand={false}
         valign={Gtk.Align.CENTER}
