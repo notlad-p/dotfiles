@@ -50,7 +50,6 @@ const OperatingSystem = (gdkmonitor: Gdk.Monitor) => {
 
   return (
     <window
-      visible
       layer={Astal.Layer.TOP}
       marginTop={52}
       marginLeft={8}
