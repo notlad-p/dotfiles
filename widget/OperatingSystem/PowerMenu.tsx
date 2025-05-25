@@ -55,11 +55,7 @@ const PowerMenu = (gdkmonitor: Gdk.Monitor) => {
     {
       icon: "logout",
       action: () => {
-        exec([
-          "bash",
-          "-c",
-          "pkill Hyprland || pkill sway || pkill niri || loginctl terminate-user $USER",
-        ]);
+        exec(["bash", "-c", "hyprctl dispatch exit"]);
       },
     },
     {
