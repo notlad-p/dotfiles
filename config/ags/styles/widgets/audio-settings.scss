@@ -1,0 +1,59 @@
+@use "../variables" as v;
+
+.audio-settings-window {
+  min-width: 200px;
+
+  scale {
+    all: unset;
+    padding-top: 4px;
+    padding-bottom: 12px;
+    margin-right: 4px;
+
+    marks.top {
+      mark {
+        indicator {
+          all: unset;
+          min-width: 2px;
+          min-height: 8px;
+          background-color: v.$grey;
+        }
+      }
+    }
+
+    trough {
+      all: unset;
+      background-color: v.$one-bg-three;
+      border-radius: 4px;
+
+      highlight {
+        all: unset;
+        background-color: v.$white;
+        transition: background-color 200ms;
+      }
+
+      slider {
+        all: unset;
+        min-width: 1.5px;
+        min-height: 4px;
+        border-radius: 0px;
+        background-color: v.$white;
+        outline: 1px solid v.$black-700;
+        border-radius: 4px;
+        transform: scale(4.2);
+        transition: background-color 200ms;
+      }
+    }
+  }
+
+  scale.slider-muted {
+    trough {
+      highlight {
+        background-color: v.$black-300;
+      }
+
+      slider {
+        background-color: v.$black-300;
+      }
+    }
+  }
+}

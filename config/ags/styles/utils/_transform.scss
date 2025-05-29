@@ -1,0 +1,12 @@
+/* rotate */
+@for $i from 0 through 24 {
+  $degrees: $i * 15;
+
+  .rotate-#{$degrees} {
+    transform: rotate($degrees * 1deg);
+  }
+
+  .-rotate-#{$degrees} {
+    transform: rotate($degrees * -1deg);
+  }
+}

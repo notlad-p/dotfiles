@@ -1,0 +1,118 @@
+@use "sass:color";
+
+/* Colors */
+/* Generated with: https://uicolors.app/generate/1536e6 */
+$blue: (
+  "50": #f3f6fb,
+  "100": #e3ecf6,
+  "200": #cedfef,
+  "300": #acc9e4,
+  "400": #85add5,
+  "500": #6791c9,
+  "600": #547abc,
+  "700": #4a68ab,
+  "800": #41568c,
+  "900": #384970,
+  "950": #262f45,
+);
+
+$black: (
+  "25": #656667,
+  "50": #505253,
+  "100": #484a4b,
+  "200": #3e4041,
+  "300": #3e4041,
+  "400": #343637,
+  "500": #27292a,
+  "600": #1f2122,
+  "700": #161819,
+  "800": #121415,
+  "900": #0c0e0f,
+  "950": #060809,
+);
+
+$white: (
+  "500": #edeff0,
+);
+
+/* $grey: ( */
+/*   "50": #e9eaea, */
+/*   "100": #c3c3c3, */
+/*   "200": #9c9d9d, */
+/*   "300": #757677, */
+/*   "400": #4e5050, */
+/*   "500": #27292a, */
+/*   "600": #202222, */
+/*   "700": #191a1b, */
+/*   "800": #121313, */
+/*   "900": #0b0b0c, */
+/*   "950": #040404, */
+/* ); */
+
+$colors: (
+  "blue": $blue,
+  "black": $black,
+  "white": $white,
+);
+
+$properties: (
+  "bg": "background-color",
+  "text": "color",
+  "border": "border",
+);
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.border-black {
+  border-color: #000;
+}
+
+.border-white {
+  border-color: #fff;
+}
+
+@mixin create-color-styles($name, $variant, $color) {
+  .bg-#{$name}-#{$variant} {
+    /* background-color: unset; */
+    background-color: $color;
+  }
+
+  .text-#{$name}-#{$variant} {
+    /* color: unset; */
+    color: $color;
+  }
+
+  .border-#{$name}-#{$variant} {
+    border-color: $color;
+  }
+
+  .hover\: {
+    &bg-#{$name}-#{$variant} {
+      &:hover {
+        background-color: $color;
+      }
+    }
+  }
+
+  /* TODO: add .lighten & .darken hover classes (add either class to lighten or darken on hover) */
+}
+
+@each $name, $color-map in $colors {
+  @each $variant, $color in $color-map {
+    /* $bg-#{$name}-#{$variant}: $color; */
+    @include create-color-styles($name, $variant, $color);
+
+    @for $i from 1 through 20 {
+      $op-value: $i * 5 * 0.01;
+      $op-variant: $i * 5;
+
+      @include create-color-styles(
+        $name,
+        #{$variant}\/#{$op-variant},
+        color.adjust($color, $alpha: -1 + $op-value)
+      );
+    }
+  }
+}

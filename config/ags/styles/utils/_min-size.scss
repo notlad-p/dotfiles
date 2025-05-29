@@ -1,0 +1,47 @@
+@for $i from 1 through 64 {
+  $variant: $i;
+
+  .min-w-#{$variant} {
+    min-width: $variant * 4px;
+  }
+}
+
+$sizes: (
+  // 256px
+  "3xs": 16rem,
+  // 288px
+  "2xs": 18rem,
+  // 320px
+  "xs": 20rem,
+  // 384px
+  "sm": 24rem,
+  // 448px
+  "md": 28rem,
+  // 512px
+  "lg": 32rem,
+  // 576px
+  "xl": 36rem,
+  // 672pc
+  "2xl": 42rem,
+  // 768px
+  "3xl": 48rem,
+  // 896px
+  "4xl": 56rem,
+  // 1024px
+  "5xl": 64rem,
+  // 1152px
+  "6xl": 72rem,
+  // 1280px
+  "7xl": 80rem,
+  "full": 100%
+);
+
+@each $variant, $value in $sizes {
+  .min-w-#{$variant} {
+    min-width: $value;
+  }
+
+  .min-h-#{$variant} {
+    min-height: $value;
+  }
+}

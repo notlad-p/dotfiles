@@ -1,0 +1,7 @@
+@for $i from 0 through 20 {
+  $variant: $i * 5 * 0.01;
+
+  .opacity-#{$variant} {
+    opacity: $variant;
+  }
+}

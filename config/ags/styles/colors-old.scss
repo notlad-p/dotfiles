@@ -1,0 +1,108 @@
+@use "sass:list";
+@use "sass:map";
+
+$black-800: #0c0e0f;
+$blue-500: #6791c9;
+
+$blue: (
+  "500": #6791c9,
+);
+
+$black: (
+  "800": #0c0e0f,
+);
+
+$colors: (
+  "blue": $blue,
+  "black": $black,
+);
+
+$properties: (
+  "bg": "background-color",
+  "text": "color",
+  "border": "border",
+);
+
+@each $name, $color-map in $colors {
+  @each $variant, $color in $color-map {
+    /* $bg-#{$name}-#{$variant}: $color; */
+
+    .unset {
+      &.bg-#{$name}-#{$variant} {
+        /* background-color: unset; */
+        background-color: $color;
+      }
+
+      &.text-#{$name}-#{$variant} {
+        /* color: unset; */
+        color: $color;
+      }
+    }
+
+    %bg-#{$name}-#{$variant} {
+      /* background-color: unset; */
+      background-color: $color;
+    }
+
+    %text-#{$name}-#{$variant} {
+      /* color: unset; */
+      color: $color;
+    }
+  }
+}
+
+/* #################### */
+/* #### BACKGROUND #### */
+/* #################### */
+
+/* .bg-black-500 { */
+/*   background-color: $black-500; */
+/* } */
+/**/
+/* .bg-blue-500 { */
+/*   background-color: $blue-500; */
+/* } */
+
+/* ############## */
+/* #### TEXT #### */
+/* ############## */
+
+/* .text-black-500 { */
+/*   color: $black-500; */
+/* } */
+/**/
+/* .text-blue-500 { */
+/*   color: $blue-500; */
+/* } */
+
+/* ###################### */
+/* #### UNSET STYLES #### */
+/* ###################### */
+
+* {
+  /* all: unset; */
+
+  /* color: inherit; */
+  /* background-color: inherit; */
+}
+
+.unset {
+  all: unset;
+}
+
+.btn {
+  all: unset;
+  color: $black-800;
+  background-color: $blue-500;
+  /* background-color: $colors.$blue.$500; */
+  /* @extend %bg-blue-500, %text-black-800; */
+
+  /* @extend .bg-blue-500, .text-black-800; */
+}
+
+/* .unset { */
+/* all: unset; */
+/* @extend %bg-blue-500; */
+/* color: $black-500; */
+/* background-color: $bg-blue-500; */
+/* } */
