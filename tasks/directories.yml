@@ -6,12 +6,9 @@
     path: "{{ ansible_env.HOME }}/Packages"
     state: directory
     mode: "0755"
-# - ~/projects for personal projects
-- name: Create ~/projects directory
-  tags:
-    - never # NOTE: don't create this directory unless `personal` tag is specified
-    - personal
+# - ~/Projects for personal projects & lad-schemes.nvim
+- name: Create ~/Projects directory
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/projects"
+    path: "{{ ansible_env.HOME }}/Projects"
     state: directory
     mode: "0755"

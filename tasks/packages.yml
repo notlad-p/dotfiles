@@ -1,49 +1,4 @@
 ---
-- name: General
-  become: true
-  tags:
-    - general
-  community.general.pacman:
-    name:
-      - git
-      - curl
-      - wget
-      - bottom
-      - fastfetch
-      - jq
-      - eza
-      - bat
-      - inter-font
-      - playerctl
-      - networkmanager
-      - network-manager-applet
-      - dateutils
-      - pacman-contrib
-      - wl-clipboard
-      - wlr-randr
-    state: present
-
-- name: Desktop Environment
-  become: true
-  tags:
-    - desktop-environment
-  community.general.pacman:
-    name:
-      # hyprland + dependencies
-      - hyprland
-      - xdg-desktop-portal-hyprland
-      - xdg-desktop-portal-gtk
-      - xdg-utils
-      - polkit-kde-agent
-      - qt5-wayland
-      - qt6-wayland
-      - hyprpolkitagent
-      # hyprland tools
-      - hypridle
-      - hyprlock
-      - swww
-    state: present
-
 # Setup kewlfft.aur & Install paru
 - name: Create the `aur_builder` user
   become: true
@@ -68,6 +23,31 @@
     state: present
 
 # Packages to install
+- name: General
+  become: true
+  tags:
+    - general
+  community.general.pacman:
+    name:
+      - git
+      - curl
+      - wget
+      - bottom
+      - fastfetch
+      - jq
+      - eza
+      - bat
+      - inter-font
+      - playerctl
+      - networkmanager
+      - network-manager-applet
+      - dateutils
+      - pacman-contrib
+      - wl-clipboard
+      - wlr-randr
+      - brightnessctl
+    state: present
+
 - name: Desktop Environment
   tags:
     - desktop-environment
@@ -87,16 +67,24 @@
       - hypridle
       - hyprlock
       - swww
-      # AUR
+    state: present
+
+- name: Desktop Environment (AUR)
+  tags:
+    - desktop-environment
+  kewlfft.aur.aur:
+    use: paru
+    aur_only: yes
+    name:
       - hyprshot
       - swaync
       - libastal-meta
       - aylurs-gtk-shell-git
       - walker-bin
-    state: present
 
 - name: AwesomeWM
   tags:
+    - never
     - desktop-environment
     - awesome
   kewlfft.aur.aur:
@@ -123,6 +111,7 @@
       - pavucontrol
       - steam
       - vivaldi
+      # - discord
 
 - name: Applications (AUR)
   tags:
@@ -158,7 +147,12 @@
       - github-cli
       - ripgrep
       - fzf
+      - lua
       - luarocks
+      - gcc
+      - cmake
+      - meson
+      - ninja
       # yazi dependencies
       - ffmpegthumbnailer
       - ffmpeg
@@ -179,7 +173,7 @@
       - deno
       # Python
       - python
-      - pip
+      - python-pip
       - uv
     state: present
 

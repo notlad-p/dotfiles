@@ -1,0 +1,42 @@
+---
+# loop & symlink configs
+- name: Create ~/.config
+  ansible.builtin.file:
+    path: ~/.config
+    state: directory
+
+- name: Find .config files
+  ansible.builtin.find:
+    paths: "{{ playbook_dir }}/config"
+    recurse: no
+    file_type: any
+    hidden: yes
+  register: dotfiles_config
+
+- name: Symlink configs
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/{{item.path | basename}}"
+    state: link
+  loop: "{{ dotfiles_config.files }}"
+  loop_control:
+    label: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/{{item.path | basename}}"
+
+- name: Symlink .zshenv to home directory
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/config/zsh/.zshenv"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.zshenv"
+    state: link
+
+- name: Symlink Nvidia config for 3 monitor setup at home
+  become: true
+  tags:
+    - never # skip this task by default
+    - personal
+    - home-setup
+    - xorg
+    - awesome
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/xorg.conf.d/10-nvidia.conf"
+    dest: "/etc/X11/xorg.conf.d/10-nvidia.conf"
+    state: link

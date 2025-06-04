@@ -1,0 +1,5 @@
+---
+- name: Clone notlad-p/lad-schemes.nvim
+  ansible.builtin.git:
+    repo: "https://github.com/notlad-p/lad-schemes.nvim.git"
+    dest: ~/Projects
