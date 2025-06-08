@@ -65,7 +65,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
           <AudioInOut monitor={gdkmonitor} />
           <SystemInfo />
           <Notifications />
-          <QuickSettings />
+          <QuickSettings monitor={gdkmonitor} />
         </box>
       </centerbox>
     </window>
