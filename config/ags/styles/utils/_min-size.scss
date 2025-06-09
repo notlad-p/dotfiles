@@ -32,8 +32,7 @@ $sizes: (
   // 1152px
   "6xl": 72rem,
   // 1280px
-  "7xl": 80rem,
-  "full": 100%
+  "7xl": 80rem
 );
 
 @each $variant, $value in $sizes {
