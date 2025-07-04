@@ -149,6 +149,10 @@ return {
         -- LSP Server Settings
         ---@type lspconfig.options
         servers = {
+          qmlls = {
+            cmd = { "qmlls6", "-E" },
+          },
+
           denols = {
             single_file_support = false,
             root_dir = function(fname)
