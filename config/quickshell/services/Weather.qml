@@ -193,7 +193,7 @@ Singleton {
         case weatherCodeEnum.VIOLENT_RAIN_SHOWERS:
             return "weather-heavy-rainstorm";
         case weatherCodeEnum.THUNDERSTORM || weatherCodeEnum.THUNDERSTORM_SLIGHT_HAIL || weatherCodeEnum.THUNDERSTORM_HEAVY_HAIL:
-            return "weather-thunderstorm-symbolic";
+            return "weather-thunderstorm";
         default:
             return "weather-cloudy";
         }
