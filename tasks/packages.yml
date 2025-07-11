@@ -124,10 +124,10 @@
       - spotify
       - zen-browser-bin
       - brave-bin
-      - google-chrome?
       - obsidian-appimage
       - vesktop-bin
       - visual-studio-code-bin
+      # - google-chrome?
 
 - name: Development Environment / Terminal
   tags:
@@ -168,8 +168,8 @@
       - xclip
       - wl-clipboard
       # TypeScript / JavaScript
-      - typescript
-      - pnpm
+      # - typescript
+      # - pnpm
       - deno
       # Python
       - python
