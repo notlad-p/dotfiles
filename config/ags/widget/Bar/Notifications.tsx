@@ -9,8 +9,11 @@ const Notifications = () => {
       valign={Gtk.Align.CENTER}
       halign={Gtk.Align.CENTER}
     >
-      <box spacing={8}>
-        <image iconName="notifications-bell" />
+      <box spacing={8} cssClasses={[]}>
+        <image
+          iconName="package-updates"
+          cssClasses={["notif-icon", "text-white-500"]}
+        />
       </box>
     </button>
   );

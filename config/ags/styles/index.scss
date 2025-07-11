@@ -7,6 +7,13 @@
 /* Tailwind utility classes */
 @use "utils";
 
+.notif-icon {
+  // color: inherit;
+  // color: white;
+  -gtk-icon-style: symbolic;
+  // background-color: white;
+}
+
 * {
   font-family: "Inter", sans-serif;
 }

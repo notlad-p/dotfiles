@@ -87,6 +87,16 @@ const QuickSettings = (gdkmonitor: Gdk.Monitor) => {
         },
       },
     ],
+    // [
+    //   {
+    //     toggled: bind(Variable(false)),
+    //     iconOn: "window-titlebar-dark",
+    //     iconOff: "window-titlebar-opaque",
+    //     onClicked: (_btn: Gtk.Button) => {
+    //       // TODO: toggle window titlebars
+    //     },
+    //   },
+    // ],
   ];
 
   return (
