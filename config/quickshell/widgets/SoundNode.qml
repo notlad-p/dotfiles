@@ -93,7 +93,7 @@ WrapperRectangle {
 
                         StyledText {
                             id: nodeText
-                            text: root.nickname
+                            text: root.nickname ? root.nickname : root.modelData.description
                             color: root.isDefault ? Colors.blue : Colors.white
                             font.weight: Font.Medium
 
