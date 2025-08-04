@@ -150,7 +150,7 @@ return {
         ---@type lspconfig.options
         servers = {
           qmlls = {
-            cmd = { "qmlls6", "-E" },
+            cmd = { "qmlls", "-E" },
           },
 
           denols = {
