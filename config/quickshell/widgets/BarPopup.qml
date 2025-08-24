@@ -6,9 +6,9 @@ import Quickshell
 import Quickshell.Widgets
 import Quickshell.Hyprland
 
-import "root:/services"
-import "root:/components"
-import "root:/config"
+import qs.services
+import qs.components
+import qs.config
 
 PopupWindow {
     id: popup

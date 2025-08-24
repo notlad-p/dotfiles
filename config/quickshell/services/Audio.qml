@@ -21,11 +21,11 @@ Singleton {
     readonly property ObjectModel nodes: Pipewire.nodes
 
     function getVolume(node: PwNode): real {
-      return node.audio.volume * 100
+        return node.audio.volume * 100;
     }
 
     function setVolume(node: PwNode, volume: real) {
-      node.audio.volume = volume
+        node.audio.volume = volume;
     }
 
     function toggleMute(node: PwNode) {

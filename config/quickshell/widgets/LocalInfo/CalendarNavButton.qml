@@ -4,8 +4,8 @@ import QtQuick
 import QtQuick.Controls
 import Quickshell.Widgets
 
-import "root:/components"
-import "root:/config"
+import qs.components
+import qs.config
 
 Button {
     id: navButton

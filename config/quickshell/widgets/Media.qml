@@ -2,9 +2,9 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 
-import "root:/services"
-import "root:/components"
-import "root:/config"
+import qs.services
+import qs.components
+import qs.config
 
 BarButton {
     id: root

@@ -5,10 +5,10 @@ import Quickshell
 import Quickshell.Widgets
 import Quickshell.Services.Pipewire
 
-import "root:/components"
-import "root:/config"
-import "root:/services"
-import "root:/scripts/get-volume-icon.js" as GetVolume
+import qs.components
+import qs.config
+import qs.services
+import "../scripts/get-volume-icon.js" as GetVolume
 
 WrapperRectangle {
     id: root

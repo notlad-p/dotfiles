@@ -6,10 +6,10 @@ import QtQuick.Controls
 import Quickshell
 import Quickshell.Widgets
 
-import "root:/services"
-import "root:/components"
-import "root:/config"
-import "root:/widgets"
+import qs.services
+import qs.components
+import qs.config
+import qs.widgets
 
 BarButton {
     id: root

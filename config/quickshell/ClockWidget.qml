@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell.Widgets
 
-import "root:/services"
+import qs.services
 
 WrapperItem {
     topMargin: 4

@@ -5,9 +5,9 @@ import Quickshell
 import Quickshell.Widgets
 import Quickshell.Services.Pipewire
 
-import "root:/components"
-import "root:/config"
-import "root:/services"
+import qs.components
+import qs.config
+import qs.services
 
 BarButton {
     id: root

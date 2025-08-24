@@ -1,6 +1,6 @@
 import QtQuick
 
-import "root:/config"
+import qs.config
 
 Text {
     property real pointSize: Fonts.size.xs

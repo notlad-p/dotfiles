@@ -4,9 +4,9 @@ import QtQuick.Controls
 import Quickshell
 import Quickshell.Widgets
 
-import "root:/components"
-import "root:/config"
-import "root:/services"
+import qs.components
+import qs.config
+import qs.services
 
 WrapperRectangle {
     margin: 16

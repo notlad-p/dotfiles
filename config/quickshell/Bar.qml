@@ -5,9 +5,9 @@ import Quickshell
 // import Quickshell.Services.NetworkManager
 // import Quickshell.Services.UPower as Upower
 
-import "root:/widgets"
-import "root:/widgets/LocalInfo"
-import "root:/config"
+import qs.widgets
+import qs.widgets.LocalInfo
+import qs.config
 
 Scope {
     Variants {

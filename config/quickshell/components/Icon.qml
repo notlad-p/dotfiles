@@ -4,7 +4,7 @@ import Quickshell.Widgets
 import QtQuick.VectorImage
 import QtQuick.Effects
 
-import "root:/config"
+import qs.config
 
 Item {
     id: root

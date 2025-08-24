@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Widgets
 
-import "root:/config"
+import qs.config
 
 WrapperItem {
     id: root
