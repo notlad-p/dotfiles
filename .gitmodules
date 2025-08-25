@@ -1,6 +1,0 @@
-[submodule "awesome"]
-	path = awesome
-	url = https://github.com/notlad-p/awesome
-[submodule "nvim"]
-	path = nvim
-	url = https://github.com/notlad-p/nvim
