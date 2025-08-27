@@ -24,9 +24,15 @@ PopupWindow {
         window: parentContainer.QsWindow.window
         rect.x: {
             const window = parentContainer.QsWindow.window;
+
+            // This variable needed to force a binding update to keep the popup centered under the popup
+            // button when the size of the popup button changes
+            // https://quickshell.org/docs/v0.2.0/types/Quickshell/QsWindow/#windowTransform
+            const seeminglyUselessVaraible = popup.windowTransform;
+
             if (window?.contentItem) {
                 const itemRect = window.contentItem.mapFromItem(parentContainer, 0, parentContainer.height);
-                return itemRect.x - (popup.implicitWidth / 2) + (parentContainer.width / 2);
+                return itemRect.x - (popup.implicitWidth / 2) + (parentContainer.implicitWidth / 2);
             }
 
             return 0;

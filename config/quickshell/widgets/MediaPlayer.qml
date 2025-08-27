@@ -118,7 +118,7 @@ ClippingRectangle {
                                 }
 
                                 StyledText {
-                                  id: wrapTitleText
+                                    id: wrapTitleText
                                     visible: trackTitleText.implicitWidth > trackTitleItem.implicitWidth
                                     text: root.player.trackTitle
                                     color: Colors.white
@@ -140,8 +140,7 @@ ClippingRectangle {
                                         duration: {
                                             // calculate duration as pixels per second (180 pixels per second)
                                             const distance = wrapTitleText.implicitWidth * 2 + trackTitleItem.spacing;
-                                            const dur = distance / 180 * 1000
-                                            console.log(dur)
+                                            const dur = distance / 180 * 1000;
                                             return dur;
                                         }
                                     }
