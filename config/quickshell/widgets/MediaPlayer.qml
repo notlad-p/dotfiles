@@ -96,8 +96,6 @@ ClippingRectangle {
                 RowLayout {
                     spacing: 16
                     ColumnLayout {
-                        // TODO: get marquee text animation working
-                        // right now, when changning players, the title disapears
                         WrapperItem {
                             id: trackTitleItem
                             property int spacing: 30
@@ -106,21 +104,21 @@ ClippingRectangle {
 
                             StyledText {
                                 id: trackTitleText
-                                text: root.player.trackTitle ?? ""
+                                text: root.player.trackTitle || ""
                                 color: Colors.white
                                 font.weight: Font.Bold
                                 pointSize: Fonts.size.sm
 
-                                // Component.onCompleted: {
-                                //     console.log(trackTitleText.implicitWidth);
-                                //     if (trackTitleText.implicitWidth > trackTitleItem.implicitWidth) {
-                                //         textScrollAnimation.running = true;
-                                //     } else {
-                                //         textScrollAnimation.running = false;
-                                //     }
-                                // }
+                                onImplicitWidthChanged: () => {
+                                    textScrollAnimation.stop();
+                                    trackTitleText.x = 0;
+                                    if (trackTitleText.implicitWidth > trackTitleItem.implicitWidth) {
+                                        textScrollAnimation.start();
+                                    }
+                                }
 
                                 StyledText {
+                                  id: wrapTitleText
                                     visible: trackTitleText.implicitWidth > trackTitleItem.implicitWidth
                                     text: root.player.trackTitle
                                     color: Colors.white
@@ -131,8 +129,7 @@ ClippingRectangle {
 
                                 SequentialAnimation on x {
                                     id: textScrollAnimation
-                                    running: false
-                                    // running: trackTitleText.implicitWidth > trackTitleItem.implicitWidth
+                                    running: true
                                     loops: Animation.Infinite
                                     PauseAnimation {
                                         duration: 1000
@@ -141,8 +138,11 @@ ClippingRectangle {
                                         from: 0
                                         to: -trackTitleText.implicitWidth - trackTitleItem.spacing
                                         duration: {
-                                            console.log(root.player.trackTitle.length);
-                                            return 3000;
+                                            // calculate duration as pixels per second (180 pixels per second)
+                                            const distance = wrapTitleText.implicitWidth * 2 + trackTitleItem.spacing;
+                                            const dur = distance / 180 * 1000
+                                            console.log(dur)
+                                            return dur;
                                         }
                                     }
                                 }
