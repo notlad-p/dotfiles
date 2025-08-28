@@ -51,14 +51,60 @@ BarButton {
             iconName: Players.getIconName(Players.trackedPlayer?.identity)
         }
 
-        StyledText {
+        WrapperItem {
+            id: trackTitleItem
             visible: Players.list?.length > 0
-            text: Players.trackedPlayer?.trackTitle || ""
-            color: Colors.white
-            font.weight: Font.Bold
-            // Layout.preferredWidth: 175
-            Layout.maximumWidth: 175
+            property int spacing: 20
+            property int maxWidth: 175
+            property string trackStr: `${Players.trackedPlayer?.trackTitle || ""} – ${Players.trackedPlayer?.trackArtist || ""}`
+            Layout.maximumWidth: maxWidth
             clip: true
+
+            StyledText {
+                id: trackTitleText
+                text: trackTitleItem.trackStr
+                color: Colors.white
+                font.weight: Font.Bold
+
+                StyledText {
+                    id: wrapTitleText
+                    text: trackTitleItem.trackStr
+                    color: Colors.white
+                    font.weight: Font.Bold
+                    x: trackTitleText.implicitWidth + trackTitleItem.spacing
+                }
+
+                SequentialAnimation on x {
+                    id: textScrollAnimation
+                    running: false
+                    loops: Animation.Infinite
+                    PauseAnimation {
+                        duration: 1000
+                    }
+                    NumberAnimation {
+                        from: 0
+                        to: -trackTitleText.implicitWidth - trackTitleItem.spacing
+                        duration: {
+                            // calculate duration as pixels per second (180 pixels per second)
+                            const distance = wrapTitleText.implicitWidth * 2 + trackTitleItem.spacing;
+                            const dur = distance / 180 * 1000;
+                            return dur;
+                        }
+                    }
+                }
+            }
+        }
+
+        HoverHandler {
+            id: buttonHoverHandler
+            onHoveredChanged: () => {
+                if (hovered && trackTitleText.implicitWidth > trackTitleItem.maxWidth) {
+                    textScrollAnimation.running = true;
+                } else {
+                    textScrollAnimation.running = false;
+                    trackTitleText.x = 0;
+                }
+            }
         }
     }
 
