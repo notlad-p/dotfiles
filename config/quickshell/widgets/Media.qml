@@ -32,7 +32,6 @@ BarButton {
         return `${mins}:${secs}`;
     }
 
-    // TODO: tap handler to pause active player
     RowLayout {
         spacing: 8
         Layout.alignment: Qt.AlignVCenter
@@ -93,6 +92,11 @@ BarButton {
                     }
                 }
             }
+        }
+
+        TapHandler {
+            acceptedButtons: Qt.MiddleButton
+            onTapped: Players.trackedPlayer?.togglePlaying()
         }
 
         HoverHandler {
