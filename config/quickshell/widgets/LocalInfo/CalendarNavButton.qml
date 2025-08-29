@@ -23,7 +23,7 @@ Button {
     background: WrapperRectangle {
         margin: 4
         radius: 6
-        color: calNavHoverHandler.hovered ? Colors.black400 : Colors.black500
+        color: calNavHoverHandler.hovered ? Colors.black500 : Colors.black600
 
         HoverHandler {
             id: calNavHoverHandler

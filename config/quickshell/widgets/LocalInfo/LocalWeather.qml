@@ -10,7 +10,7 @@ import qs.services
 
 WrapperRectangle {
     margin: 16
-    color: Colors.black700
+    color: Colors.black800
     radius: 8
     Layout.fillWidth: true
 
@@ -149,7 +149,7 @@ WrapperRectangle {
             Layout.topMargin: 4
 
             WrapperRectangle {
-                color: Colors.black600
+                color: Colors.black700
                 radius: 6
                 margin: 12
                 Layout.fillWidth: true
@@ -182,7 +182,7 @@ WrapperRectangle {
                 }
             }
             WrapperRectangle {
-                color: Colors.black600
+                color: Colors.black700
                 radius: 6
                 margin: 12
                 Layout.fillWidth: true

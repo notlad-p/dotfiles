@@ -12,7 +12,7 @@ import qs.widgets
 WrapperRectangle {
     id: root
     margin: 16
-    color: Colors.black700
+    color: Colors.black800
     radius: 8
 
     function createLocaleDate(date): Date {
@@ -56,7 +56,7 @@ WrapperRectangle {
         WrapperRectangle {
             margin: 4
             radius: 8
-            color: Colors.black600
+            color: Colors.black700
             Layout.fillWidth: true
             Layout.bottomMargin: 4
 
