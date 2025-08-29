@@ -15,7 +15,7 @@ WrapperItem {
     property real marginY: 6
     property real spacing: 10
     property bool disableHover: false
-    signal clicked
+    signal clicked(int button)
 
     Rectangle {
         id: localInfoRect
@@ -32,7 +32,10 @@ WrapperItem {
         radius: 8
 
         TapHandler {
-            onTapped: root.clicked()
+            acceptedButtons:  Qt.LeftButton | Qt.RightButton | Qt.MiddleButton | Qt.BackButton | Qt.ForwardButton
+            onTapped: (point, button) => {
+                root.clicked(button);
+            }
         }
 
         HoverHandler {
