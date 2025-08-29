@@ -101,6 +101,7 @@ ClippingRectangle {
                             property int spacing: 30
                             implicitWidth: 220
                             clip: true
+                            Layout.maximumHeight: 20
 
                             StyledText {
                                 id: trackTitleText
