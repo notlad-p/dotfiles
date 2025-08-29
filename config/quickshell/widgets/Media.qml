@@ -11,11 +11,20 @@ import qs.config
 BarButton {
     id: root
     marginX: Players.list.length === 0 ? 8 : 12
-    onClicked: () => {
-        if (!selectorLoader.active) {
-            selectorLoader.activeAsync = true;
-        } else {
-            selectorLoader.item.toggle();
+    onClicked: button => {
+        if (button === Qt.LeftButton) {
+            if (!selectorLoader.active) {
+                selectorLoader.activeAsync = true;
+            } else {
+                selectorLoader.item.toggle();
+            }
+        } else if (button === Qt.MiddleButton) {
+            console.log("toggle");
+            Players.trackedPlayer?.togglePlaying();
+        } else if (button === Qt.BackButton) {
+            Players.trackedPlayer?.previous();
+        } else if (button === Qt.ForwardButton) {
+            Players.trackedPlayer?.next();
         }
     }
 
@@ -57,6 +66,7 @@ BarButton {
             property int maxWidth: 175
             property string trackStr: `${Players.trackedPlayer?.trackTitle || ""} – ${Players.trackedPlayer?.trackArtist || ""}`
             Layout.maximumWidth: maxWidth
+            Layout.maximumHeight: 16
             clip: true
 
             StyledText {
@@ -92,11 +102,6 @@ BarButton {
                     }
                 }
             }
-        }
-
-        TapHandler {
-            acceptedButtons: Qt.MiddleButton
-            onTapped: Players.trackedPlayer?.togglePlaying()
         }
 
         HoverHandler {
@@ -149,134 +154,6 @@ BarButton {
                     player: Players.trackedPlayer
                 }
             }
-
-            // ColumnLayout {
-            //     Text {
-            //         text: {
-            //             console.log(Network);
-            //             return "Network Service Test";
-            //         }
-            //         font.bold: true
-            //         color: "white"
-            //     }
-            //
-            //     Repeater {
-            //         Layout.fillWidth: true
-            //         Layout.fillHeight: true
-            //         model: Network.devices.values
-            //
-            //         delegate: WrapperRectangle {
-            //             width: parent.width
-            //             color: "transparent"
-            //             border.color: palette.button
-            //             border.width: 1
-            //             margin: 10
-            //
-            //             ColumnLayout {
-            //                 Text {
-            //                     text: {
-            //                         return `Device #${index}: ${modelData.name}`;
-            //                     }
-            //                     font.bold: true
-            //                     color: "white"
-            //                 }
-            //
-            //                 Text {
-            //                     text: {
-            //                         return `Address: ${modelData.address}`;
-            //                     }
-            //                     font.bold: true
-            //                     color: "white"
-            //                 }
-            //
-            //                 Text {
-            //                     text: "Type: " + NetworkDeviceType.toString(modelData.type)
-            //                     color: "white"
-            //                 }
-            //
-            //                 Text {
-            //                     text: "State: " + NetworkDeviceState.toString(modelData.state)
-            //                     color: "white"
-            //                 }
-            //
-            //                 Text {
-            //                     visible: modelData.type === NetworkDeviceType.Wireless
-            //                     // text: "Scanning: " + modelData.scanning
-            //                     text: "Last Scan: " + modelData.lastScan
-            //                     color: "white"
-            //
-            //                     TapHandler {
-            //                         onTapped: {
-            //                             console.log("clicked scan");
-            //                             modelData.scan();
-            //                         }
-            //                     }
-            //
-            //
-            //                     Connections {
-            //                         target: modelData
-            //                         ignoreUnknownSignals: true
-            //                         function onLastScanChanged(lastScan) {
-            //                             console.log("LAST SCAN CHANGED: ", lastScan);
-            //                         }
-            //                     }
-            //                 }
-            //                 //
-            //                 // Text {
-            //                 //     visible: modelData.type === NetworkDeviceType.Wireless
-            //                 //     // NOTE: last scan will be null at first
-            //                 //     text: {
-            //                 //         // console.log("Last scan: ", modelData.lastScan);
-            //                 //         modelData.onLastScanChanged.connect(() => {
-            //                 //             console.log("LAST SCAN CHANGED!!!!!!!!!!!");
-            //                 //         });
-            //                 //         return `Last Scan: ${modelData.lastScan ? Qt.formatDateTime(modelData.lastScan, "yyyy-MM-dd hh:mm:ss") : ""}`;
-            //                 //         // return "Last scan?";
-            //                 //     }
-            //                 //     color: "white"
-            //                 // }
-            //                 //
-            //                 // Text {
-            //                 //     visible: modelData.type === NetworkDeviceType.Wireless
-            //                 //     text: "NETWORKS:"
-            //                 //     color: "white"
-            //                 // }
-            //                 //
-            //                 // Repeater {
-            //                 //     enabled: modelData.type === NetworkDeviceType.Wireless
-            //                 //     Layout.fillWidth: true
-            //                 //     Layout.fillHeight: true
-            //                 //     model: modelData.networks.values
-            //                 //
-            //                 //     delegate: WrapperRectangle {
-            //                 //         width: parent.width
-            //                 //         color: "transparent"
-            //                 //         border.color: palette.button
-            //                 //         border.width: 1
-            //                 //         margin: 10
-            //                 //
-            //                 //         ColumnLayout {
-            //                 //             Text {
-            //                 //                 text: "SSID: " + modelData.ssid
-            //                 //                 color: "white"
-            //                 //             }
-            //                 //
-            //                 //             Text {
-            //                 //                 text: "Signal: " + modelData.signal
-            //                 //                 color: "white"
-            //                 //             }
-            //                 //
-            //                 //             Text {
-            //                 //                 text: "Connected: " + modelData.connected
-            //                 //                 color: "white"
-            //                 //             }
-            //                 //         }
-            //                 //     }
-            //                 // }
-            //             }
-            //         }
-            //     }
-            // }
         }
     }
 }
