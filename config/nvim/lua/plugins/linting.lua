@@ -8,6 +8,7 @@ return {
         -- fish = { "fish" },
         sh = { "shellcheck" },
         lua = { "luacheck" },
+        markdown = {},
         -- markdown = { "typos" },
 
         -- Use the "*" filetype to run linters on all filetypes.
