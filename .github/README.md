@@ -1,1 +1,3 @@
 # Dotfiles
+
+Hyprland based dotfiles
