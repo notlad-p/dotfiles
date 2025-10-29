@@ -129,6 +129,12 @@ return {
         codelens = {
           enabled = false,
         },
+        -- Enable this to enable the builtin LSP folding on Neovim.
+        -- Be aware that you also will need to properly configure your LSP server to
+        -- provide the folds.
+        folds = {
+          enabled = true,
+        },
         -- add any global capabilities here
         capabilities = {
           workspace = {
@@ -178,6 +184,10 @@ return {
             },
           },
 
+          dartls = {
+            enabled = true,
+          },
+
           ruff = {
             keys = {
               {
@@ -197,16 +207,6 @@ return {
                 classFunctions = { "tw", "clsx" },
               },
             },
-            root_dir = function(fname)
-              local util = require("lspconfig/util")
-              return util.root_pattern(
-                "tailwind.config.js",
-                "tailwind.config.cjs",
-                "tailwind.js",
-                "tailwind.cjs",
-                "tailwind.config.ts"
-              )(fname)
-            end,
           },
 
           --- @deprecated -- tsserver renamed to ts_ls but not yet released, so keep this for now
@@ -339,7 +339,7 @@ return {
     end,
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
         -- LSP
