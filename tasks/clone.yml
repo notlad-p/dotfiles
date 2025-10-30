@@ -3,7 +3,9 @@
   ansible.builtin.git:
     repo: "https://github.com/notlad-p/lad-schemes.nvim.git"
     dest: ~/Projects/lad-schemes.nvim/
-- name: Clone notlad-p/lad-schemes.nvim
+    version: main
+- name: Clone notlad-p/wallpapers
   ansible.builtin.git:
     repo: "https://github.com/notlad-p/wallpapers.git"
     dest: ~/Pictures/wallpapers/
+    version: main

@@ -74,7 +74,7 @@
     - desktop-environment
   kewlfft.aur.aur:
     use: paru
-    aur_only: yes
+    aur_only: true
     name:
       - hyprshot
       - swaync
@@ -119,7 +119,7 @@
   kewlfft.aur.aur:
     use: paru
     state: present
-    aur_only: yes
+    aur_only: true
     name:
       - spotify
       - zen-browser-bin
@@ -182,7 +182,7 @@
     - development-environment
   kewlfft.aur.aur:
     use: paru
-    aur_only: yes
+    aur_only: true
     state: present
     name:
       # yazi dep

@@ -4,23 +4,24 @@
   ansible.builtin.file:
     path: ~/.config
     state: directory
+    mode: "0755"
 
 - name: Find .config files
   ansible.builtin.find:
     paths: "{{ playbook_dir }}/config"
-    recurse: no
+    recurse: true
     file_type: any
-    hidden: yes
+    hidden: true
   register: dotfiles_config
 
 - name: Symlink configs
   ansible.builtin.file:
     src: "{{ item.path }}"
-    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/{{item.path | basename}}"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/{{ item.path | basename }}"
     state: link
   loop: "{{ dotfiles_config.files }}"
   loop_control:
-    label: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/{{item.path | basename}}"
+    label: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/{{ item.path | basename }}"
 
 - name: Symlink .zshenv to home directory
   ansible.builtin.file:
