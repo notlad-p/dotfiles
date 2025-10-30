@@ -107,10 +107,12 @@
       - firefox
       - gwenview # TODO: replace with gnome viewer
       - nwg-look
+      - nwg-displays
       - obs-studio
       - pavucontrol
       - steam
       - vivaldi
+      - overskride-bin
       # - discord
 
 - name: Applications (AUR)
@@ -163,7 +165,6 @@
       - fd
       - ripgrep
       - fzf
-      - zoxide
       - imagemagick
       - xclip
       - wl-clipboard
