@@ -1,7 +1,7 @@
 # Dotfiles
 
 <img src="assets/screenshots/browser-kitty.png" alt="Desktop">
-[More Screenshots](#screenshots)
+<a href="#screenshots">More Screenshots</a>
 <br></br>
 
 Welcome to my Arch Linux dotfiles, here's what I'm using:
