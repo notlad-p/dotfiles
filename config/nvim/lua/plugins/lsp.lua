@@ -3,127 +3,38 @@ return {
 
     "neovim/nvim-lspconfig",
     opts = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-
-      -- vim.diagnostic.config({ float = { border = "single " } })
-      -- local border = {
-      --   { "🭽", "FloatBorder" },
-      --
-      --   { "▔", "FloatBorder" },
-      --   { "🭾", "FloatBorder" },
-      --   { "▕", "FloatBorder" },
-      --   { "🭿", "FloatBorder" },
-      --   { "▁", "FloatBorder" },
-      --   { "🭼", "FloatBorder" },
-      --   { "▏", "FloatBorder" },
-      -- }
-      -- keys[#keys + 1] = {
-      --   "K",
-      --   function()
-      --     return vim.lsp.buf.hover({ border = "single" })
-      --   end,
-      --   desc = "Hover",
-      -- }
-      local format = function(diagnostic)
-        local diagnostic_str = diagnostic.message
-
-        if diagnostic.source then
-          diagnostic_str = diagnostic_str .. " (" .. diagnostic.source
-        end
-
-        if tostring(diagnostic.code) and not tostring(diagnostic.code) == "nil" then
-          return diagnostic_str .. ": " .. tostring(diagnostic.code) .. ")"
-        end
-
-        return diagnostic_str .. ")"
-      end
-
-      local virtual_text_config = {
-        spacing = 4,
-        -- source = true,
-        prefix = "●",
-        format = format,
-        -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
-        -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
-        -- prefix = "icons",
-      }
-
-      local virtual_lines_config = {
-        format = format,
-      }
-
-      ---@type vim.diagnostic.Opts
-      local diagnostics = {
-        underline = true,
-        update_in_insert = false,
-        virtual_text = virtual_text_config,
-        severity_sort = true,
-        signs = {
-          text = {
-            [vim.diagnostic.severity.ERROR] = LazyVim.config.icons.diagnostics.Error,
-            [vim.diagnostic.severity.WARN] = LazyVim.config.icons.diagnostics.Warn,
-            [vim.diagnostic.severity.HINT] = LazyVim.config.icons.diagnostics.Hint,
-            [vim.diagnostic.severity.INFO] = LazyVim.config.icons.diagnostics.Info,
-          },
-        },
-      }
-
-      keys[#keys + 1] = {
-        "gl",
-        function()
-          vim.diagnostic.open_float(0)
-        end,
-        desc = "Show line diagnostics",
-      }
-
-      -- toggle virtual lines diagnostics
-      keys[#keys + 1] = {
-        "<leader>uv",
-        function()
-          local is_vt = not vim.diagnostic.config().virtual_text
-
-          if is_vt then
-            diagnostics.virtual_text = virtual_text_config
-            diagnostics.virtual_lines = false
-            vim.diagnostic.config(diagnostics)
-          else
-            vim.diagnostic.config({ virtual_lines = virtual_lines_config, virtual_text = false })
-          end
-
-          -- vim.api.nvim_create_autocmd("CursorMoved", {
-          --   group = vim.api.nvim_create_augroup("line-diagnostics", { clear = true }),
-          --   callback = function()
-          --     vim.diagnostic.config({ virtual_lines = false, virtual_text = true })
-          --     return true
-          --   end,
-          -- })
-          -- return vim.lsp.buf.hover({ virtual_lines = {} })
-        end,
-        desc = "Toggle diagnostics virtual lines",
-      }
-
-      -- remap 'c' keymaps to 'l'
-      for key, value in pairs(keys) do
-        local isCodeMap = string.find(value[1], "<leader>c")
-
-        if isCodeMap then
-          keys[key][1] = string.gsub(keys[key][1], "<leader>c", "<leader>l")
-        end
-      end
-
       ---@class PluginLspOpts
       local ret = {
         -- options for vim.diagnostic.config()
         ---@type vim.diagnostic.Opts
-        diagnostics = diagnostics,
-        -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
+        diagnostics = {
+          underline = true,
+          update_in_insert = false,
+          virtual_text = {
+            spacing = 4,
+            source = "if_many",
+            prefix = "●",
+            -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
+            -- prefix = "icons",
+          },
+          severity_sort = true,
+          signs = {
+            text = {
+              [vim.diagnostic.severity.ERROR] = LazyVim.config.icons.diagnostics.Error,
+              [vim.diagnostic.severity.WARN] = LazyVim.config.icons.diagnostics.Warn,
+              [vim.diagnostic.severity.HINT] = LazyVim.config.icons.diagnostics.Hint,
+              [vim.diagnostic.severity.INFO] = LazyVim.config.icons.diagnostics.Info,
+            },
+          },
+        },
+        -- Enable this to enable the builtin LSP inlay hints on Neovim.
         -- Be aware that you also will need to properly configure your LSP server to
         -- provide the inlay hints.
         inlay_hints = {
           enabled = true,
           exclude = { "vue" }, -- filetypes for which you don't want to enable inlay hints
         },
-        -- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
+        -- Enable this to enable the builtin LSP code lenses on Neovim.
         -- Be aware that you also will need to properly configure your LSP server to
         -- provide the code lenses.
         codelens = {
@@ -135,15 +46,6 @@ return {
         folds = {
           enabled = true,
         },
-        -- add any global capabilities here
-        capabilities = {
-          workspace = {
-            fileOperations = {
-              didRename = true,
-              willRename = true,
-            },
-          },
-        },
         -- options for vim.lsp.buf.format
         -- `bufnr` and `filter` is handled by the LazyVim formatter,
         -- but can be also overridden when specified
@@ -151,10 +53,156 @@ return {
           formatting_options = nil,
           timeout_ms = nil,
         },
-
         -- LSP Server Settings
-        ---@type lspconfig.options
+        -- Sets the default configuration for an LSP client (or all clients if the special name "*" is used).
+        ---@alias lazyvim.lsp.Config vim.lsp.Config|{mason?:boolean, enabled?:boolean, keys?:LazyKeysLspSpec[]}
+        ---@type table<string, lazyvim.lsp.Config|boolean>
         servers = {
+          -- configuration for all lsp servers
+          ["*"] = {
+            capabilities = {
+              workspace = {
+                fileOperations = {
+                  didRename = true,
+                  willRename = true,
+                },
+              },
+            },
+            keys = {
+              {
+                "<leader>ll",
+                function()
+                  Snacks.picker.lsp_config()
+                end,
+                desc = "Lsp Info",
+              },
+              { "gd", vim.lsp.buf.definition, desc = "Goto Definition", has = "definition" },
+              { "gr", vim.lsp.buf.references, desc = "References", nowait = true },
+              { "gI", vim.lsp.buf.implementation, desc = "Goto Implementation" },
+              { "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
+              { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+              {
+                "K",
+                function()
+                  return vim.lsp.buf.hover()
+                end,
+                desc = "Hover",
+              },
+              {
+                "gK",
+                function()
+                  return vim.lsp.buf.signature_help()
+                end,
+                desc = "Signature Help",
+                has = "signatureHelp",
+              },
+              {
+                "<c-k>",
+                function()
+                  return vim.lsp.buf.signature_help()
+                end,
+                mode = "i",
+                desc = "Signature Help",
+                has = "signatureHelp",
+              },
+              { "<leader>la", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "x" }, has = "codeAction" },
+              { "<leader>lc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "x" }, has = "codeLens" },
+              {
+                "<leader>lC",
+                vim.lsp.codelens.refresh,
+                desc = "Refresh & Display Codelens",
+                mode = { "n" },
+                has = "codeLens",
+              },
+              {
+                "<leader>lR",
+                function()
+                  Snacks.rename.rename_file()
+                end,
+                desc = "Rename File",
+                mode = { "n" },
+                has = { "workspace/didRenameFiles", "workspace/willRenameFiles" },
+              },
+              { "<leader>lr", vim.lsp.buf.rename, desc = "Rename", has = "rename" },
+              { "<leader>lA", LazyVim.lsp.action.source, desc = "Source Action", has = "codeAction" },
+              {
+                "]]",
+                function()
+                  Snacks.words.jump(vim.v.count1)
+                end,
+                has = "documentHighlight",
+                desc = "Next Reference",
+                enabled = function()
+                  return Snacks.words.is_enabled()
+                end,
+              },
+              {
+                "[[",
+                function()
+                  Snacks.words.jump(-vim.v.count1)
+                end,
+                has = "documentHighlight",
+                desc = "Prev Reference",
+                enabled = function()
+                  return Snacks.words.is_enabled()
+                end,
+              },
+              {
+                "<a-n>",
+                function()
+                  Snacks.words.jump(vim.v.count1, true)
+                end,
+                has = "documentHighlight",
+                desc = "Next Reference",
+                enabled = function()
+                  return Snacks.words.is_enabled()
+                end,
+              },
+              {
+                "<a-p>",
+                function()
+                  Snacks.words.jump(-vim.v.count1, true)
+                end,
+                has = "documentHighlight",
+                desc = "Prev Reference",
+                enabled = function()
+                  return Snacks.words.is_enabled()
+                end,
+              },
+              {
+                "gl",
+                function()
+                  -- vim.diagnostic.open_float(0)
+                  vim.diagnostic.open_float()
+                end,
+                desc = "Show line diagnostics",
+              },
+              {
+                "<leader>uv",
+                function()
+                  local is_vt = not vim.diagnostic.config().virtual_text
+
+                  if is_vt then
+                    diagnostics.virtual_text = virtual_text_config
+                    diagnostics.virtual_lines = false
+                    vim.diagnostic.config(diagnostics)
+                  else
+                    vim.diagnostic.config({ virtual_lines = virtual_lines_config, virtual_text = false })
+                  end
+
+                  -- vim.api.nvim_create_autocmd("CursorMoved", {
+                  --   group = vim.api.nvim_create_augroup("line-diagnostics", { clear = true }),
+                  --   callback = function()
+                  --     vim.diagnostic.config({ virtual_lines = false, virtual_text = true })
+                  --     return true
+                  --   end,
+                  -- })
+                  -- return vim.lsp.buf.hover({ virtual_lines = {} })
+                end,
+                desc = "Toggle diagnostics virtual lines",
+              },
+            },
+          },
           qmlls = {
             cmd = { "qmlls", "-E" },
           },
@@ -309,21 +357,42 @@ return {
             },
           },
 
-          -- ts_ls = {
-          --   root_dir = function(fname)
-          --     local util = require("lspconfig/util")
-          --     return util.root_pattern("tsconfig.json", "package.json")(fname)
-          --     -- and not util.root_pattern "deno.json"(fname)
-          --   end,
-          --   -- so that deno projects can't use ts_ls: https://www.reddit.com/r/neovim/comments/10n795v/disable_tsserver_in_deno_projects/
-          --   -- NOTE: enable this if you intend to use ts_ls for single file javascript/typescript files
-          --   single_file_support = false,
-          -- },
+          stylua = { enabled = false },
+          lua_ls = {
+            -- mason = false, -- set to false if you don't want this server to be installed with mason
+            -- Use this to add any additional keymaps
+            -- for specific lsp servers
+            -- ---@type LazyKeysSpec[]
+            -- keys = {},
+            settings = {
+              Lua = {
+                workspace = {
+                  checkThirdParty = false,
+                },
+                codeLens = {
+                  enable = true,
+                },
+                completion = {
+                  callSnippet = "Replace",
+                },
+                doc = {
+                  privateName = { "^_" },
+                },
+                hint = {
+                  enable = true,
+                  setType = false,
+                  paramType = true,
+                  paramName = "Disable",
+                  semicolon = "Disable",
+                  arrayIndex = "Disable",
+                },
+              },
+            },
+          },
         },
-
         -- you can do any additional lsp server setup here
         -- return true if you don't want this server to be setup with lspconfig
-        ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
+        ---@type table<string, fun(server:string, opts: vim.lsp.Config):boolean?>
         setup = {
           -- example to setup with typescript.nvim
           -- tsserver = function(_, opts)
@@ -334,7 +403,6 @@ return {
           -- ["*"] = function(server, opts) end,
         },
       }
-
       return ret
     end,
   },
