@@ -190,3 +190,8 @@
       # fast node manager
       - fnm-bin
       - gowall
+- name: Remove the 'aur_builder' user
+  ansible.builtin.user:
+    name: aur_builder
+    state: absent
+    remove: true
