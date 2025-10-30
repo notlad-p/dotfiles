@@ -14,7 +14,7 @@ Welcome to my Arch Linux dotfiles, here's what I'm using:
 - Editor: <a href="https://neovim.io/" target="_blank" rel="noopener noreferrer">Neovim</a>
 - Launcher: <a href="https://github.com/abenz1267/walker" target="_blank" rel="noopener noreferrer">Walker</a>
 - Additional tools: paru, tmux, yazi, zoxide, lazygit, swww, fastfetch, and many more
-  - See [`/tasks/packages.yml`](./tasks/packages.yml) for the full list of packages
+  - See [`/tasks/packages.yml`](../tasks/packages.yml) for the full list of packages
 
 ### Installing
 
@@ -48,7 +48,7 @@ ansible-playbook main.yml --ask-become-pass
 
 |                                           Bar & Widgets                                            |
 | :------------------------------------------------------------------------------------------------: |
-|             <img src="assets/screenshots/browser-kitty.png" alt="Bar" align="center">              |
+|                  <img src="assets/screenshots/bar.png" alt="Bar" align="center">                   |
 | <img src="assets/screenshots/quickshell-widgets-1.png" alt="First set of widgets" align="center">  |
 | <img src="assets/screenshots/quickshell-widgets-2.png" alt="Second set of widgets" align="center"> |
 
