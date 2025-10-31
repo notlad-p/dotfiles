@@ -9,7 +9,7 @@
 - name: Find .config files
   ansible.builtin.find:
     paths: "{{ playbook_dir }}/config"
-    recurse: true
+    recurse: false
     file_type: any
     hidden: true
   register: dotfiles_config
