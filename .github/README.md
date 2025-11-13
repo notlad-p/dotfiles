@@ -67,3 +67,7 @@ ansible-playbook main.yml --ask-become-pass
 |                                   Lock Screen                                   |
 | :-----------------------------------------------------------------------------: |
 | <img src="assets/screenshots/lock-screen.png" alt="Lock Screen" align="center"> |
+
+### Upcoming
+
+I'm currently redesigning my Quickshell config to use the <a href="https://m3.material.io/" target="_blank" rel="noopener noreferrer">Material 3 Expressive</a> design system, [here's a preview](assets/preview-screenshots/material-preview.png).
