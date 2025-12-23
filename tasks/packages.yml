@@ -37,6 +37,7 @@
       - jq
       - eza
       - bat
+      - difftastic
       - inter-font
       - playerctl
       - networkmanager
