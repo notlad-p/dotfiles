@@ -79,23 +79,6 @@
     name:
       - hyprshot
       - swaync
-      - libastal-meta
-      - aylurs-gtk-shell-git
-      - walker-bin
-
-- name: AwesomeWM
-  tags:
-    - never
-    - desktop-environment
-    - awesome
-  kewlfft.aur.aur:
-    use: paru
-    name:
-      - xclip
-      - scrot
-      # AUR
-      - awesome-git
-    state: presenDesktopt
 
 - name: Applications
   tags:
@@ -128,7 +111,6 @@
       - zen-browser-bin
       - brave-bin
       - obsidian-appimage
-      - vesktop-bin
       - visual-studio-code-bin
       # - google-chrome?
 
