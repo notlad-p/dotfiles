@@ -161,11 +161,6 @@ PopupWindow {
                 }
             ]
 
-            // ask claude / chatgpt about better way of auto sizing ListView
-            // get sources list going
-            // add rectangle background to each list
-            // add to audio node component: hover bg, cursor, left icon, caret, revealer (icon based on volume, slider, percentage)
-
             WrapperItem {
                 id: row
                 anchors.fill: parent

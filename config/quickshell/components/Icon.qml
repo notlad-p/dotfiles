@@ -29,5 +29,9 @@ Item {
         anchors.fill: icon
         colorization: 1.0
         colorizationColor: root.iconColor
+
+        Behavior on colorizationColor {
+            animation: Theme.animation.expressiveDefaultEffects.color.createObject(this)
+        }
     }
 }
