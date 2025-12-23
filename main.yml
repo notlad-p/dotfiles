@@ -3,17 +3,14 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: Home directory
-      ansible.builtin.debug:
-        msg: "'{{ lookup('ansible.builtin.env', 'HOME') }}' is the HOME environment variable."
     - name: Playbook directory
       ansible.builtin.debug:
         msg: "'{{ playbook_dir }}' is the playbook directory."
 
-    - name: Get user
-      become: true # become sudo
+    - name: Set user_dir and user_id vars
       ansible.builtin.set_fact:
-        remote_regular_user: "{{ ansible_user_id }}"
+        user_dir: "{{ ansible_facts['user_dir'] }}"
+        user_id: "{{ ansible_facts['user_id'] }}"
 
     - name: Create Directories
       ansible.builtin.include_tasks: "tasks/directories.yml"
@@ -28,9 +25,9 @@
       ansible.builtin.include_tasks: "tasks/packages.yml"
 
     - name: Change user default shell to zsh
-      become: true # become sudo
+      become: true
       tags:
         - zsh
       ansible.builtin.user:
-        name: "{{ remote_regular_user }}"
+        name: "{{ user_id }}"
         shell: /usr/bin/zsh

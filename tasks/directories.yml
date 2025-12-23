@@ -3,12 +3,12 @@
 - name: Create ~/Packages directory
   # TODO: add tags here?
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/Packages"
+    path: "{{ user_dir }}/Packages"
     state: directory
     mode: "0755"
 # - ~/Projects for personal projects & lad-schemes.nvim
 - name: Create ~/Projects directory
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/Projects"
+    path: "{{ user_dir }}/Projects"
     state: directory
     mode: "0755"

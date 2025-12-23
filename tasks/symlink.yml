@@ -17,16 +17,16 @@
 - name: Symlink configs
   ansible.builtin.file:
     src: "{{ item.path }}"
-    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/{{ item.path | basename }}"
+    dest: "{{ user_dir }}/.config/{{ item.path | basename }}"
     state: link
   loop: "{{ dotfiles_config.files }}"
   loop_control:
-    label: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/{{ item.path | basename }}"
+    label: "{{ user_dir }}/.config/{{ item.path | basename }}"
 
 - name: Symlink .zshenv to home directory
   ansible.builtin.file:
     src: "{{ playbook_dir }}/config/zsh/.zshenv"
-    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.zshenv"
+    dest: "{{ user_dir }}/.zshenv"
     state: link
 
 - name: Symlink Nvidia config for 3 monitor setup at home
