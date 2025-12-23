@@ -121,3 +121,16 @@ del("n", "<leader>L")
 keymap("n", "<leader>LL", function()
   LazyVim.news.changelog()
 end, { desc = "LazyVim Changelog" })
+
+-- toggle enable/disable ai completion
+
+keymap("n", "<leader>ac", "<cmd>Copilot toggle<cr>", { desc = "Toggle Copilot" })
+
+-- keymap("n", "<leader>ac", function()
+--   if not vim.g.copilot_enabled then
+--     vim.g.copilot_enabled = true
+--     return
+--   end
+--
+--   require("copilot.command").toggle()
+-- end, { desc = "Toggle Copilot" })
