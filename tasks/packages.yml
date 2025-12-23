@@ -79,6 +79,7 @@
     name:
       - hyprshot
       - swaync
+      - vicinae-bin
 
 - name: Applications
   tags:
