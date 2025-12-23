@@ -232,10 +232,6 @@ return {
             },
           },
 
-          dartls = {
-            enabled = true,
-          },
-
           ruff = {
             keys = {
               {

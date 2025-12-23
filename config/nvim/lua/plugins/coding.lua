@@ -49,6 +49,18 @@ return {
           end,
         },
       },
+
+      sources = {
+        providers = {
+          snippets = {
+            opts = {
+              extended_filetypes = {
+                dart = { "flutter" },
+              },
+            },
+          },
+        },
+      },
     },
   },
 }

@@ -21,6 +21,10 @@
       {
         "language": "lua",
         "path": "./lua.json"
+      },
+      {
+        "language": "dart",
+        "path": "./flutter-riverpod.json"
       }
     ]
   }
