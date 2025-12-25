@@ -80,6 +80,8 @@
       - hyprshot
       - swaync
       - vicinae-bin
+      - quickshell
+      - matugen-bin
 
 - name: Applications
   tags:
@@ -88,17 +90,12 @@
     use: paru
     state: present
     name:
-      - dolphin # TODO: replace with gnome files
+      - dolphin
       - firefox
-      - gwenview # TODO: replace with gnome viewer
+      - gwenview
       - nwg-look
       - nwg-displays
-      - obs-studio
       - pavucontrol
-      - steam
-      - vivaldi
-      - overskride-bin
-      # - discord
 
 - name: Applications (AUR)
   tags:
@@ -108,12 +105,7 @@
     state: present
     aur_only: true
     name:
-      - spotify
       - zen-browser-bin
-      - brave-bin
-      - obsidian-appimage
-      - visual-studio-code-bin
-      # - google-chrome?
 
 - name: Development Environment / Terminal
   tags:
@@ -124,6 +116,7 @@
       - starship
       - zoxide
       - neovim
+      - tree-sitter-cli
       - tmux
       - kitty
       - ttf-firacode-nerd
