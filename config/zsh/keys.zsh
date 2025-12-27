@@ -14,16 +14,6 @@ bindkey "^?" backward-delete-char
 bindkey "^H" backward-delete-char
 bindkey "^U" backward-kill-line
 
-# add clipboard copy
-# Yank to the system clipboard
-# function vi-yank-xclip {
-#   zle vi-yank
-#   echo "$CUTBUFFER" | xclip -selection "clipboard" 
-# }
-#
-# zle -N vi-yank-xclip
-# bindkey -M vicmd ' ' vi-yank-xclip
-
 # enable text objects for things like da" or ci(
 autoload -Uz select-bracketed select-quoted
 zle -N select-quoted
@@ -46,8 +36,7 @@ bindkey -s '^T' 'tmux^M' # bind CTRL t to enter tmux
 bindkey -s '^Y' 'y^M' # bind CTRL y to open yazi
 
 # fzf
-# rebind CTRL-t to CTRL-p
-# zle -N fzf-file-widget 
+# rebind ALT-c to CTRL-p
 bindkey -rM emacs '\ec'
 bindkey -rM vicmd '\ec'
 bindkey -rM viins '\ec'
