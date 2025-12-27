@@ -1,0 +1,12 @@
+---
+- name: Set Neovim as git editor
+  community.general.git_config:
+    name: core.editor
+    scope: global
+    value: nvim
+
+- name: Set difftastic as git external diff
+  community.general.git_config:
+    name: diff.external
+    scope: global
+    value: difft --display=side-by-side-show-both

@@ -12,6 +12,9 @@
         user_dir: "{{ ansible_facts['user_dir'] }}"
         user_id: "{{ ansible_facts['user_id'] }}"
 
+    - name: Setup Git config
+      ansible.builtin.include_tasks: "tasks/git_config.yml"
+
     - name: Create Directories
       ansible.builtin.include_tasks: "tasks/directories.yml"
 
