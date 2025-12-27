@@ -54,6 +54,3 @@ export FZF_DEFAULT_OPTS="
 
 # if zoxide is installed, initialize it
 [ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
-
-# Fast Node Manager (fnm)
-[ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd)"

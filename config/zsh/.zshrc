@@ -69,3 +69,6 @@ autopair-init
 autoload -U colors && colors
 
 eval fastfetch
+
+# source local configuration
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
