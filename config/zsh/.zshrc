@@ -24,7 +24,6 @@ source /usr/share/fzf/key-bindings.zsh # fzf key-binds
 source "$ZDOTDIR/exports.zsh"
 source "$ZDOTDIR/alias.zsh"
 source "$ZDOTDIR/keys.zsh"
-source "$ZDOTDIR/fzf.zsh"
 
 # fzf-tab style
 zstyle ':fzf-tab:*' fzf-flags --height=60% # increase fzf height
