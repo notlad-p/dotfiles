@@ -1,5 +1,5 @@
 export TERMINAL="kitty"
-export BROWSER="firefox"
+export BROWSER="zen-browser"
 export VISUAL="nvim"
 export EDITOR="nvim"
 export MANPAGER='nvim +Man!'
