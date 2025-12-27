@@ -1,6 +1,5 @@
 export ZDOTDIR="$HOME/.config/zsh"
 
-
 autoload -Uz compinit
 
 # options
@@ -68,30 +67,6 @@ compinit
 # initialize autopairs
 autopair-init
 
-# print logo
-
 autoload -U colors && colors
 
 eval fastfetch
-# echo $fg[blue]"⠀⠀⠀⢀⣴⠀⢸⡄⠀⢀⣀⣤⣤⣶⣶⣶⣶⣶⣦⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀"
-# echo "⠀⠀⠀⢸⡧⣠⣿⡇⢀⣤⠹⣿⣿⣿⣿⣿⣭⣭⣛⡻⢿⣿⣷⣄⠀⠀⠀⠀⠀⠀"
-# echo "⠀⠀⠀⣘⣾⣿⣟⣤⡀⠹⣷⠘⣿⣿⣿⣿⣽⡻⢿⣿⣷⣬⡙⢿⣷⣄⠀⠀⠀⠀"
-# echo "⠀⠀⠀⣿⣫⣿⣿⣿⣿⡆⢹⡇⢻⣿⣿⣿⣿⣿⣷⣝⢿⣿⣿⣄⠻⣿⣆⠀⠀⠀"
-# echo "⠀⠀⢼⣿⠟⠋⢩⣿⣿⡇⢸⡇⣸⣿⣿⣿⣿⡝⣿⣿⣆⢹⣿⣿⣆⠹⣿⡆⠀⠀"
-# echo "⠀⠀⠈⠁⠀⣰⣿⣿⣿⠇⣸⢣⣿⣿⣿⣿⣿⣷⢸⣿⣿⡀⢿⣿⣿⡀⢻⣷⠀⠀"
-# echo "⠀⠀⠀⠀⣼⣿⣿⣿⡟⠠⣣⣾⣿⣿⣿⣿⣿⡟⢀⣿⣿⡇⢸⣿⣿⡇⢸⣿⠀⠀"
-# echo "⠀⠀⠀⢸⣿⣿⣿⣿⣧⣌⣻⢿⣿⣿⣿⠿⠛⠃⠘⠛⠿⠁⢸⣿⣿⡇⢈⣿⠀⠀"
-# echo "⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣤⣀⠀⠀⠀⠈⠛⢿⠇⢸⡏⠀⠀"
-# echo "⠀⠀⠀⠈⢿⣿⣿⣿⣿⣟⠿⣿⣿⣿⣿⢿⣿⣿⣿⣷⡄⠀⠀⠀⠈⠀⡼⠁⣸⡀"
-# echo "⠀⠀⣀⣤⣶⣯⣟⢻⣿⣿⡇⠛⠛⣛⣛⢸⣿⣿⣿⢹⣿⣦⡀⠀⠀⠠⠁⠐⢻⠁"
-# echo "⢀⣾⢿⡏⠁⠀⠀⠀⢿⣿⡇⠀⠀⠘⢿⡸⣿⣿⣿⣄⡙⠻⢿⣷⣤⣤⣤⣴⠏⠀"
-# echo "⠀⠿⠈⠀⠀⠀⠀⠀⠈⢿⣷⡄⠀⠀⠀⢱⣭⠙⠛⠛⢿⣿⠀⠀⠉⠉⠉⠀⠀⠀"
-# echo "⠀⠀⠀⠀⠀⠀⠀⣤⣤⣾⡟⠀⠀⣤⣤⣼⣿⠗⣤⣤⣼⣿⠗⠀⠀⠀⠀⠀⠀⠀"
-
-# pnpm
-export PNPM_HOME="/home/dalton/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end

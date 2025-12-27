@@ -13,9 +13,6 @@ if [ -x "$(command -v exa)" ]; then
   alias lt='exa -T --icons' # ls recursivly as a tree
 fi
 
-# bat
-alias bat='bat --theme gruvbox-dark' # use gruvbox-dark theme
-
 # git
 alias gs='git status'
 alias gp='git push'
@@ -69,5 +66,3 @@ we () {
 
 # Watch directory and execute $file on save
 # alias wed
-
-# alias kdeconnectd='QT_QPA_PLATFORM=xcb /usr/bin/kdeconnectd'

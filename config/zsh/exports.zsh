@@ -23,30 +23,11 @@ ZSH_HIGHLIGHT_STYLES[builtin]='fg=5'
 # starship prompt
 eval "$(starship init zsh)"
 
-export DELTA_FEATURES='+side-by-side'
-
 # FZF
 # default command to show hidden files
 # export FZF_DEFAULT_OPTS='--color=gutter:red'
 export FZF_DEFAULT_COMMAND='find . \! \( -type d -path ./.git -prune \) \! \( -type d -path ./node_modules -prune \) \! -type d \! -name '\''*.tags'\'' -printf '\''%P\n'\'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-# color0="#061115"
-# color1="#0C171B"
-# color2="#101B1F"
-# color3="#192428"
-# color4="#212C30"
-# color5="#D9D7D6"
-# color6="#E3E1E0"
-# color7="#EDEBEA"
-# color8="#f26e74"
-# color9="#ecd28b"
-# color10="#E9967E"
-# color11="#82c29c"
-# color12="#6791C9"
-# color13="#79AAEB"
-# color14="#C488EC"
-# color15="#F16269"
 
 # FZF bases
 export FZF_DEFAULT_OPTS="
