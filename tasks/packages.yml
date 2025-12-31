@@ -68,6 +68,7 @@
       - hypridle
       - hyprlock
       - swww
+      - swappy
     state: present
 
 - name: Desktop Environment (AUR)
