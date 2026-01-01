@@ -24,6 +24,12 @@
     - name: Symlink configs
       ansible.builtin.include_tasks: "tasks/symlink.yml"
 
+    - name: Symlink .face to home directory
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/assets/.face"
+        dest: "{{ user_dir }}/.face"
+        state: link
+
     - name: Install Packages
       ansible.builtin.include_tasks: "tasks/packages.yml"
 
