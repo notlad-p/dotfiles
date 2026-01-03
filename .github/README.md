@@ -44,6 +44,26 @@ ansible-playbook main.yml --ask-become-pass -DC
 ansible-playbook main.yml --ask-become-pass
 ```
 
+#### Ansible Tags
+
+There are ansible tags that can be used to run certain parts of the playbook when needed. For example, if you wanted to add a new configuration to the repo and symlink it inside the `~/.config/` directory.
+
+To do this, copy the new configuration to the `config/` folder in the repo, delete the old configuration in `~/.config/`, and run:
+
+```sh
+ansible-playbook main.yml --ask-become-pass --tags "symlink-configs"
+```
+
+The available tags in this playbook are:
+
+- `git-config`
+- `create-directories`
+- `clone-repos`
+- `symlink-configs`
+- `symlink-pfp`
+- `install-packages`
+- `zsh-default`
+
 ### Screenshots
 
 |                                           Bar & Widgets                                            |
