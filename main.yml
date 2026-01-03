@@ -11,32 +11,59 @@
       ansible.builtin.set_fact:
         user_dir: "{{ ansible_facts['user_dir'] }}"
         user_id: "{{ ansible_facts['user_id'] }}"
+      tags: always
 
     - name: Setup Git config
-      ansible.builtin.include_tasks: "tasks/git_config.yml"
+      ansible.builtin.include_tasks:
+        file: "tasks/git_config.yml"
+        apply:
+          tags: git-config
+      tags:
+        - git-config
 
     - name: Create Directories
-      ansible.builtin.include_tasks: "tasks/directories.yml"
+      ansible.builtin.include_tasks:
+        file: "tasks/directories.yml"
+        apply:
+          tags: create-directories
+      tags:
+        - create-directories
 
     - name: Clone needed repos
-      ansible.builtin.include_tasks: "tasks/clone.yml"
+      ansible.builtin.include_tasks:
+        file: "tasks/clone.yml"
+        apply:
+          tags: clone-repos
+      tags: clone-repos
 
     - name: Symlink configs
-      ansible.builtin.include_tasks: "tasks/symlink.yml"
+      ansible.builtin.include_tasks:
+        file: "tasks/symlink.yml"
+        apply:
+          tags: symlink-configs
+      tags:
+        - symlink-configs
 
     - name: Symlink .face to home directory
       ansible.builtin.file:
         src: "{{ playbook_dir }}/assets/.face"
         dest: "{{ user_dir }}/.face"
         state: link
+      tags:
+        - symlink-pfp
 
     - name: Install Packages
-      ansible.builtin.include_tasks: "tasks/packages.yml"
+      ansible.builtin.include_tasks:
+        file: "tasks/packages.yml"
+        apply:
+          tags: install-packages
+      tags:
+        - install-packages
 
     - name: Change user default shell to zsh
       become: true
       tags:
-        - zsh
+        - zsh-default
       ansible.builtin.user:
         name: "{{ user_id }}"
         shell: /usr/bin/zsh
