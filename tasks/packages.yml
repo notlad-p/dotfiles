@@ -24,6 +24,7 @@
 
 # Packages to install
 - name: General
+  become_user: aur_builder
   become: true
   tags:
     - general
@@ -50,6 +51,8 @@
     state: present
 
 - name: Desktop Environment
+  become_user: aur_builder
+  become: true
   tags:
     - desktop-environment
   kewlfft.aur.aur:
@@ -72,6 +75,8 @@
     state: present
 
 - name: Desktop Environment (AUR)
+  become_user: aur_builder
+  become: true
   tags:
     - desktop-environment
   kewlfft.aur.aur:
@@ -85,6 +90,8 @@
       - matugen-bin
 
 - name: Applications
+  become_user: aur_builder
+  become: true
   tags:
     - applications
   kewlfft.aur.aur:
@@ -99,6 +106,8 @@
       - pavucontrol
 
 - name: Applications (AUR)
+  become_user: aur_builder
+  become: true
   tags:
     - applications
   kewlfft.aur.aur:
@@ -109,6 +118,8 @@
       - zen-browser-bin
 
 - name: Development Environment / Terminal
+  become_user: aur_builder
+  become: true
   tags:
     - development-environment
   kewlfft.aur.aur:
@@ -157,6 +168,8 @@
     state: present
 
 - name: Development Environment / Terminal (AUR)
+  become_user: aur_builder
+  become: true
   tags:
     - development-environment
   kewlfft.aur.aur:
@@ -170,6 +183,7 @@
       - fnm-bin
       - gowall
 - name: Remove the 'aur_builder' user
+  become: true
   ansible.builtin.user:
     name: aur_builder
     state: absent
