@@ -9,6 +9,7 @@ Singleton {
     property color white: "#edeff0"
     property color blue: "#6791c9"
     property color red: "#F26E74"
+    property color green: "#4cbb17"
 
     property color black25: "#656667"
     property color black50: "#505253"
