@@ -9,6 +9,7 @@ import qs.components
 import qs.config
 
 BarButton {
+
     id: root
     onClicked: () => {
         if (!selectorLoader.active) {
@@ -18,11 +19,23 @@ BarButton {
         }
     }
 
-    Icon {
-        visible: UPower.onBattery
+    Text {
+        text: `${Math.round(UPower.displayDevice.percentage * 100)}%`
+        color: "white"
+    }
+
+    BatteryChargingIcon {
+        visible: UPower.displayDevice.type == UPowerDeviceType.Battery && !UPower.onBattery
+        percentage: UPower.displayDevice.percentage
         size: 16
         iconColor: Colors.white
-        iconName: "battery-70"
+    }
+
+    BatteryIcon {
+        visible: UPower.displayDevice.type == UPowerDeviceType.Battery && UPower.onBattery
+        percentage: UPower.displayDevice.percentage
+        size: 16
+        iconColor: UPower.displayDevice.percentage <= 0.2 ? Colors.red : Colors.white
     }
 
     Icon {
@@ -49,6 +62,23 @@ BarButton {
 
             ColumnLayout {
                 spacing: 12
+
+                Row {
+                    spacing: 4
+
+                    BatteryChargingIcon {
+                        percentage: 0.7
+                        size: 20
+                        iconColor: Colors.white
+                    }
+
+                    BatteryIcon {
+                        percentage: 0.5
+                        size: 20
+                        iconColor: Colors.red
+                        iconName: "battery"
+                    }
+                }
 
                 // WrapperRectangle {
                 //     color: Colors.black700
