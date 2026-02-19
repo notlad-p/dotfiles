@@ -204,7 +204,7 @@ return {
             },
           },
           qmlls = {
-            cmd = { "qmlls", "-E" },
+            cmd = { "qmlls" },
           },
 
           denols = {
