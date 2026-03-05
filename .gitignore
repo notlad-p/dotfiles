@@ -1,2 +1,4 @@
 config/lazygit/state.yml
 config/zsh/.zcompdump*
+config/hypr/monitors.conf
+config/hypr/workspaces.conf
