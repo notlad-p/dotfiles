@@ -67,3 +67,11 @@
       ansible.builtin.user:
         name: "{{ user_id }}"
         shell: /usr/bin/zsh
+
+    - name: Remove the 'aur_builder' user
+      become: true
+      ansible.builtin.user:
+        name: aur_builder
+        state: absent
+        remove: true
+        force: true
