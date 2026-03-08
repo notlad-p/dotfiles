@@ -28,7 +28,8 @@
   become: true
   tags:
     - general
-  community.general.pacman:
+  kewlfft.aur.aur:
+    use: paru
     name:
       - git
       - curl
@@ -72,6 +73,9 @@
       - hyprlock
       - swww
       - swappy
+      - cpio
+      - quickshell
+      - matugen
     state: present
 
 - name: Desktop Environment (AUR)
@@ -81,13 +85,11 @@
     - desktop-environment
   kewlfft.aur.aur:
     use: paru
-    aur_only: true
+    # aur_only: true
     name:
       - hyprshot
       - swaync
       - vicinae-bin
-      - quickshell
-      - matugen-bin
 
 - name: Applications
   become_user: aur_builder
