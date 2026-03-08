@@ -4,6 +4,7 @@ return {
     opts_extend = { "" },
     opts = {
       preset = "helix",
+      delay = 0,
       spec = {
         {
           mode = { "n", "v" },
