@@ -7,9 +7,6 @@ import Quickshell.Widgets
 
 import qs.config
 
-// toggled
-// enabled / disabled
-
 Button {
     id: root
     // Values: "xs", "sm", "md", "lg", "xl"
@@ -19,7 +16,7 @@ Button {
     property string iconName
     property int iconSize
     property color backgroundColor: toggled ? Theme.palette._primary : Theme.palette._surfaceContainer
-    property color hoveredBackgroundColor:  toggled ? Qt.tint(Theme.palette._primary, Qt.alpha(Theme.palette._onPrimary, 0.08)) : Qt.tint(Theme.palette._surfaceContainer, Qt.alpha(root.textColor, 0.08))
+    property color hoveredBackgroundColor: toggled ? Qt.tint(Theme.palette._primary, Qt.alpha(Theme.palette._onPrimary, 0.08)) : Qt.tint(Theme.palette._surfaceContainer, Qt.alpha(root.textColor, 0.08))
     property color textColor: toggled ? Theme.palette._onPrimary : Theme.palette._onSurfaceVariant
 
     horizontalPadding: {
@@ -55,20 +52,22 @@ Button {
     }
 
     property bool rounded: false
+    property bool roundedLeft: false
+    property bool roundedRight: false
     property real toggledRadius: {
         if (root.rounded) {
-            return determineRadius()
+            return determineRadius();
         }
 
         return Theme.radius.full(width, height);
     }
 
     property real radius: {
-      if (root.rounded) {
-        return Theme.radius.full(width, height);
-      }
+        if (root.rounded) {
+            return Theme.radius.full(width, height);
+        }
 
-      return determineRadius()
+        return determineRadius();
     }
 
     property real pressedRadius: {
@@ -201,9 +200,9 @@ Button {
                         }
                     }
 
-                  Behavior on color {
-                      animation: Theme.animation.expressiveDefaultEffects.color.createObject(this)
-                  }
+                    Behavior on color {
+                        animation: Theme.animation.expressiveDefaultEffects.color.createObject(this)
+                    }
                 }
             }
         }
@@ -211,13 +210,50 @@ Button {
 
     background: Rectangle {
         color: buttonHover.hovered ? root.hoveredBackgroundColor : root.backgroundColor
-        // radius: root.pressed ? root.pressedRadius : root.radius
         radius: {
-          if (root.down) {
-            return root.pressedRadius
-          }
+            if (root.down) {
+                return root.pressedRadius;
+            }
 
-          return root.toggled ? root.toggledRadius : root.radius
+            return root.toggled ? root.toggledRadius : root.radius;
+        }
+
+        bottomLeftRadius: {
+            if (root.roundedLeft) {
+                if (root.down) {
+                    return root.pressedRadius;
+                }
+
+                return Theme.radius.full(root.width, root.height);
+            }
+        }
+        topLeftRadius: {
+            if (root.roundedLeft) {
+                if (root.down) {
+                    return root.pressedRadius;
+                }
+
+                return Theme.radius.full(root.width, root.height);
+            }
+        }
+
+        bottomRightRadius: {
+            if (root.roundedRight) {
+                if (root.down) {
+                    return root.pressedRadius;
+                }
+
+                return Theme.radius.full(root.width, root.height);
+            }
+        }
+        topRightRadius: {
+            if (root.roundedRight) {
+                if (root.down) {
+                    return root.pressedRadius;
+                }
+
+                return Theme.radius.full(root.width, root.height);
+            }
         }
 
         Behavior on color {
@@ -225,6 +261,22 @@ Button {
         }
 
         Behavior on radius {
+            animation: Theme.animation.expressiveFastSpatial.number.createObject(this)
+        }
+
+        Behavior on topLeftRadius {
+            animation: Theme.animation.expressiveFastSpatial.number.createObject(this)
+        }
+
+        Behavior on bottomLeftRadius {
+            animation: Theme.animation.expressiveFastSpatial.number.createObject(this)
+        }
+
+        Behavior on topRightRadius {
+            animation: Theme.animation.expressiveFastSpatial.number.createObject(this)
+        }
+
+        Behavior on bottomRightRadius {
             animation: Theme.animation.expressiveFastSpatial.number.createObject(this)
         }
     }
