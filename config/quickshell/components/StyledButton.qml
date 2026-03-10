@@ -15,6 +15,7 @@ Button {
     // TODO: change this to star
     property string iconName
     property int iconSize
+    property bool rawIcon: false
     property color backgroundColor: toggled ? Theme.palette._primary : Theme.palette._surfaceContainer
     property color hoveredBackgroundColor: toggled ? Qt.tint(Theme.palette._primary, Qt.alpha(Theme.palette._onPrimary, 0.08)) : Qt.tint(Theme.palette._surfaceContainer, Qt.alpha(root.textColor, 0.08))
     property color textColor: toggled ? Theme.palette._onPrimary : Theme.palette._onSurfaceVariant
@@ -156,6 +157,7 @@ Button {
                     }
                     iconColor: root.textColor
                     iconName: root.iconName
+                    raw: root.rawIcon
                 }
             }
         }
