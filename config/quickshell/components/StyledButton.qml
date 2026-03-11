@@ -16,8 +16,11 @@ Button {
     property string iconName
     property int iconSize
     property bool rawIcon: false
-    property color backgroundColor: toggled ? Theme.palette._primary : Theme.palette._surfaceContainer
-    property color hoveredBackgroundColor: toggled ? Qt.tint(Theme.palette._primary, Qt.alpha(Theme.palette._onPrimary, 0.08)) : Qt.tint(Theme.palette._surfaceContainer, Qt.alpha(root.textColor, 0.08))
+    property bool quantizeIconBackground: false
+    property color backgroundColor: Theme.palette._surfaceContainer
+    property color toggledBackgroundColor: Theme.palette._primary
+    property color hoveredBackgroundColor: Qt.tint(Theme.palette._surfaceContainer, Qt.alpha(root.textColor, 0.08))
+    property color toggledHoveredBackgroundColor: Qt.tint(Theme.palette._primary, Qt.alpha(Theme.palette._onPrimary, 0.08))
     property color textColor: toggled ? Theme.palette._onPrimary : Theme.palette._onSurfaceVariant
 
     horizontalPadding: {
@@ -158,6 +161,24 @@ Button {
                     iconColor: root.textColor
                     iconName: root.iconName
                     raw: root.rawIcon
+
+                    Loader {
+                        Layout.alignment: Qt.AlignHCenter
+                        active: root.quantizeIconBackground
+                        sourceComponent: ColorQuantizer {
+                            id: colorQuantizer
+                            source: Qt.resolvedUrl("root:/assets/" + root.iconName + ".svg")
+                            depth: 1 // Will produce 8 colors (2³)
+                            rescaleSize: 20 // Rescale to 64x64 for faster processing
+                            onColorsChanged: {
+                                console.log(colors);
+                                root.backgroundColor = Qt.alpha(colors[1], 0.08);
+                                root.hoveredBackgroundColor = Qt.alpha(colors[1], 0.16);
+                                root.toggledBackgroundColor = Qt.alpha(colors[1], 0.26);
+                                root.toggledHoveredBackgroundColor = Qt.alpha(colors[1], 0.34);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -211,7 +232,13 @@ Button {
     }
 
     background: Rectangle {
-        color: buttonHover.hovered ? root.hoveredBackgroundColor : root.backgroundColor
+        color: {
+            if (buttonHover.hovered) {
+                return root.toggled ? root.toggledHoveredBackgroundColor : root.hoveredBackgroundColor;
+            }
+
+            return root.toggled ? root.toggledBackgroundColor : root.backgroundColor;
+        }
         radius: {
             if (root.down) {
                 return root.pressedRadius;
