@@ -8,6 +8,9 @@ Singleton {
     id: root
     property QtObject colors
     // property QtObject animations
+    function spacing(scale: real): real {
+        return 4 * scale;
+    }
 
     // Colors are prefixed with an underscore to avoid QML naming conflicts.
     // For example, "onPrimary" is interpreted as a signal
@@ -109,31 +112,29 @@ Singleton {
     }
 
     property QtObject motion: QtObject {
-      property QtObject easing: QtObject {
-        readonly property list<real> emphasized: [0.05, 0, 2 / 15, 0.06, 1 / 6, 0.4, 5 / 24, 0.82, 0.25, 1, 1, 1]
-        readonly property list<real> emphasizedAccel: [0.3, 0, 0.8, 0.15, 1, 1]
-        readonly property list<real> emphasizedDecel: [0.05, 0.7, 0.1, 1, 1, 1]
-        readonly property list<real> standard: [0.2, 0, 0, 1, 1, 1]
-        readonly property list<real> standardAccel: [0.3, 0, 1, 1, 1, 1]
-        readonly property list<real> standardDecel: [0, 0, 0, 1, 1, 1]
-      }
+        property QtObject easing: QtObject {
+            readonly property list<real> emphasized: [0.05, 0, 2 / 15, 0.06, 1 / 6, 0.4, 5 / 24, 0.82, 0.25, 1, 1, 1]
+            readonly property list<real> emphasizedAccel: [0.3, 0, 0.8, 0.15, 1, 1]
+            readonly property list<real> emphasizedDecel: [0.05, 0.7, 0.1, 1, 1, 1]
+            readonly property list<real> standard: [0.2, 0, 0, 1, 1, 1]
+            readonly property list<real> standardAccel: [0.3, 0, 1, 1, 1, 1]
+            readonly property list<real> standardDecel: [0, 0, 0, 1, 1, 1]
+        }
 
-      property QtObject duration: QtObject {
-        readonly property real short1: 50
-        readonly property real short2: 100
-        readonly property real short3: 150
-        readonly property real short4: 200
-        readonly property real medium1: 250
-        readonly property real medium2: 300
-        readonly property real medium3: 350
-        readonly property real medium4: 400
-        readonly property real long1: 450
-        readonly property real long2: 500
-        readonly property real long3: 550
-        readonly property real long4: 600
-      }
-
-
+        property QtObject duration: QtObject {
+            readonly property real short1: 50
+            readonly property real short2: 100
+            readonly property real short3: 150
+            readonly property real short4: 200
+            readonly property real medium1: 250
+            readonly property real medium2: 300
+            readonly property real medium3: 350
+            readonly property real medium4: 400
+            readonly property real long1: 450
+            readonly property real long2: 500
+            readonly property real long3: 550
+            readonly property real long4: 600
+        }
 
         property QtObject expressiveFastSpatial: QtObject {
             readonly property real duration: 350
