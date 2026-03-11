@@ -1,5 +1,6 @@
 import Quickshell
 
-Scope {
+ShellRoot {
+    ExpressiveBar {}
     Bar {}
 }
