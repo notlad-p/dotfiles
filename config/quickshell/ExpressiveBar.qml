@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Widgets
 
+import qs.services
 import qs.widgets
 import qs.config
 import qs.components
@@ -67,11 +68,37 @@ Scope {
 
                     RowLayout {
                         id: center
-                        spacing: 8
+                        spacing: 6
                         anchors.horizontalCenter: parent.horizontalCenter
 
-                        Text {
-                            text: "center"
+                        StyledButton {
+                            id: dateTimeButton
+                            text: Time.format("ddd, MMM d  h:mm ap")
+                            size: "xs"
+                            roundedLeft: true
+                            radius: 8
+                            onClicked: dateTimeButton.toggled = !dateTimeButton.toggled
+                        }
+
+                        StyledButton {
+                            id: weatherButton
+                            text: "73°"
+                            size: "xs"
+                            iconName: "weather-cloudy"
+                            radius: 8
+                            onClicked: weatherButton.toggled = !weatherButton.toggled
+                        }
+
+                        IconButton {
+                            id: notificationsIconButton
+                            iconName: "material/notifications"
+                            size: "xs"
+                            // rawIcon: true
+                            implicitWidth: 44
+                            buttonWidth: "wide"
+                            roundedRight: true
+                            radius: 8
+                            onClicked: notificationsIconButton.toggled = !notificationsIconButton.toggled
                         }
                     }
 
