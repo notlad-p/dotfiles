@@ -9,7 +9,7 @@ import qs.config
 Item {
     id: root
     required property string iconName
-    property color iconColor: Colors.white
+    property color iconColor: Theme.palette._onPrimaryContainer
     property real size: 16
     property bool raw: false
     implicitHeight: icon.implicitHeight

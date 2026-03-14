@@ -189,7 +189,6 @@ readonly property color contentColor: toggled ? toggledTextColor : textColor
                             depth: 1
                             rescaleSize: 20
                             onColorsChanged: {
-                                console.log(colors);
                                 root.backgroundColor = Qt.alpha(colors[1], 0.08);
                                 root.hoveredBackgroundColor = Qt.alpha(colors[1], 0.16);
                                 root.toggledBackgroundColor = Qt.alpha(colors[1], 0.26);
