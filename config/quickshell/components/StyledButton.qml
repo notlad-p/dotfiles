@@ -17,11 +17,30 @@ Button {
     property int iconSize
     property bool rawIcon: false
     property bool quantizeIconBackground: false
-    property color backgroundColor: Theme.palette._surfaceContainer
-    property color toggledBackgroundColor: Theme.palette._primary
-    property color hoveredBackgroundColor: Qt.tint(Theme.palette._surfaceContainer, Qt.alpha(root.textColor, 0.08))
-    property color toggledHoveredBackgroundColor: Qt.tint(Theme.palette._primary, Qt.alpha(Theme.palette._onPrimary, 0.08))
-    property color textColor: toggled ? Theme.palette._onPrimary : Theme.palette._onSurfaceVariant
+
+// ── Colors ───────────────────────────────────────────────────────
+
+property color backgroundColor: Theme.palette._surfaceContainer
+property color toggledBackgroundColor: Theme.palette._primary
+
+property color textColor: Theme.palette._onSurfaceVariant
+property color toggledTextColor: Theme.palette._onPrimary
+
+property color hoveredBackgroundColor:
+    Qt.tint(backgroundColor, Qt.alpha(textColor, 0.08))
+
+property color toggledHoveredBackgroundColor:
+    Qt.tint(toggledBackgroundColor, Qt.alpha(toggledTextColor, 0.08))
+
+/// The text/icon color currently in effect.
+readonly property color contentColor: toggled ? toggledTextColor : textColor
+
+// ── Border ───────────────────────────────────────────────────────
+
+    property color borderColor: "transparent"
+    property int borderWidth: 0
+
+    // ── Geometry ─────────────────────────────────────────────────────
 
     horizontalPadding: {
         switch (root.size) {
@@ -105,7 +124,6 @@ Button {
             return 40;
         }
     }
-    // anchors.horizontalCenter: parent.horizontalCenter
 
     HoverHandler {
         id: buttonHover
@@ -158,7 +176,7 @@ Button {
                             return 20;
                         }
                     }
-                    iconColor: root.textColor
+                    iconColor: root.contentColor
                     iconName: root.iconName
                     raw: root.rawIcon
 
@@ -168,8 +186,8 @@ Button {
                         sourceComponent: ColorQuantizer {
                             id: colorQuantizer
                             source: Qt.resolvedUrl("root:/assets/" + root.iconName + ".svg")
-                            depth: 1 // Will produce 8 colors (2³)
-                            rescaleSize: 20 // Rescale to 64x64 for faster processing
+                            depth: 1
+                            rescaleSize: 20
                             onColorsChanged: {
                                 console.log(colors);
                                 root.backgroundColor = Qt.alpha(colors[1], 0.08);
@@ -191,7 +209,7 @@ Button {
                 MaterialText {
                     visible: root.text
                     text: qsTr(root.text)
-                    color: root.textColor
+                    color: root.contentColor
                     font.weight: Font.Medium
                     font.pixelSize: {
                         switch (root.size) {
@@ -239,6 +257,10 @@ Button {
 
             return root.toggled ? root.toggledBackgroundColor : root.backgroundColor;
         }
+
+        border.color: root.borderColor
+        border.width: root.borderWidth
+
         radius: {
             if (root.down) {
                 return root.pressedRadius;
@@ -286,6 +308,10 @@ Button {
         }
 
         Behavior on color {
+            animation: Theme.animation.expressiveDefaultEffects.color.createObject(this)
+        }
+
+        Behavior on border.color {
             animation: Theme.animation.expressiveDefaultEffects.color.createObject(this)
         }
 
