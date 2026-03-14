@@ -317,7 +317,6 @@ WrapperRectangle {
 
         property alias text: navLabel.text
         readonly property alias labelFont: navLabel.font
-        /// Fixed width keeps the label centered as its text changes.
         property real labelWidth: navLabel.implicitWidth
 
         signal prevClicked()
@@ -396,7 +395,7 @@ WrapperRectangle {
             year: calContent.contentYear
             locale: Qt.locale()
 
-            delegate: Item {
+            delegate: StyledButton {
                 id: dayCell
                 required property var model
 
@@ -406,64 +405,28 @@ WrapperRectangle {
                     model.month === root.todayMonth &&
                     model.year === root.todayYear
 
-                width: 40; height: 40
+                width: 40
+                height: 40
+                horizontalPadding: 0
 
-                // Today outline
-                Rectangle {
-                    anchors.centerIn: parent
-                    width: 40; height: 40
-                    radius: Theme.radius.fullStatic
-                    color: "transparent"
-                    border.color: Theme.palette._primary
-                    border.width: 1
-                    visible: dayCell.isTodayCell
+                // "md" for 16 px text; explicit width/height override its implicitHeight.
+                size: "md"
+                rounded: true
+
+                text: model.day
+
+                backgroundColor: "transparent"
+                hoveredBackgroundColor: Qt.alpha(Theme.palette._onSurface, 0.08)
+
+                textColor: {
+                    if (isTodayCell) return Theme.palette._primary
+                    if (!isCurrentMonth) return Theme.palette._outline
+                    return Theme.palette._onSurface
                 }
 
-                // Hover fill
-                Rectangle {
-                    id: dayCellHover
-                    anchors.centerIn: parent
-                    width: 40; height: 40
-                    radius: Theme.radius.fullStatic
-                    color: Theme.palette._onSurface
-                    opacity: 0
-
-                    Behavior on opacity {
-                        NumberAnimation {
-                            duration: Theme.motion.expressiveDefaultEffects.duration
-                            easing.type: Easing.BezierSpline
-                            easing.bezierCurve: Theme.motion.expressiveDefaultEffects.bezierCurve
-                        }
-                    }
-                }
-
-                Text {
-                    anchors.centerIn: parent
-                    text: dayCell.model.day
-                    font.pixelSize: 16
-                    font.weight: dayCell.isTodayCell ? Font.DemiBold : Font.Normal
-                    color: {
-                        if (dayCell.isTodayCell) return Theme.palette._primary
-                        if (!dayCell.isCurrentMonth) return Theme.palette._outline
-                        return Theme.palette._onSurface
-                    }
-
-                    Behavior on color {
-                        ColorAnimation {
-                            duration: Theme.motion.expressiveDefaultEffects.duration
-                            easing.type: Easing.BezierSpline
-                            easing.bezierCurve: Theme.motion.expressiveDefaultEffects.bezierCurve
-                        }
-                    }
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: dayCellHover.opacity = 0.08
-                    onExited: dayCellHover.opacity = 0
-                    cursorShape: Qt.PointingHandCursor
-                }
+                // Width stays at 1 so only the color animates in/out.
+                borderWidth: 1
+                borderColor: isTodayCell ? Theme.palette._primary : "transparent"
             }
         }
     }
