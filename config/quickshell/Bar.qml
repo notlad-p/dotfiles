@@ -17,6 +17,7 @@ Scope {
             property var modelData
             screen: modelData
             color: "transparent"
+            focusable: true
 
             anchors {
                 top: true

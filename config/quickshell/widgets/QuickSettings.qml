@@ -28,6 +28,7 @@ BarButton {
     LazyLoader {
         id: selectorLoader
         loading: false
+        // loading: true
         onActiveAsyncChanged: selectorLoader.item.toggle()
 
         BarPopup {
@@ -159,6 +160,8 @@ BarButton {
                     }
                     // onClicked: toggled = !barButton.toggled
                 }
+
+                Calendar {}
 
                 // Row {
                 //     spacing: 12
