@@ -41,19 +41,19 @@ Slider {
     to: 100
 
     onPressedChanged: {
-      if (root.pressed) {
-        console.log("play animation to value once, then bind position to actual position")
-        visBeh.enabled = true
-      } else {
-        console.log("unbind actual position?")
-        // console.log("don't play animation")
-      }
+        if (root.pressed) {
+            console.log("play animation to value once, then bind position to actual position");
+            visBeh.enabled = true;
+        } else {
+            console.log("unbind actual position?");
+            // console.log("don't play animation")
+        }
     }
 
     MouseArea {
         anchors.fill: parent
-        onPressed: (mouse) => mouse.accepted = false
-        cursorShape: root.pressed ? Qt.ClosedHandCursor : Qt.PointingHandCursor 
+        onPressed: mouse => mouse.accepted = false
+        cursorShape: root.pressed ? Qt.ClosedHandCursor : Qt.PointingHandCursor
     }
 
     Behavior on actualVisualPosition {
@@ -71,7 +71,7 @@ Slider {
                 root.moveAnimationRunning = visAnim.running;
                 console.log(visAnim.running);
                 if (!visAnim.running) {
-                  visBeh.enabled = false
+                    visBeh.enabled = false;
                 }
                 // console.log(visAnim.running);
                 // if (visAnim.running)
@@ -267,7 +267,7 @@ Slider {
                 yScale: 0
             }
 
-            MaterialText {
+            StyledText {
                 text: Math.round(root.actualVisualPosition * root.to)
                 color: Theme.palette._inverseOnSurface
             }
@@ -291,11 +291,11 @@ Slider {
             anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: 6
             sourceComponent: Component {
-              Icon {
-                  size: 24
-                  iconColor: Theme.palette._onPrimary
-                  iconName: root.iconName
-              }
+                Icon {
+                    size: 24
+                    iconColor: Theme.palette._onPrimary
+                    iconName: root.iconName
+                }
             }
         }
 
@@ -307,12 +307,11 @@ Slider {
             anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: 16
             sourceComponent: Component {
-              Icon {
-                  size: 24
-                  iconColor: Theme.palette._onSecondaryContainer
-                  iconName: root.inactiveIconName
-
-              }
+                Icon {
+                    size: 24
+                    iconColor: Theme.palette._onSecondaryContainer
+                    iconName: root.inactiveIconName
+                }
             }
 
             Behavior on opacity {

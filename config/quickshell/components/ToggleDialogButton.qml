@@ -72,14 +72,14 @@ StyledButton {
             Column {
                 width: 100
                 anchors.verticalCenter: parent.verticalCenter
-                MaterialText {
+                StyledText {
                     text: qsTr("Wifi")
                     color: button.toggled ? Theme.palette._onPrimary : Theme.palette._onSurfaceVariant
                     font.weight: Font.Medium
                     font.letterSpacing: 0.1
                 }
 
-                MaterialText {
+                StyledText {
                     visible: button.toggled
                     text: "Home Internet"
                     color: button.toggled ? Theme.palette._onPrimary : Theme.palette._onSurfaceVariant
