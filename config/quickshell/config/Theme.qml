@@ -67,22 +67,181 @@ Singleton {
         property color _tertiaryFixedDim: "#d9bde3"
     }
 
-    // TODO: LIST:
-    // - Add easings & durations here
-    // - Create button container with hover & pressed
-    // - Directories:
-    //  - /components = reuseable components
-    //  - /widgets = individual widgets that make up UI
-    // - Components:
-    //  - ButtonGroup
-    //  - ButtonGroupButton
-    //  - Button (StyledButton.qml)
-    //  - ToggleButton (Icon / Text)
-    //  - WidgetPopup
-    // - Widgets
-    //  - NotificationPopup
-    //  - Notification
-    //  - NotificationGroup
+    property QtObject typography: QtObject {
+        readonly property string fontFamily: "Google Sans Flex"
+        readonly property int roundness: 60
+
+        readonly property var roles: {
+            "displayLarge": {
+                "size": 57,
+                "weight": Font.Normal,
+                "axes": {
+                    "opsz": 57,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                },
+                "letterSpacing": -0.25
+            },
+            "displayMedium": {
+                "size": 45,
+                "weight": Font.Normal,
+                "axes": {
+                    "opsz": 45,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                },
+                "letterSpacing": 0
+            },
+            "displaySmall": {
+                "size": 36,
+                "weight": Font.Normal,
+                "axes": {
+                    "opsz": 36,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                },
+                "letterSpacing": 0
+            },
+            "headlineLarge": {
+                "size": 32,
+                "weight": Font.Normal,
+                "axes": {
+                    "opsz": 32,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                }
+            },
+            "headlineMedium": {
+                "size": 28,
+                "weight": Font.Normal,
+                "axes": {
+                    "opsz": 28,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                }
+            },
+            "headlineSmall": {
+                "size": 24,
+                "weight": Font.Normal,
+                "axes": {
+                    "opsz": 24,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                }
+            },
+            "titleLarge": {
+                "size": 22,
+                "weight": Font.Normal,
+                "axes": {
+                    "opsz": 22,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                }
+            },
+            "titleMedium": {
+                "size": 16,
+                "weight": Font.Medium,
+                "axes": {
+                    "opsz": 16,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                },
+                "letterSpacing": 0.15
+            },
+            "titleSmall": {
+                "size": 14,
+                "weight": Font.Medium,
+                "axes": {
+                    "opsz": 14,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                },
+                "letterSpacing": 0.1,
+                "lineHeight": 20
+            },
+            "labelLarge": {
+                "size": 14,
+                "weight": Font.Medium,
+                "axes": {
+                    "opsz": 14,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                },
+                "letterSpacing": 0.1,
+                "lineHeight": 20
+            },
+            "labelMedium": {
+                "size": 12,
+                "weight": Font.Medium,
+                "axes": {
+                    "opsz": 12,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                },
+                "letterSpacing": 0.5,
+                "lineHeight": 16
+            },
+            "labelSmall": {
+                "size": 11,
+                "weight": Font.Medium,
+                "axes": {
+                    "opsz": 11,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                },
+                "letterSpacing": 0.5,
+                "lineHeight": 16
+            },
+            "bodyLarge": {
+                "size": 16,
+                "weight": Font.Normal,
+                "axes": {
+                    "opsz": 16,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                },
+                "letterSpacing": 0.5,
+                "lineHeight": 24
+            },
+            "bodyMedium": {
+                "size": 14,
+                "weight": Font.Normal,
+                "axes": {
+                    "opsz": 14,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                },
+                "letterSpacing": 0.25,
+                "lineHeight": 20
+            },
+            "bodySmall": {
+                "size": 12,
+                "weight": Font.Normal,
+                "axes": {
+                    "opsz": 14,
+                    "GRAD": 0,
+                    "wdth": 100,
+                    "slnt": 0
+                },
+                "letterSpacing": 0.4,
+                "lineHeight": 16
+            }
+        }
+    }
 
     property QtObject radius: QtObject {
         property int none: 0
