@@ -18,24 +18,22 @@ Button {
     property bool rawIcon: false
     property bool quantizeIconBackground: false
 
-// ── Colors ───────────────────────────────────────────────────────
+    // ── Colors ───────────────────────────────────────────────────────
 
-property color backgroundColor: Theme.palette._surfaceContainer
-property color toggledBackgroundColor: Theme.palette._primary
+    property color backgroundColor: Theme.palette._surfaceContainer
+    property color toggledBackgroundColor: Theme.palette._primary
 
-property color textColor: Theme.palette._onSurfaceVariant
-property color toggledTextColor: Theme.palette._onPrimary
+    property color textColor: Theme.palette._onSurfaceVariant
+    property color toggledTextColor: Theme.palette._onPrimary
 
-property color hoveredBackgroundColor:
-    Qt.tint(backgroundColor, Qt.alpha(textColor, 0.08))
+    property color hoveredBackgroundColor: Qt.tint(backgroundColor, Qt.alpha(textColor, 0.08))
 
-property color toggledHoveredBackgroundColor:
-    Qt.tint(toggledBackgroundColor, Qt.alpha(toggledTextColor, 0.08))
+    property color toggledHoveredBackgroundColor: Qt.tint(toggledBackgroundColor, Qt.alpha(toggledTextColor, 0.08))
 
-/// The text/icon color currently in effect.
-readonly property color contentColor: toggled ? toggledTextColor : textColor
+    /// The text/icon color currently in effect.
+    readonly property color contentColor: toggled ? toggledTextColor : textColor
 
-// ── Border ───────────────────────────────────────────────────────
+    // ── Border ───────────────────────────────────────────────────────
 
     property color borderColor: "transparent"
     property int borderWidth: 0
@@ -205,38 +203,24 @@ readonly property color contentColor: toggled ? toggledTextColor : textColor
             active: root.text
             visible: root.text
             sourceComponent: Component {
-                MaterialText {
+                StyledText {
                     visible: root.text
                     text: qsTr(root.text)
                     color: root.contentColor
-                    font.weight: Font.Medium
-                    font.pixelSize: {
+                    grade: root.toggled && 100
+                    role: {
                         switch (root.size) {
                         case "xs":
                         case "sm":
-                            return 14;
+                            return "labelLarge";
                         case "md":
-                            return 16;
+                            return "titleMedium";
                         case "lg":
-                            return 24;
+                            return "headlineSmall";
                         case "xl":
-                            return 32;
+                            return "headlineLarge";
                         default:
                             return 14;
-                        }
-                    }
-                    font.letterSpacing: {
-                        switch (root.size) {
-                        case "xs":
-                        case "sm":
-                            return 0.1;
-                        case "md":
-                            return 0.15;
-                        case "lg":
-                        case "xl":
-                            return 0;
-                        default:
-                            return 0.1;
                         }
                     }
 
