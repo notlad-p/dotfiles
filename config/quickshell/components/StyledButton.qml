@@ -187,10 +187,10 @@ Button {
                             depth: 1
                             rescaleSize: 20
                             onColorsChanged: {
-                                root.backgroundColor = Qt.alpha(colors[1], 0.08);
-                                root.hoveredBackgroundColor = Qt.alpha(colors[1], 0.16);
-                                root.toggledBackgroundColor = Qt.alpha(colors[1], 0.26);
-                                root.toggledHoveredBackgroundColor = Qt.alpha(colors[1], 0.34);
+                                root.textColor = colors[1];
+                                root.toggledTextColor = colors[1];
+                                root.backgroundColor = Qt.alpha(colors[1], 0.20); 
+                                root.toggledBackgroundColor = Qt.alpha(colors[1], 0.30);
                             }
                         }
                     }
@@ -232,14 +232,8 @@ Button {
         }
     }
 
-    background: Rectangle {
-        color: {
-            if (buttonHover.hovered) {
-                return root.toggled ? root.toggledHoveredBackgroundColor : root.hoveredBackgroundColor;
-            }
-
-            return root.toggled ? root.toggledBackgroundColor : root.backgroundColor;
-        }
+    background: ClippingRectangle {
+        color: root.toggled ? root.toggledBackgroundColor : root.backgroundColor
 
         border.color: root.borderColor
         border.width: root.borderWidth
@@ -287,6 +281,22 @@ Button {
                 }
 
                 return Theme.radius.full(root.width, root.height);
+            }
+        }
+
+        // State Layer
+        Rectangle {
+            id: stateLayer
+            anchors.fill: parent
+            color: root.contentColor 
+            opacity: {
+                if (root.pressed) return 0.10;
+                if (buttonHover.hovered) return 0.08;
+                return 0.0;
+            }
+
+            Behavior on opacity {
+                animation: Theme.animation.expressiveDefaultEffects.number.createObject(this)
             }
         }
 
