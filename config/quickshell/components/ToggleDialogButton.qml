@@ -27,7 +27,6 @@ StyledButton {
                 iconName: "wifi-4-bar"
                 anchors.verticalCenter: parent.verticalCenter
                 backgroundColor: button.hovered ? Qt.tint(Theme.palette._primary, Qt.alpha(Theme.palette._onPrimary, 0.08)) : Theme.palette._primary
-                hoveredBackgroundColor: Qt.tint(Theme.palette._primary, Qt.alpha(Theme.palette._onPrimary, 0.18))
                 textColor: Theme.palette._onPrimary
 
                 onClicked: console.log("ICON")

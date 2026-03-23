@@ -26,10 +26,6 @@ Button {
     property color textColor: Theme.palette._onSurfaceVariant
     property color toggledTextColor: Theme.palette._onPrimary
 
-    property color hoveredBackgroundColor: Qt.tint(backgroundColor, Qt.alpha(textColor, 0.08))
-
-    property color toggledHoveredBackgroundColor: Qt.tint(toggledBackgroundColor, Qt.alpha(toggledTextColor, 0.08))
-
     /// The text/icon color currently in effect.
     readonly property color contentColor: toggled ? toggledTextColor : textColor
 
@@ -189,7 +185,7 @@ Button {
                             onColorsChanged: {
                                 root.textColor = colors[1];
                                 root.toggledTextColor = colors[1];
-                                root.backgroundColor = Qt.alpha(colors[1], 0.20); 
+                                root.backgroundColor = Qt.alpha(colors[1], 0.20);
                                 root.toggledBackgroundColor = Qt.alpha(colors[1], 0.30);
                             }
                         }
@@ -288,10 +284,12 @@ Button {
         Rectangle {
             id: stateLayer
             anchors.fill: parent
-            color: root.contentColor 
+            color: root.contentColor
             opacity: {
-                if (root.pressed) return 0.10;
-                if (buttonHover.hovered) return 0.08;
+                if (root.pressed)
+                    return 0.10;
+                if (buttonHover.hovered)
+                    return 0.08;
                 return 0.0;
             }
 

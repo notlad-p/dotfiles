@@ -24,32 +24,41 @@ WrapperRectangle {
     property int displayMonth: today.getMonth()
     property int displayYear: today.getFullYear()
 
-    readonly property var monthNames: [
-        "Jan", "Feb", "Mar", "Apr",
-        "May", "Jun", "Jul", "Aug",
-        "Sep", "Oct", "Nov", "Dec"
-    ]
+    readonly property var monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
     /// True while any slide or snap-back animation is running.
     readonly property bool animating: slideAnimation.running || snapBackAnimation.running
 
-    function prevMonth() { slideContainer.slide(-1) }
-    function nextMonth() { slideContainer.slide(1) }
+    function prevMonth() {
+        slideContainer.slide(-1);
+    }
+    function nextMonth() {
+        slideContainer.slide(1);
+    }
 
     function stepYear(delta) {
-        if (root.animating) return
-        displayYear += delta
-        slideContainer.currentContent.contentYear = displayYear
+        if (root.animating)
+            return;
+        displayYear += delta;
+        slideContainer.currentContent.contentYear = displayYear;
     }
 
     /// Returns { month, year } for the month adjacent to the displayed one,
     /// handling year rollover.
     function adjacentMonth(direction) {
-        let m = displayMonth + direction
-        let y = displayYear
-        if (m > 11) { m = 0; y++ }
-        else if (m < 0) { m = 11; y-- }
-        return { month: m, year: y }
+        let m = displayMonth + direction;
+        let y = displayYear;
+        if (m > 11) {
+            m = 0;
+            y++;
+        } else if (m < 0) {
+            m = 11;
+            y--;
+        }
+        return {
+            month: m,
+            year: y
+        };
     }
 
     Column {
@@ -67,7 +76,9 @@ WrapperRectangle {
                 onNextClicked: root.nextMonth()
             }
 
-            Item { Layout.fillWidth: true }
+            Item {
+                Layout.fillWidth: true
+            }
 
             CalendarNavControl {
                 id: yearControl
@@ -84,7 +95,10 @@ WrapperRectangle {
             }
         }
 
-        Item { width: 1; height: 30 }
+        Item {
+            width: 1
+            height: 30
+        }
 
         // ── Slide Container ──────────────────────────────────────────
         // Two CalendarContent panes overlap here. At rest, currentContent
@@ -115,48 +129,49 @@ WrapperRectangle {
 
             // Chevron-click entry point. direction: +1 next, −1 prev.
             function slide(direction) {
-                if (root.animating || swipeHandler.active) return
-
-                const next = root.adjacentMonth(direction)
+                if (root.animating || swipeHandler.active)
+                    return;
+                const next = root.adjacentMonth(direction);
 
                 // Pin outgoing pane so it doesn't react to the
                 // displayMonth/Year changes below.
-                currentContent.contentMonth = root.displayMonth
-                currentContent.contentYear = root.displayYear
+                currentContent.contentMonth = root.displayMonth;
+                currentContent.contentYear = root.displayYear;
 
                 // Update header labels immediately — feels more responsive.
-                root.displayMonth = next.month
-                root.displayYear = next.year
+                root.displayMonth = next.month;
+                root.displayYear = next.year;
 
-                incomingContent.contentMonth = next.month
-                incomingContent.contentYear = next.year
-                incomingContent.x = direction * width
-                incomingContent.opacity = 0
+                incomingContent.contentMonth = next.month;
+                incomingContent.contentYear = next.year;
+                incomingContent.x = direction * width;
+                incomingContent.opacity = 0;
 
-                slideAnimation.direction = direction
-                slideAnimation.start()
+                slideAnimation.direction = direction;
+                slideAnimation.start();
             }
 
             // Ensures the incoming pane shows the correct month during a
             // live drag. Only rebuilds when the drag direction flips.
             function preparePeek(direction) {
-                if (peekDirection === direction) return
-                peekDirection = direction
+                if (peekDirection === direction)
+                    return;
+                peekDirection = direction;
 
-                const next = root.adjacentMonth(direction)
-                incomingContent.contentMonth = next.month
-                incomingContent.contentYear = next.year
+                const next = root.adjacentMonth(direction);
+                incomingContent.contentMonth = next.month;
+                incomingContent.contentYear = next.year;
             }
 
             function completeSwap() {
-                const temp = currentContent
-                currentContent = incomingContent
-                incomingContent = temp
+                const temp = currentContent;
+                currentContent = incomingContent;
+                incomingContent = temp;
 
-                currentContent.x = 0
-                currentContent.opacity = 1
-                incomingContent.opacity = 0
-                peekDirection = 0
+                currentContent.x = 0;
+                currentContent.opacity = 1;
+                incomingContent.opacity = 0;
+                peekDirection = 0;
             }
 
             CalendarContent {
@@ -181,26 +196,33 @@ WrapperRectangle {
                 property int direction: 1
 
                 NumberAnimation {
-                    target: slideContainer.currentContent; property: "x"
+                    target: slideContainer.currentContent
+                    property: "x"
                     to: -slideAnimation.direction * slideContainer.width
                     duration: Theme.motion.expressiveSlowSpatial.duration
                     easing.type: Easing.BezierSpline
                     easing.bezierCurve: Theme.motion.expressiveSlowSpatial.bezierCurve
                 }
                 NumberAnimation {
-                    target: slideContainer.currentContent; property: "opacity"; to: 0
+                    target: slideContainer.currentContent
+                    property: "opacity"
+                    to: 0
                     duration: Theme.motion.expressiveDefaultSpatial.duration
                     easing.type: Easing.BezierSpline
                     easing.bezierCurve: Theme.motion.expressiveDefaultSpatial.bezierCurve
                 }
                 NumberAnimation {
-                    target: slideContainer.incomingContent; property: "x"; to: 0
+                    target: slideContainer.incomingContent
+                    property: "x"
+                    to: 0
                     duration: Theme.motion.expressiveSlowSpatial.duration
                     easing.type: Easing.BezierSpline
                     easing.bezierCurve: Theme.motion.expressiveSlowSpatial.bezierCurve
                 }
                 NumberAnimation {
-                    target: slideContainer.incomingContent; property: "opacity"; to: 1
+                    target: slideContainer.incomingContent
+                    property: "opacity"
+                    to: 1
                     duration: Theme.motion.expressiveDefaultSpatial.duration
                     easing.type: Easing.BezierSpline
                     easing.bezierCurve: Theme.motion.expressiveDefaultSpatial.bezierCurve
@@ -216,26 +238,33 @@ WrapperRectangle {
                 id: snapBackAnimation
 
                 NumberAnimation {
-                    target: slideContainer.currentContent; property: "x"; to: 0
+                    target: slideContainer.currentContent
+                    property: "x"
+                    to: 0
                     duration: Theme.motion.expressiveDefaultSpatial.duration
                     easing.type: Easing.BezierSpline
                     easing.bezierCurve: Theme.motion.expressiveDefaultSpatial.bezierCurve
                 }
                 NumberAnimation {
-                    target: slideContainer.currentContent; property: "opacity"; to: 1
+                    target: slideContainer.currentContent
+                    property: "opacity"
+                    to: 1
                     duration: Theme.motion.expressiveDefaultEffects.duration
                     easing.type: Easing.BezierSpline
                     easing.bezierCurve: Theme.motion.expressiveDefaultEffects.bezierCurve
                 }
                 NumberAnimation {
-                    target: slideContainer.incomingContent; property: "x"
+                    target: slideContainer.incomingContent
+                    property: "x"
                     to: slideContainer.peekDirection * slideContainer.width
                     duration: Theme.motion.expressiveDefaultSpatial.duration
                     easing.type: Easing.BezierSpline
                     easing.bezierCurve: Theme.motion.expressiveDefaultSpatial.bezierCurve
                 }
                 NumberAnimation {
-                    target: slideContainer.incomingContent; property: "opacity"; to: 0
+                    target: slideContainer.incomingContent
+                    property: "opacity"
+                    to: 0
                     duration: Theme.motion.expressiveDefaultEffects.duration
                     easing.type: Easing.BezierSpline
                     easing.bezierCurve: Theme.motion.expressiveDefaultEffects.bezierCurve
@@ -257,51 +286,50 @@ WrapperRectangle {
                 enabled: !root.animating
 
                 onTranslationChanged: {
-                    if (!active) return
-
-                    const offset = translation.x
-                    slideContainer.currentContent.x = offset
+                    if (!active)
+                        return;
+                    const offset = translation.x;
+                    slideContainer.currentContent.x = offset;
 
                     // 8 px dead-zone prevents peek flicker near center.
                     if (Math.abs(offset) > 8) {
                         // Dragging left (negative offset) → next month (+1).
-                        const direction = offset < 0 ? 1 : -1
-                        slideContainer.preparePeek(direction)
+                        const direction = offset < 0 ? 1 : -1;
+                        slideContainer.preparePeek(direction);
 
                         // Incoming pane trails one full width behind current.
-                        slideContainer.incomingContent.x = offset + direction * slideContainer.width
+                        slideContainer.incomingContent.x = offset + direction * slideContainer.width;
 
-                        const progress = Math.min(1, Math.abs(offset) / slideContainer.width)
-                        slideContainer.incomingContent.opacity = progress
-                        slideContainer.currentContent.opacity = 1 - progress
+                        const progress = Math.min(1, Math.abs(offset) / slideContainer.width);
+                        slideContainer.incomingContent.opacity = progress;
+                        slideContainer.currentContent.opacity = 1 - progress;
                     } else {
-                        slideContainer.incomingContent.opacity = 0
-                        slideContainer.currentContent.opacity = 1
+                        slideContainer.incomingContent.opacity = 0;
+                        slideContainer.currentContent.opacity = 1;
                     }
                 }
 
                 onActiveChanged: {
-                    if (active) return
-
-                    const offset = slideContainer.currentContent.x
-                    if (offset === 0 || slideContainer.peekDirection === 0) return
-
-                    const velocity = centroid.velocity.x
-                    const distanceMet = Math.abs(offset) > slideContainer.width * slideContainer.swipeThreshold
-                    const flingMet = Math.abs(velocity) > slideContainer.flingVelocity
-                                     && Math.sign(velocity) === Math.sign(offset)
+                    if (active)
+                        return;
+                    const offset = slideContainer.currentContent.x;
+                    if (offset === 0 || slideContainer.peekDirection === 0)
+                        return;
+                    const velocity = centroid.velocity.x;
+                    const distanceMet = Math.abs(offset) > slideContainer.width * slideContainer.swipeThreshold;
+                    const flingMet = Math.abs(velocity) > slideContainer.flingVelocity && Math.sign(velocity) === Math.sign(offset);
 
                     if (distanceMet || flingMet) {
                         // Pin outgoing, update header, animate.
-                        slideContainer.currentContent.contentMonth = root.displayMonth
-                        slideContainer.currentContent.contentYear = root.displayYear
-                        root.displayMonth = slideContainer.incomingContent.contentMonth
-                        root.displayYear = slideContainer.incomingContent.contentYear
+                        slideContainer.currentContent.contentMonth = root.displayMonth;
+                        slideContainer.currentContent.contentYear = root.displayYear;
+                        root.displayMonth = slideContainer.incomingContent.contentMonth;
+                        root.displayYear = slideContainer.incomingContent.contentYear;
 
-                        slideAnimation.direction = slideContainer.peekDirection
-                        slideAnimation.start()
+                        slideAnimation.direction = slideContainer.peekDirection;
+                        slideAnimation.start();
                     } else {
-                        snapBackAnimation.start()
+                        snapBackAnimation.start();
                     }
                 }
             }
@@ -319,8 +347,8 @@ WrapperRectangle {
         readonly property alias labelFont: navLabel.font
         property real labelWidth: navLabel.implicitWidth
 
-        signal prevClicked()
-        signal nextClicked()
+        signal prevClicked
+        signal nextClicked
 
         spacing: 20
 
@@ -331,7 +359,6 @@ WrapperRectangle {
             rounded: true
             iconName: "material/chevron_left"
             backgroundColor: "transparent"
-            hoveredBackgroundColor: Qt.alpha(Theme.palette._onSurface, 0.08)
             onClicked: navControl.prevClicked()
         }
 
@@ -356,7 +383,6 @@ WrapperRectangle {
             rounded: true
             iconName: "material/chevron_right"
             backgroundColor: "transparent"
-            hoveredBackgroundColor: Qt.alpha(Theme.palette._onSurface, 0.08)
             onClicked: navControl.nextClicked()
         }
     }
@@ -376,7 +402,8 @@ WrapperRectangle {
 
             delegate: Item {
                 required property string narrowName
-                width: 40; height: 24
+                width: 40
+                height: 24
 
                 Text {
                     anchors.centerIn: parent
@@ -388,7 +415,10 @@ WrapperRectangle {
             }
         }
 
-        Item { width: 1; height: 16 }
+        Item {
+            width: 1
+            height: 16
+        }
 
         MonthGrid {
             month: calContent.contentMonth
@@ -400,10 +430,7 @@ WrapperRectangle {
                 required property var model
 
                 readonly property bool isCurrentMonth: model.month === calContent.contentMonth
-                readonly property bool isTodayCell:
-                    model.day === root.todayDay &&
-                    model.month === root.todayMonth &&
-                    model.year === root.todayYear
+                readonly property bool isTodayCell: model.day === root.todayDay && model.month === root.todayMonth && model.year === root.todayYear
 
                 width: 40
                 height: 40
@@ -416,12 +443,13 @@ WrapperRectangle {
                 text: model.day
 
                 backgroundColor: "transparent"
-                hoveredBackgroundColor: Qt.alpha(Theme.palette._onSurface, 0.08)
 
                 textColor: {
-                    if (isTodayCell) return Theme.palette._primary
-                    if (!isCurrentMonth) return Theme.palette._outline
-                    return Theme.palette._onSurface
+                    if (isTodayCell)
+                        return Theme.palette._primary;
+                    if (!isCurrentMonth)
+                        return Theme.palette._outline;
+                    return Theme.palette._onSurface;
                 }
 
                 // Width stays at 1 so only the color animates in/out.
